@@ -1,0 +1,15 @@
+.title {
+  font-size: 14px;
+  color: var(--text-color);
+  
+}
+
+.link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.2s ease-in-out;
+    padding: 12px;
+    gap: 8px;
+}

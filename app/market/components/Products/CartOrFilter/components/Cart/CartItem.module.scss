@@ -1,0 +1,70 @@
+.item {
+  display: flex;
+  flex-direction: column;
+}
+
+.itemHeader {
+  display: flex;
+  align-items: start;
+    gap: 6px;
+  justify-content: space-between;
+  padding: 18px 16px 0px 16px;
+}
+
+.itemDetails {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  flex-grow: 1;
+  gap: 4px;
+}
+.itemType {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--Gray500);
+}
+.itemName {
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+}
+.price {
+  display: flex;
+  flex-direction: row;
+  gap: 6px;
+}
+
+.itemPrice {
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+}
+
+.discount {
+  font-size: 16px;
+  font-weight: 600;
+  padding: 2px 8px;
+  background-color: var(--Gray800);
+  border-radius: 6px;
+}
+
+.detailsSection {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px 16px 16px;
+}
+
+.itemDetailsTitle {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-color);
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: var(--BorderGray800);
+}

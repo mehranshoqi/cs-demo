@@ -1,0 +1,28 @@
+.header {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  z-index: 10000;
+  justify-content: space-between;
+  padding: 12px 20px;
+  background-color: white;
+  width: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 17, 25, 0.2) 0%,
+    rgba(10, 17, 25, 0) 100%
+  );
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(19.5px);
+  -webkit-backdrop-filter: blur(14.5px);
+}
+
+.leftNavigation {
+  display: flex;
+  gap: 8px;
+}
+
+.rightNavigation {
+  display: flex;
+}

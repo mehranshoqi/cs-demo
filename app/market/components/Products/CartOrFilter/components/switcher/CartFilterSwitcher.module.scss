@@ -1,0 +1,61 @@
+.cartFilterSwitcher {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.switchButton {
+  flex: 1;
+  background-color: transparent;
+  color: var(--text-color);
+  text-align: center;
+  border-radius: 40px;
+  cursor: pointer;
+  border: 1.5px solid var(--BorderGray800);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 600;
+  justify-content: center;
+  gap: 8px;
+  height: 40px;
+}
+
+.left {
+  border-top-left-radius: 40px;
+  border-bottom-left-radius: 40px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.right {
+  border-top-right-radius: 40px;
+  border-bottom-right-radius: 40px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.active {
+  border-color: #a259ff;
+  color: white;
+  background: transparent;
+  background-image: linear-gradient(var(--Gray950), var(--Gray950)),
+    linear-gradient(180deg, #ffffff4d, #ffffff00);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  box-shadow: 0 12px 18px rgba(0, 0, 0, 0.08);
+}
+
+// .icon {
+//   filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%)
+//     contrast(100%); // white for active
+// }
+
+// .icon.active {
+//   filter: invert(34%) sepia(99%) saturate(7490%) hue-rotate(357deg)
+//     brightness(97%) contrast(110%); // fallback for red
+//   filter: brightness(0) saturate(100%) var(--text-color); // use text color for inactive
+//   transition: filter 0.2s;
+// }

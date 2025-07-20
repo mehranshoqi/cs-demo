@@ -1,0 +1,73 @@
+.footer {
+  width: 100vw;
+  background-color: var(--Gray900);
+  padding: 64px 32px;
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  justify-content: space-around;
+}
+
+.social {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  gap: 40px;
+  max-width: 400px;
+}
+
+.desc {
+  color: var(--text-color);
+  font-size: 14px;
+  text-align: start;
+  max-width: 700px;
+}
+
+.icons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.icon {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid var(--BorderGray800);
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 40px;
+}
+
+.sectionTile {
+  font-size: 22px;
+  font-weight: 600;
+  color: white;
+}
+
+.sectionList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  color: var(--TextBodyGray300);
+  font-size: 14px;
+}
+
+.emailSubscription {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}

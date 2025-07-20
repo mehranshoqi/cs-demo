@@ -1,0 +1,59 @@
+.wearBar {
+  background: #111827;
+  border-radius: 0.5rem;
+  width: 100%   ;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  padding: 8px 0;
+}
+
+.barContainer {
+  position: relative;
+  height: 6px;
+  width: 100%;
+  display: flex;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.cyan {
+  background-color: #22d3ee;
+}
+
+.green {
+  background-color: #22c55e;
+}
+
+.yellow {
+  background-color: #facc15;
+}
+
+.orange {
+  background-color: #fb923c;
+}
+
+.red {
+  background-color: #ef4444;
+}
+
+.pointer {
+  position: absolute;
+  top: -8px;
+}
+
+.triangle {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 6px solid white;
+}
+
+.label {
+  color: #fff;
+  font-weight: bold;
+  font-size: 14px;
+
+  font-weight: 700;
+}

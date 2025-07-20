@@ -1,0 +1,46 @@
+.cover {
+  position: relative;
+  width: 100%;
+  height: 670px;
+  background-color: red;
+}
+
+.titleCover {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(6, 11, 21, 0) 30.08%,
+    #060b15 71.35%
+  );
+  padding-top: 50px;
+
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.bigTitle {
+  font-weight: bold;
+  font-size: 52px;
+  letter-spacing: -2%;
+}
+
+.desc {
+  color: var(--text-color);
+  margin-top: 36px;
+  font-size: 16px;
+  font-weight: 700;
+}
+.green {
+  color: var(--green-color);
+}
+
+.red {
+  color: var(--red-color);
+}

@@ -1,0 +1,54 @@
+"use client";
+
+import Image from "next/image";
+import React, { useState } from "react";
+import styles from "./SubscriptionEmailInput.module.scss";
+
+interface EmailSubscriptionInputProps {
+  placeholder?: string;
+  onSubmit?: (email: string) => void;
+  className?: string;
+}
+
+const EmailSubscriptionInput: React.FC<EmailSubscriptionInputProps> = ({
+  placeholder = "cs2skin@example.com",
+  onSubmit,
+  className,
+}) => {
+  const [email, setEmail] = useState("");
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (email.trim() && onSubmit) {
+      onSubmit(email);
+      setEmail("");
+    }
+  };
+
+  return (
+    <form
+      onSubmit={handleSubmit}
+      className={`${styles.subscriptionForm} ${className || ""}`}
+    >
+      <Image src="/images/envelope.svg" alt="Logo" width={20} height={20} />
+      <input
+        type="email"
+        placeholder={placeholder}
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        className={styles.subscriptionInput}
+        aria-label="Email for subscription"
+        required
+      />
+      <button
+        type="submit"
+        className={styles.subscriptionButton}
+        aria-label="Subscribe"
+      >
+        <Image src="/images/arrow-right-circle.svg" alt="Logo" width={20} height={20} />
+      </button>
+    </form>
+  );
+};
+
+export default EmailSubscriptionInput;

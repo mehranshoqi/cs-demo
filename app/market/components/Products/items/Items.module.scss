@@ -1,0 +1,59 @@
+.items {
+  flex-grow: 1;
+  overflow-y: auto;
+  height: 100%;
+
+  
+}
+.itemsHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 36px;
+}
+
+.chips {
+  display: flex;
+  gap: 12px;
+}
+
+.chip {
+  background: #222;
+  color: #fff;
+  border-radius: 16px;
+  padding: 6px 16px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.search {
+  padding: 8px 16px;
+  border-radius: 16px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.itemsList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(211px, 1fr));
+  gap: 16px;
+}
+
+
+
+.searchSort {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+
+.chipStyle {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  border-radius: 30px;
+  width: 40px;
+  justify-content: center;
+  border: 1.5px solid var(--BorderGray800);
+}
