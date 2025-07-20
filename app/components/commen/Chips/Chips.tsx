@@ -1,3 +1,4 @@
+import Image from "next/image";
 import styles from "./Chips.module.scss";
 
 interface ChipItem {
@@ -23,7 +24,7 @@ export default function Chips({ chips, activeChip, onChipClick }: ChipsProps) {
           onClick={() => onChipClick?.(chip.label)}
         >
           {chip.iconSrc && (
-            <img
+            <Image
               src={chip.iconSrc}
               alt={chip.label}
               className={styles.chipIcon}

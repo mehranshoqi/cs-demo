@@ -22,7 +22,7 @@ export default function Cart() {
           <p className={styles.itemPrice}>99.00</p>
           <Image src="/images/coin.svg" alt="" width={18} height={18} />
         </div>
-        <FillButton title="Buy 2 Skin" />
+        <FillButton fontSize={14} title="Buy 2 Skin" />
       </div>
     </div>
   );

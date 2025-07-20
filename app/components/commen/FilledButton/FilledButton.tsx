@@ -1,3 +1,4 @@
+import Image from "next/image";
 import styles from "./FilledButton.module.scss";
 
 interface FillButtonProps {
@@ -33,9 +34,11 @@ export default function FillButton({
       }}
     >
       {iconSrc && (
-        <img
+        <Image
           src={iconSrc}
           alt=""
+          width={iconSize}
+          height={iconSize}
           className={styles.icon}
           style={{
             width: iconSize,
