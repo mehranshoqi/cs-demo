@@ -1,0 +1,86 @@
+.colorPickerContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  border-radius: 8px;
+  max-width: fit-content;
+  padding: 4px;
+}
+
+.colorBox {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.2s ease, border 0.2s ease;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  svg {
+    stroke: var(--text-color);
+    width: 14px;
+    height: 14px;
+
+  }
+
+  &.active {
+    border: 2px solid var(--Secondary500);
+    transform: scale(1);
+  }
+}
+
+
+$color-names: (
+  Blood500,
+  Sun500,
+  Yellow500,
+  Green500,
+  Green600,
+  Green400,
+  Lake500,
+  Lake400,
+  Sky500,
+  Sky600,
+  Primary500,
+  Pink500
+);
+
+@each $name in $color-names {
+  .color-#{$name} {
+    
+    background-color: var(--#{$name}); 
+  }
+}
+
+.noneOption {
+  background-color: var(--Gray800);
+  border: 1px solid var(--Gray500);
+
+  svg {
+    stroke: var(--Gray400);
+    filter: none;
+  }
+
+  &.active {
+    border: 2px solid var(--Pink500);
+    background-color: var(--Gray950);
+
+    svg {
+      stroke: var(--Pink500);
+    }
+  }
+}
+
+.inner {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6px;
+}

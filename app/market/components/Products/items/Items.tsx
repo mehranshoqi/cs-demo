@@ -1,37 +1,55 @@
 "use client";
-import { useState } from "react";
 import Chips from "@/app/components/commen/Chips/Chips";
 import styles from "./Items.module.scss";
 import Image from "next/image";
 import ProductCard from "./components/ProductCard/ProductCard";
 import FillButton from "@/app/components/commen/FilledButton/FilledButton";
+import { CartItem, Chip, Product } from "@/app/types";
+import ImagePaths from "@/app/constants/ImagePaths";
+import EmptyListView from "./components/EmptyView/EmptyView";
 
-const chipData = [
+const chipData: Chip[] = [
   { label: "All Skins", iconSrc: "/images/knife.svg" },
-  { label: "Pistols", iconSrc: "/images/knife.svg" },
-  { label: "Mid-Tier", iconSrc: "/images/knife.svg" },
-  { label: "Rifles", iconSrc: "/images/knife.svg" },
+  { label: "Pistols", iconSrc: "/images/pistol.svg" },
+  { label: "Mid-Tier", iconSrc: "/images/mid-tier.svg" },
+  { label: "Rifles", iconSrc: "/images/rifles.svg" },
   { label: "Knives", iconSrc: "/images/knife.svg" },
-  { label: "Gloves", iconSrc: "/images/knife.svg" },
-  { label: "Cases", iconSrc: "/images/knife.svg" },
+  { label: "Gloves", iconSrc: "/images/gloves.svg" },
+  { label: "Cases", iconSrc: "/images/cases.svg" },
 ];
 
-export default function Items() {
-  const [activeChip, setActiveChip] = useState("New");
+interface ItemsProps {
+  products: Product[];
+  handleFilterChange: (filter: string) => void;
+  addToCart: (productToAdd: Product) => void;
+  removeFromCart: (productId: string) => void;
+  onLoadMore: () => void;
+  cartItems: CartItem[];
+  activeFilter: string;
+}
 
+const Items: React.FC<ItemsProps> = ({
+  products,
+  handleFilterChange,
+  addToCart,
+  onLoadMore,
+  removeFromCart,
+  cartItems,
+  activeFilter,
+}) => {
   return (
     <div className={styles.items}>
       <div className={styles.itemsHeader}>
         <Chips
           chips={chipData}
-          activeChip={activeChip}
-          onChipClick={setActiveChip}
+          activeChip={activeFilter}
+          onChipClick={handleFilterChange}
         />
 
         <div className={styles.searchSort}>
           <span className={styles.chipStyle}>
             <Image
-              src="/images/search.svg"
+              src={ImagePaths.icons.search}
               alt="Search"
               className={styles.searchIcon}
               width={20}
@@ -40,7 +58,7 @@ export default function Items() {
           </span>
           <span className={styles.chipStyle}>
             <Image
-              src="/images/sort.svg"
+              src={ImagePaths.icons.sort}
               alt="Sort"
               className={styles.sortIcon}
               width={20}
@@ -50,32 +68,37 @@ export default function Items() {
         </div>
       </div>
       <div className={styles.itemsList}>
-        <ProductCard />
-        <ProductCard isSelected={true} />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
+        {products.map((product) => (
+          <ProductCard
+            key={product.id}
+            isSelected={cartItems.some((item) => item.id === product.id)}
+            product={product}
+            onProductClick={(isSelected) => {
+              isSelected ? removeFromCart(product.id) : addToCart(product);
+            }}
+          />
+        ))}
       </div>
       <div
         style={{ display: "flex", justifyContent: "center", marginTop: "24px" }}
       >
-        <FillButton
-          title="View more"
-          height={48}
-          width={130}
-          fontSize={16}
-          iconSrc="/images/arrow-down.svg"
-          iconSize={11}
-          iconColor="white"
-        />
+        {products.length !== 0 ? (
+          <FillButton
+            onClick={onLoadMore}
+            title="View more"
+            height={48}
+            width={130}
+            fontSize={16}
+            iconSrc={ImagePaths.icons.arrowDown}
+            iconSize={11}
+            iconColor="white"
+          />
+        ) : (
+          <EmptyListView />
+        )}
       </div>
     </div>
   );
-}
+};
+
+export default Items;

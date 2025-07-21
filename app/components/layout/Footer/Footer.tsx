@@ -1,6 +1,7 @@
 import Image from "next/image";
 import styles from "./Footer.module.scss";
 import EmailSubscriptionInput from "../../commen/SubscriptionEmailInput/SubscriptionEmailInput";
+import ImagePaths from "@/app/constants/ImagePaths";
 
 export default function Footer() {
   return (
@@ -16,18 +17,18 @@ export default function Footer() {
 const Social = () => {
   return (
     <div className={styles.social}>
-      <Image src="/images/Logo.svg" alt="Logo" width={132} height={40} />
+      <Image src={ImagePaths.logos.logo} alt="Logo" width={132} height={40} />
       <p className={styles.desc}>
         Lorem Ipsum is simply dummy text of the printing and typesetting
         industry. Lorem Ipsum has been the industry standard dummy text ever
         since the 1500s, when an unknown printer took a galley of type
       </p>
       <div className={styles.icons}>
-        <SocialIcon src="/images/LinkedIn.svg" alt="LinkedIn" />
-        <SocialIcon src="/images/instagram.svg" alt="Instagram" />
-        <SocialIcon src="/images/facebook.svg" alt="Facebook" />
-        <SocialIcon src="/images/youtube.svg" alt="youtube" />
-        <SocialIcon src="/images/twitter.svg" alt="Twitter" />
+        <SocialIcon src={ImagePaths.social.linkedin} alt="LinkedIn" />
+        <SocialIcon src={ImagePaths.social.instagram} alt="Instagram" />
+        <SocialIcon src={ImagePaths.social.facebook} alt="Facebook" />
+        <SocialIcon src={ImagePaths.social.youtube} alt="youtube" />
+        <SocialIcon src={ImagePaths.social.twitter} alt="Twitter" />
       </div>
     </div>
   );

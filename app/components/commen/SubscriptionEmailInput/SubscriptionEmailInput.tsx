@@ -3,6 +3,7 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import styles from "./SubscriptionEmailInput.module.scss";
+import ImagePaths from "@/app/constants/ImagePaths";
 
 interface EmailSubscriptionInputProps {
   placeholder?: string;
@@ -30,7 +31,7 @@ const EmailSubscriptionInput: React.FC<EmailSubscriptionInputProps> = ({
       onSubmit={handleSubmit}
       className={`${styles.subscriptionForm} ${className || ""}`}
     >
-      <Image src="/images/envelope.svg" alt="Logo" width={20} height={20} />
+      <Image src={ImagePaths.icons.envelope} alt="Logo" width={20} height={20} />
       <input
         type="email"
         placeholder={placeholder}
@@ -45,7 +46,7 @@ const EmailSubscriptionInput: React.FC<EmailSubscriptionInputProps> = ({
         className={styles.subscriptionButton}
         aria-label="Subscribe"
       >
-        <Image src="/images/arrow-right-circle.svg" alt="Logo" width={20} height={20} />
+        <Image src={ImagePaths.icons.arrowRightCircle} alt="Logo" width={20} height={20} />
       </button>
     </form>
   );

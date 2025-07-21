@@ -1,0 +1,46 @@
+.expandableContainer {
+  width: 100%;
+  max-width: 600px;
+
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.expandableHeader {
+  width: 100%;
+  padding: 18px 16px;
+  background-color: var(--Gray900);
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+}
+
+.expandableHeader:hover {
+  background-color: var(--Gray900);
+}
+
+.expandableTitle {
+  margin: 0;
+  font-size: 1em;
+}
+
+.arrow {
+  transition: transform 0.3s ease;
+  font-size: 0.9em;
+}
+
+.expandableContent {
+  overflow: hidden;
+  background-color: var(--Gray900);
+}
+
+.contentInner {
+  // padding: 20px;
+  padding: 0px 12px 24px 12px;
+}

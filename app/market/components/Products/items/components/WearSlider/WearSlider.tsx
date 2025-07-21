@@ -3,13 +3,19 @@
 import React from "react";
 import styles from "./WearSlider.module.scss";
 import Image from "next/image";
+import ImagePaths from "@/app/constants/ImagePaths";
 
 interface WearBarProps {
   label?: string;
   value: number;
+  hovered: boolean;
 }
 
-const WearBar: React.FC<WearBarProps> = ({ label = "Minimal Wear", value }) => {
+const WearBar: React.FC<WearBarProps> = ({
+  label = "Minimal Wear",
+  value,
+  hovered,
+}) => {
   const segments = [
     { to: 0.07, color: styles.cyan },
     { to: 0.15, color: styles.green },
@@ -22,6 +28,8 @@ const WearBar: React.FC<WearBarProps> = ({ label = "Minimal Wear", value }) => {
     <div className={styles.wearBar}>
       <div className={styles.barContainer}>
         {segments.map((seg, index) => {
+          const isCurrentSegment =
+            value <= seg.to && (index === 0 || value > segments[index - 1].to);
           const width =
             index === 0
               ? seg.to * 100
@@ -29,8 +37,17 @@ const WearBar: React.FC<WearBarProps> = ({ label = "Minimal Wear", value }) => {
           return (
             <div
               key={index}
-              className={seg.color}
-              style={{ width: `${width}%` }}
+              className={
+                isCurrentSegment
+                  ? seg.color
+                  : hovered
+                  ? seg.color
+                  : styles.deactiveSlider
+              }
+              style={{
+                width: `${width}%`,
+                transition: `all ${0.1 + index * 0.05}s`,
+              }}
             />
           );
         })}
@@ -47,14 +64,18 @@ const WearBar: React.FC<WearBarProps> = ({ label = "Minimal Wear", value }) => {
       </div>
 
       <Image
-        style={{ marginLeft: `${value * 100}%` }}
-        src="/images/arrow-up.svg"
+        style={{
+          marginLeft: `${value * 100}%`,
+          opacity: hovered ? "1" : ".4",
+          transition: "all .5s",
+        }}
+        src={ImagePaths.icons.arrowUp}
         alt="d"
         width={10}
         height={10}
       />
 
-      <div className={styles.label}>
+      <div className={`${styles.label} ${hovered ?  styles.labelHovered : undefined}` }>
         {label} {value.toFixed(2)}
       </div>
     </div>

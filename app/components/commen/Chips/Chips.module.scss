@@ -21,6 +21,12 @@
   justify-content: center;
   border: 1.5px solid var(--BorderGray800);
   padding-right: 24px;
+  transition: all 0.3s ease-in-out;
+}
+
+.chip:hover {
+  background: var(--Gray950);
+  color: white;
 }
 
 .chip.active {

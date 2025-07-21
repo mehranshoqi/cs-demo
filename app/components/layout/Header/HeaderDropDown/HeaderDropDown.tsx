@@ -1,6 +1,7 @@
 import Image from "next/image";
 import styles from "./HeaderDropDown.module.scss";
 import Badge from "@/app/components/commen/Badge/Badge";
+import ImagePaths from "@/app/constants/ImagePaths";
 
 interface HeaderDropDownProps {
   title: string;
@@ -17,7 +18,7 @@ export default function HeaderDropDown({ title, imageSrc }: HeaderDropDownProps)
       )}
       <span className={styles.title}>{title}</span>
       <Image
-        src="/images/arrow-down.svg"
+        src={ImagePaths.icons.arrowDown}
         alt="arrow"
         width={14}
         height={8}

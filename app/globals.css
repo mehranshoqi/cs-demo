@@ -1,19 +1,32 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #060b15;
+  --foreground: #ededed;
   --text-color: #9dabbd;
-  --green-color: #80BD29;
-  --red-color: #DE4A7E;
-  --TextBodyGray300:‌ rgba(157, 171, 189, 1);
-  --BorderGray800: #222D3B;
-  --Gray500: #616F81;
-  --Gray800: #222D3B;
+  --green-color: #80bd29;
+  --Secondary500: #de4a7e;
+  --TextBodyGray300: ‌ rgba(157, 171, 189, 1);
+  --BorderGray800: #222d3b;
+  --Gray500: #616f81;
+  --Gray800: #222d3b;
   --Gray900: #121925;
-  --Gray950: #060B15;
+  --Gray950: #060b15;
   --BgPrimary500: rgba(125, 46, 250, 1);
   --header-height: 72px;
+  --white: #ffffff;
+  --Blood500: #ed4438;
+  --Sun500: #f8a605;
+  --Yellow500: #f9e637;
+  --Green500: #9fe53b;
+  --Green600: #5aaf0b;
+  --Green400: #00cc8f;
+  --Lake500: #00becc;
+  --Lake400: #4ac4fc;
+  --Sky500: #4a81fc;
+  --Sky600: #1c59e2;
+  --Primary500: #7d2efa;
+  --Pink500: #e22efa;
 }
 
 @theme inline {
@@ -25,7 +38,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #060B15;
+    --background: #060b15;
     --foreground: #ededed;
   }
 }
@@ -34,12 +47,4 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
-}
-
-.gradientBorder {
-  background-image: linear-gradient(#222, #222),
-    linear-gradient(90deg, #ff8a00, #e52e71);
-  background-origin: border-box;
-  background-clip: padding-box, border-box;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }

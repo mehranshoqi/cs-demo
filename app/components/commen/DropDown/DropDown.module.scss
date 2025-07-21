@@ -1,0 +1,93 @@
+.dropdownContainer {
+  width: 100%;
+
+  max-width: 400px; /* Adjust as needed */
+  background-color: var(--Gray950); /* Dark background */
+  padding: 14px 12px;
+  overflow: hidden; /* Ensures content inside stays within bounds */
+
+  color: var(--text-color);
+  border-radius: 12px;
+  font-family: Arial, sans-serif;
+}
+
+.dropdownTitle {
+  font-size: 14px;
+  font-weight: 400;
+
+  margin-bottom: 15px;
+  color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dropdownTitle .arrowIcon {
+  cursor: pointer;
+  display: flex; /* To center SVG */
+  align-items: center;
+//   color: #e0e0e0;
+}
+
+.dropdownTitle .arrowIcon svg {
+  fill: currentColor; /* Use currentColor to inherit color from parent */
+}
+
+.dropdownHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #3b404d; /* Slightly lighter dark for the header */
+//   padding: 12px 15px;
+//   border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.dropdownHeader:hover {
+  background-color: #4a4f5d;
+}
+
+.customInput {
+  flex-grow: 1; /* Allows the custom input to take available space */
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between items if your custom input has multiple */
+//   font-size: 1.1em;
+  color: #ffffff;
+}
+
+.dropdownArrow {
+  display: flex; /* To center SVG */
+  align-items: center;
+//   color: #e0e0e0; /* Color for the arrow icon */
+}
+
+.dropdownArrow svg {
+  fill: currentColor; /* Use currentColor to inherit color from parent */
+}
+
+.dropdownContent {
+//   background-color: #343842; /* Background for the dropdown content */
+//   border-radius: 6px;
+//   margin-top: 10px; /* Space between header and content */
+//   padding: 15px;
+//   border: 1px solid #4a4f5d; /* Subtle border for content */
+}
+.buttonHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  width: 100%;
+}
+.buttonHeaderTitle {
+  flex-grow: 1;
+  gap: 16px;
+  display: flex;
+  flex-direction: row;
+}
+.dropdownToggle {
+  width: 100%;
+  padding: 0px;
+}

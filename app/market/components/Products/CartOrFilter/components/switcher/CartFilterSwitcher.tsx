@@ -1,13 +1,19 @@
 import Image from "next/image";
 import styles from "./CartFilterSwitcher.module.scss";
+import ImagePaths from "@/app/constants/ImagePaths";
 import Badge from "@/app/components/commen/Badge/Badge";
 
 interface Props {
   active: "cart" | "filter";
   onSwitch: (value: "cart" | "filter") => void;
+  cartItemCount: number;
 }
 
-export default function CartFilterSwitcher({ active, onSwitch }: Props) {
+export default function CartFilterSwitcher({
+  active,
+  onSwitch,
+  cartItemCount,
+}: Props) {
   return (
     <div className={styles.cartFilterSwitcher}>
       <div
@@ -17,14 +23,16 @@ export default function CartFilterSwitcher({ active, onSwitch }: Props) {
         onClick={() => onSwitch("cart")}
       >
         <Image
-          src="/images/trade.svg"
+          src={ImagePaths.icons.trade}
           alt=""
           width={16}
           height={16}
           className={`${styles.icon} ${active === "cart" ? styles.active : ""}`}
         />
         Trades
-        <Badge size={16} text="1" />
+        {cartItemCount != 0 && (
+          <Badge text={cartItemCount?.toString() || "0"} size="small" />
+        )}
       </div>
       <div
         className={`${styles.switchButton} ${styles.right} ${
@@ -33,11 +41,13 @@ export default function CartFilterSwitcher({ active, onSwitch }: Props) {
         onClick={() => onSwitch("filter")}
       >
         <Image
-          src="/images/sliders.svg"
+          src={ImagePaths.icons.sliders}
           alt=""
           width={18}
           height={18}
-          className={`${styles.icon} ${active === "filter" ? styles.active : ""}`}
+          className={`${styles.icon} ${
+            active === "filter" ? styles.active : ""
+          }`}
         />
         Filters
       </div>

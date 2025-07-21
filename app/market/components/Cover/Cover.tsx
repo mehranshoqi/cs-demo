@@ -1,11 +1,12 @@
 import Image from "next/image";
+import ImagePaths from "@/app/constants/ImagePaths";
 import styles from "./Cover.module.scss";
 
 export default function Cover() {
   return (
     <div className={styles.cover}>
       <Image
-        src="/images/cover.jpg"
+        src={ImagePaths.general.cover}
         alt="cover"
         fill
         objectFit="cover"

@@ -1,15 +1,13 @@
 import Image from "next/image";
 import styles from "./Chips.module.scss";
+import { Chip, FilterType } from "@/app/types";
 
-interface ChipItem {
-  label: string;
-  iconSrc?: string;
-}
+
 
 interface ChipsProps {
-  chips: ChipItem[];
+  chips: Chip[];
   activeChip?: string;
-  onChipClick?: (chip: string) => void;
+  onChipClick?: (filter: string) => void
 }
 
 export default function Chips({ chips, activeChip, onChipClick }: ChipsProps) {

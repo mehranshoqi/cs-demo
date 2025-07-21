@@ -1,0 +1,67 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: transparent;
+  border-radius: 12px;
+}
+
+.inputWrapper {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  background-color: var(--Gray950, #1a1a1a);
+  border-radius: 8px;
+  padding: 8px 12px;
+  flex-grow: 1;
+  min-width: 100px;
+  height: 48px;
+  box-sizing: border-box;
+}
+
+.inputField {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 400;
+  width: 100%;
+}
+
+.inputField::placeholder {
+  color: var(--text-color, var(--Gray500));
+  opacity: 1;
+}
+
+.inputField:focus::placeholder {
+  color: transparent;
+}
+
+.separator {
+  color: #fff;
+  font-size: 14px;
+  color: var(--Gray500);
+}
+
+.confirmButton {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 2px solid var(--BgPrimary500);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.confirmButton:hover {
+  border-color: #b36ffc;
+}
+
+.confirmButton svg {
+  color: white;
+}
