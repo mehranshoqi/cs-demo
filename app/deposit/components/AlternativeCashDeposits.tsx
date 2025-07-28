@@ -1,0 +1,32 @@
+import Image from "next/image";
+import ImagePaths from "@/app/constants/ImagePaths";
+
+export default function AlternativeCashDeposits() {
+    // Alternative cash deposit items with images
+    const paymentItems = [
+        { name: "Visa", image: ImagePaths.cash.visa },
+        { name: "Mastercard", image: ImagePaths.cash.mastercard },
+        { name: "PayPal", image: ImagePaths.cash.paypal },
+        { name: "Apple Pay", image: ImagePaths.cash.applepay },
+        { name: "Google Pay", image: ImagePaths.cash.googlepay }
+    ];
+
+    return (
+        <div className="flex flex-col gap-4 mx-auto w-full max-w-4xl px-4">
+            <h3 className="text-lg md:text-xl lg:text-2xl font-bold text-left">Alternative Cash Deposits</h3>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-4">
+                {paymentItems.map((item, index) => (
+                    <div key={index} className="text-center p-2 md:p-3 bg-gray-800 rounded-lg flex items-center justify-center">
+                        <Image
+                            src={item.image}
+                            alt={item.name}
+                            width={0}
+                            height={40}
+                            className="w-auto h-6 md:h-8 lg:h-10"
+                        />
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+} 

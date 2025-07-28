@@ -1,0 +1,44 @@
+import Image from "next/image";
+import ImagePaths from "@/app/constants/ImagePaths";
+
+export default function CryptoCurrency() {
+    // Crypto currency items with images
+    const cryptoItems = [
+        { name: "Bitcoin", image: ImagePaths.crypto.bitcoin },
+        { name: "Tether", image: ImagePaths.crypto.tether },
+        { name: "Binance", image: ImagePaths.crypto.binance },
+        { name: "Ethereum", image: ImagePaths.crypto.ethereum },
+        { name: "Dogecoin", image: ImagePaths.crypto.dogecoin },
+        { name: "LiteCoin", image: ImagePaths.crypto.liteCoin },
+        { name: "Solana", image: ImagePaths.crypto.solana },
+        { name: "Cardano", image: ImagePaths.crypto.cardano },
+        { name: "Ripple", image: ImagePaths.crypto.ripple },
+        { name: "+12 more", image: ImagePaths.crypto.more }
+    ];
+
+    return (
+        <div className="flex flex-col gap-4 mx-auto w-full max-w-4xl px-4">
+            <h3 className="text-lg md:text-xl lg:text-2xl font-bold text-left">Crypto Currency</h3>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-4">
+                {cryptoItems.map((item, index) => (
+                    <div
+                        key={index}
+                        className={`p-2 md:p-3 rounded-lg flex flex-row items-center gap-2 md:gap-3 ${index === cryptoItems.length - 1
+                                ? "bg-transparent border-2 border-[#7D2EFA]"
+                                : "bg-gray-800"
+                            }`}
+                    >
+                        <Image
+                            src={item.image}
+                            alt={item.name}
+                            width={50}
+                            height={50}
+                            className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12"
+                        />
+                        <span className="text-xs md:text-sm lg:text-sm">{item.name}</span>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+} 
