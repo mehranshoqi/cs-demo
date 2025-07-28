@@ -1,13 +1,12 @@
 .item {
   display: flex;
   flex-direction: column;
-
 }
 
 .itemHeader {
   display: flex;
   align-items: start;
-    gap: 6px;
+  gap: 6px;
   justify-content: space-between;
   padding: 18px 16px 0px 16px;
 }
@@ -70,3 +69,251 @@
   background-color: var(--Gray800);
 }
 
+.cartItemDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.detailTitle {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: normal;
+  color: var(--Text-Color-TextBodyGray000);
+  margin-bottom: 8px;
+}
+
+.labels {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(24px, 0fr));
+  gap: 7px;
+}
+
+.sellerInfoItem {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  p {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--Text-Color-TextBodyGray300);
+    width: 110px;
+  }
+  h4 {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--Text-Color-TextBodyGray000);
+  }
+  .tradeModeContent {
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    align-items: start;
+    justify-content: start;
+  }
+}
+
+.sellerInfoContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cancelButton {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+  p {
+    color: var(--Blood500);
+    font-size: 12px;
+  }
+  img {
+    height: 14;
+  }
+}
+
+.waitingCancelContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 16px;
+  padding: 16px 0px;
+
+  p {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--Text-Color-TextBodyGray300);
+  }
+  .cancelActions {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    width: 100%;
+    > * {
+      flex-grow: 1;
+      width: 50%;
+    }
+  }
+}
+
+.sellActionStepsContainer {
+  .infoBox {
+    padding: 12px 8px 8px 16px;
+    background-color: var(--Background-Color-BgBadgeGrass800);
+    display: flex;
+    flex-direction: column;
+    border-top: 1.5px solid var(--green-color);
+
+    .head {
+      display: flex;
+      flex-direction: row;
+      justify-content: start;
+      gap: 8px;
+
+      h3 {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--green-color);
+      }
+    }
+    .info {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      p {
+        flex-grow: 1;
+        color: var(--Text-Color-TextBodyGray000);
+        font-size: 12px;
+        font-weight: 400;
+      }
+      button {
+        height: 40px;
+        width: 40px;
+        text-align: center;
+        background: rgba(255, 255, 255, 0.06);
+        border-radius: 100px;
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }
+
+  .receiveConfirmation {
+    padding: 24px 0px;
+    display: flex;
+    flex-direction: column;
+    // gap: 8px;
+
+    .confirmationActions {
+      display: flex;
+      gap: 8px;
+      > * {
+        flex-grow: 1;
+        width: 50%;
+      }
+    }
+  }
+}
+
+.confirmationCheck {
+  display: flex;
+  flex-direction: row !important;
+  gap: 8px;
+  padding: 0px 8px;
+  height: 40px;
+  p {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--Text-Color-TextBodyGray300);
+  }
+  .customCheckbox {
+  }
+}
+
+.tradeStatus {
+  padding: 16px 0;
+  gap: 12px;
+  h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+  }
+}
+
+.timelineItem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  .iconColumn {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+  }
+}
+
+.statusCircle {
+  width: 16px;
+  height: 16px;
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  font-size: 11px;
+  color: white;
+}
+
+.completed {
+  background-color: var(--green-color);
+  color: var(--Text-Color-TextSubtitleGray400);
+}
+.active {
+  background-color: var(--Sun500);
+  color: var(--Sun500);
+}
+.default {
+  background-color: var(--Text-Color-TextSubtitleGray400);
+  color: var(--Text-Color-TextBodyGray300);
+}
+.failed {
+  background-color: var(--Blood500);
+  color: var(--Blood500);
+}
+
+.verticalLine {
+  height: 20px;
+  width: 1px;
+  margin: 0px 8px;
+}
+
+.contentColumn {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  font-weight: 600;
+}
+.stepTitle {
+  font-size: 14px;
+  line-height: normal;
+  font-weight: 600;
+}
+
+.stepDescription {
+  line-height: normal;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--Text-Color-TextSubtitleGray400);
+}
+
+.itemWrappper{
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+
+}
+
+.timelineContainer{
+  padding: 8px 0px;
+}

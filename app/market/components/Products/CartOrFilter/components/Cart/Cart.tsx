@@ -7,6 +7,7 @@ import OutlinedButton from "@/app/components/commen/OutlinedButton/OutlinedButto
 import { motion, AnimatePresence } from "framer-motion";
 import CountUp from "react-countup";
 import ImagePaths from "@/app/constants/ImagePaths";
+import TradesList, { TradeListType } from "./TradesList";
 interface CartProps {
   removeFromCart: (productId: string) => void;
   removeAllFromCart: () => void;
@@ -48,8 +49,16 @@ const Cart: React.FC<CartProps> = ({
       </div>
       <div className={styles.divider}></div>
 
-      {cartItems.length === 0 ? (
-        <EmptyCartView />
+      {/* TODO: Mehran */}
+      {cartItems.length === 3 ? (
+        // <EmptyCartView />
+        <>
+          <TradesList cartItems={cartItems} type={TradeListType.actionNeeded} />
+          <div className={styles.divider}></div>
+          <TradesList cartItems={cartItems} type={TradeListType.waiting} />
+          <div className={styles.divider}></div>
+          <TradesList cartItems={cartItems} type={TradeListType.complete} />
+        </>
       ) : (
         <>
           <AnimatePresence>

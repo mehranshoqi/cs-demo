@@ -39,6 +39,15 @@ const ImagePaths = {
     discord: "/images/discord.svg",
     eyeOff: "/images/eye-off.svg",
     eyeOn: "/images/eye-off.svg",
+    autoTrade: "/images/arrow-path.svg",
+    p2p: "/images/handshake.svg",
+    deliveryRate: "/images/delivery-rate.svg",
+    deliveryTime: "/images/delivery-time.svg",
+    tradeNotification: "/images/trade-notification.svg",
+    tradeMode: "/images/trade-mode.svg",
+    xRed: "/images/x-red.svg",
+    checkCircle: "/images/check-circle.svg",
+    plus: "/images/plus.svg",
   },
   // Product type icons
   productTypes: {

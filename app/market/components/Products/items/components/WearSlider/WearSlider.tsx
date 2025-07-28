@@ -9,12 +9,14 @@ interface WearBarProps {
   label?: string;
   value: number;
   hovered: boolean;
+  padding?: string | undefined;
 }
 
 const WearBar: React.FC<WearBarProps> = ({
   label = "Minimal Wear",
   value,
   hovered,
+  padding,
 }) => {
   const segments = [
     { to: 0.07, color: styles.cyan },
@@ -25,7 +27,7 @@ const WearBar: React.FC<WearBarProps> = ({
   ];
 
   return (
-    <div className={styles.wearBar}>
+    <div className={styles.wearBar} style={{padding: padding}}>
       <div className={styles.barContainer}>
         {segments.map((seg, index) => {
           const isCurrentSegment =

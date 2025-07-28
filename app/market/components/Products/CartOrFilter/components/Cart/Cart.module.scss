@@ -91,4 +91,37 @@
   text-align: center;
 }
 
+.statusContainer {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 12px;
+line-height: normal;
+height: 20px;
+  gap: 4px;
+}
 
+.timer {
+  font-family: monospace;
+}
+
+.statusText {
+}
+
+.actionNeeded {
+  background-color: var(--Background-Color-BgBlood800);
+  color: var(--Blood500);
+}
+
+.waiting {
+  background-color: var(--Background-Color-BgBadgeSun900);
+  color: var(--Sun500);
+}
+
+.completed {
+  background-color: var(--Background-Color-BgBadgeGrass800);
+  color: var(--green-color);
+  justify-content: center;
+}

@@ -7,14 +7,24 @@ import ImagePaths from "@/app/constants/ImagePaths";
 
 interface ExpandableFramerProps {
   title: string;
+  headerPadding?: string;
   children: ReactNode;
+  headerStyle?: React.CSSProperties | undefined;
+  titleStyle?: React.CSSProperties | undefined;
+  iconWidth?: number | undefined;
+  extraBadge?: ReactNode;
 }
 
 const ExpandableFramer: React.FC<ExpandableFramerProps> = ({
   title,
   children,
+  headerStyle,
+  titleStyle,
+  iconWidth,
+  headerPadding,
+  extraBadge,
 }) => {
-  const [isOpen, setIsOpen] = useState<boolean>(true);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const toggleExpand = (): void => {
     setIsOpen(!isOpen);
@@ -48,9 +58,13 @@ const ExpandableFramer: React.FC<ExpandableFramerProps> = ({
   };
 
   return (
-    <div className={styles.expandableContainer}>
-      <button onClick={toggleExpand} className={styles.expandableHeader}>
-        <h3 className={styles.expandableTitle}>{title}</h3>
+    <div className={styles.expandableContainer} style={{padding: headerPadding}}>
+      <button 
+       onClick={toggleExpand} className={styles.expandableHeader}
+       style={headerStyle}
+       >
+        <h3 className={styles.expandableTitle} style={titleStyle}>{title}</h3>
+        {extraBadge}
         <motion.span
           animate={{ rotate: isOpen ? 180 : 0 }}
           transition={{ duration: 0.3 }}
@@ -59,7 +73,7 @@ const ExpandableFramer: React.FC<ExpandableFramerProps> = ({
           <Image
             src={ImagePaths.icons.arrowDown}
             alt="arrow"
-            width={14}
+            width={iconWidth ?? 10}
             height={8}
             className={styles.avatar}
           />

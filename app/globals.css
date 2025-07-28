@@ -4,6 +4,7 @@
   --background: #060b15;
   --foreground: #ededed;
   --text-color: #9dabbd;
+  --Text-Color-TextBodyGray0000: #fff;
   --Text-Color-TextBodyGray300: #9dabbd;
   --Text-Color-TextSubtitleGray400: #7F8D9F;
   --Text-Color-TextPrimary300: #B282FC;
@@ -30,6 +31,10 @@
   --Sky600: #1c59e2;
   --Primary500: #7d2efa;
   --Pink500: #e22efa;
+  --Background-Color-BgBlood800: #2F0E0B;
+  --Background-Color-BgBadgeSun900: #322101;
+  --Background-Color-BgBadgeGrass800: #1A2608;
+
 }
 
 @theme inline {

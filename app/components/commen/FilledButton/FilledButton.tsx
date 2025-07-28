@@ -6,7 +6,9 @@ interface FillButtonProps {
   onClick?: () => void;
   iconSrc?: string;
   iconSize?: number;
+  padding?: string;
   iconColor?: string;
+  filledColor?: string;
   height?: string | number;
   width?: string | number;
   fontWeight?: string | number;
@@ -19,9 +21,11 @@ export default function FillButton({
   iconSrc,
   iconSize = 20,
   iconColor,
+  padding,
   height,
   width,
   fontWeight,
+  filledColor,
   fontSize,
 }: FillButtonProps) {
   return (
@@ -31,6 +35,9 @@ export default function FillButton({
       style={{
         height: height,
         width: width,
+        backgroundColor: filledColor,
+        background: filledColor,
+        padding: padding,
       }}
     >
       {iconSrc && (
