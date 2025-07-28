@@ -94,6 +94,12 @@ const ImagePaths = {
     tradePng: "/images/trade.png",
     authBanner: "/images/authBanner.svg",
     authPattern: "/images/authPattern.svg",
+    lightStarBg: "/images/light-star-bg.png",
+  },
+  deposit: {
+    cs2go: "/images/deposit-cs2go.png",
+    rust: "/images/deposit-rust.png",
+    dota2: "/images/deposit-dota2.png",
   },
 };
 
