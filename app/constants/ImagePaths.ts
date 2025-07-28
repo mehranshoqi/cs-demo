@@ -113,6 +113,13 @@ const ImagePaths = {
     ripple: "/images/crypto/ripple.svg",
     more: "/images/crypto/more.svg",
   },
+  cash: {
+    visa: "/images/cash/visacard.svg",
+    mastercard: "/images/cash/mastercard.svg",
+    paypal: "/images/cash/paypal.svg",
+    applepay: "/images/cash/applepay.svg",
+    googlepay: "/images/cash/googlepay.svg",
+  },
 };
 
 export default ImagePaths;

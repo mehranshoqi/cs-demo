@@ -16,18 +16,18 @@ export default function Deposit() {
         { name: "+12 more", image: ImagePaths.crypto.more }
     ];
 
-    // Alternative cash deposit items
+    // Alternative cash deposit items with images
     const paymentItems = [
-        "Visa",
-        "Mastercard",
-        "PayPal",
-        "Apple Pay",
-        "Google Pay"
+        { name: "Visa", image: ImagePaths.cash.visa },
+        { name: "Mastercard", image: ImagePaths.cash.mastercard },
+        { name: "PayPal", image: ImagePaths.cash.paypal },
+        { name: "Apple Pay", image: ImagePaths.cash.applepay },
+        { name: "Google Pay", image: ImagePaths.cash.googlepay }
     ];
 
     return (
         <div
-            className="text-white flex flex-col gap-20 py-10 text-center min-h-screen bg-cover bg-center bg-no-repeat"
+            className="text-white flex flex-col gap-20 py-20 text-center min-h-screen bg-cover bg-center bg-no-repeat"
             style={{ backgroundImage: `url(${ImagePaths.general.lightStarBg})` }}
         >
             {/* Header Section */}
@@ -94,7 +94,13 @@ export default function Deposit() {
                 <h3 className="text-2xl font-bold text-left">Crypto Currency</h3>
                 <div className="grid grid-cols-5 gap-4">
                     {cryptoItems.map((item, index) => (
-                        <div key={index} className="p-3 bg-gray-800 rounded-lg flex flex-row items-center gap-3">
+                        <div
+                            key={index}
+                            className={`p-3 rounded-lg flex flex-row items-center gap-3 ${index === cryptoItems.length - 1
+                                    ? "bg-transparent border-2 border-[#7D2EFA]"
+                                    : "bg-gray-800"
+                                }`}
+                        >
                             <Image
                                 src={item.image}
                                 alt={item.name}
@@ -112,8 +118,14 @@ export default function Deposit() {
                 <h3 className="text-2xl font-bold text-left">Alternative Cash Deposits</h3>
                 <div className="grid grid-cols-5 gap-4">
                     {paymentItems.map((item, index) => (
-                        <div key={index} className="text-center p-3 bg-gray-800 rounded-lg">
-                            {item}
+                        <div key={index} className="text-center p-3 bg-gray-800 rounded-lg flex items-center justify-center">
+                            <Image
+                                src={item.image}
+                                alt={item.name}
+                                width={0}
+                                height={40}
+                                className="w-auto h-10"
+                            />
                         </div>
                     ))}
                 </div>
