@@ -10,9 +10,10 @@ interface ModalProps {
     isOpen: boolean;
     onClose: () => void;
     selectedItem: { name: string; image: string } | null;
+    title?: string;
 }
 
-const Modal: React.FC<ModalProps> = ({ isOpen, onClose, selectedItem }) => {
+const Modal: React.FC<ModalProps> = ({ isOpen, onClose, selectedItem, title = "Selected Item" }) => {
     const nodeRef = useRef(null);
 
     useEffect(() => {
@@ -68,6 +69,21 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, selectedItem }) => {
                             objectFit="cover"
                             className={styles.backgroundImage}
                         />
+                    </div>
+
+                    <div className={styles.modalHeader}>
+                        <h3 className={styles.modalTitle}>{title}</h3>
+                        <button
+                            className={styles.closeButton}
+                            onClick={onClose}
+                        >
+                            <Image
+                                src={ImagePaths.icons.xMark}
+                                alt="Close"
+                                width={20}
+                                height={20}
+                            />
+                        </button>
                     </div>
 
                     <div className={styles.modalCenter}>

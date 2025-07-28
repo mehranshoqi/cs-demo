@@ -54,7 +54,7 @@ export default function CryptoCurrency() {
                                 height={50}
                                 className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 transition-opacity duration-300 hover:opacity-80"
                             />
-                            <span className="text-xs md:text-sm lg:text-sm transition-colors duration-300 hover:text-white">{item.name}</span>
+                            <span className="text-xs md:text-sm lg:text-sm font-medium transition-colors duration-300 hover:text-white">{item.name}</span>
                         </div>
                     ))}
                 </div>
@@ -64,6 +64,7 @@ export default function CryptoCurrency() {
                 isOpen={isModalOpen}
                 onClose={closeModal}
                 selectedItem={selectedItem}
+                title="Crypto Currency"
             />
         </>
     );
