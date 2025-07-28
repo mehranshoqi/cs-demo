@@ -2,18 +2,18 @@ import Image from "next/image";
 import ImagePaths from "@/app/constants/ImagePaths";
 
 export default function Deposit() {
-    // Crypto currency items
+    // Crypto currency items with images
     const cryptoItems = [
-        "Bitcoin",
-        "Tether",
-        "Binance",
-        "Ethereum",
-        "Dogecoin",
-        "LiteCoin",
-        "Solana",
-        "Cardano",
-        "Ripple",
-        "+12 more"
+        { name: "Bitcoin", image: ImagePaths.crypto.bitcoin },
+        { name: "Tether", image: ImagePaths.crypto.tether },
+        { name: "Binance", image: ImagePaths.crypto.binance },
+        { name: "Ethereum", image: ImagePaths.crypto.ethereum },
+        { name: "Dogecoin", image: ImagePaths.crypto.dogecoin },
+        { name: "LiteCoin", image: ImagePaths.crypto.liteCoin },
+        { name: "Solana", image: ImagePaths.crypto.solana },
+        { name: "Cardano", image: ImagePaths.crypto.cardano },
+        { name: "Ripple", image: ImagePaths.crypto.ripple },
+        { name: "+12 more", image: ImagePaths.crypto.more }
     ];
 
     // Alternative cash deposit items
@@ -94,8 +94,14 @@ export default function Deposit() {
                 <h3 className="text-2xl font-bold text-left">Crypto Currency</h3>
                 <div className="grid grid-cols-5 gap-4">
                     {cryptoItems.map((item, index) => (
-                        <div key={index} className="text-center p-3 bg-gray-800 rounded-lg">
-                            {item}
+                        <div key={index} className="p-3 bg-gray-800 rounded-lg flex flex-row items-center gap-3">
+                            <Image
+                                src={item.image}
+                                alt={item.name}
+                                width={50}
+                                height={50}
+                            />
+                            <span className="text-sm">{item.name}</span>
                         </div>
                     ))}
                 </div>

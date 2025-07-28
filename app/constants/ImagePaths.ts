@@ -101,6 +101,18 @@ const ImagePaths = {
     rust: "/images/deposit-rust.png",
     dota2: "/images/deposit-dota2.png",
   },
+  crypto: {
+    bitcoin: "/images/crypto/bitcoin.svg",
+    tether: "/images/crypto/tether.svg",
+    binance: "/images/crypto/binance.svg",
+    ethereum: "/images/crypto/ethereum.svg",
+    dogecoin: "/images/crypto/dogecoin.svg",
+    liteCoin: "/images/crypto/liteCoin.svg",
+    solana: "/images/crypto/solana.svg",
+    cardano: "/images/crypto/cardano.svg",
+    ripple: "/images/crypto/ripple.svg",
+    more: "/images/crypto/more.svg",
+  },
 };
 
 export default ImagePaths;
