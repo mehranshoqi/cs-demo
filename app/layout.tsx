@@ -1,10 +1,15 @@
+// src/app/layout.tsx
 import type { Metadata } from "next";
 import "./globals.css";
 import { Chakra_Petch } from "next/font/google";
 import Header from "./components/layout/Header/Header";
 import Footer from "./components/layout/Footer/Footer";
+import { AuthProvider } from "./context/AuthContext";
 
-const inter = Chakra_Petch({
+import AuthModal from "./components/Auth/AuthModal";
+import "./styles/_transitions.scss";
+
+const chakraPetch = Chakra_Petch({
   subsets: ["latin"],
   weight: ["300", "700"],
   display: "swap",
@@ -22,11 +27,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <Header />
-        <main style={{ paddingTop: 60 }}>{children}</main>
-        <Footer />
+        <AuthProvider>
+      <body className={chakraPetch.className}>
+          <Header />
+          <main style={{ paddingTop: 60 }}>{children}</main>
+          <Footer />
+          <AuthModal />
       </body>
+        </AuthProvider>
     </html>
   );
 }

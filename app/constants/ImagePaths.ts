@@ -32,6 +32,13 @@ const ImagePaths = {
     trash: "/images/trash.svg",
     xMark: "/images/x-mark.svg",
     xMark2: "/images/x-mark2.svg",
+    user: "/images/user.svg",
+    lockClose: "/images/lock-close.svg",
+    steam: "/images/steam.svg",
+    google: "/images/google.svg",
+    discord: "/images/discord.svg",
+    eyeOff: "/images/eye-off.svg",
+    eyeOn: "/images/eye-off.svg",
   },
   // Product type icons
   productTypes: {
@@ -76,6 +83,8 @@ const ImagePaths = {
   general: {
     cover: "/images/cover.jpg",
     tradePng: "/images/trade.png",
+    authBanner: "/images/authBanner.svg",
+    authPattern: "/images/authPattern.svg",
   },
 };
 

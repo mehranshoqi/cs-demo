@@ -12,7 +12,7 @@
   text-align: center;
   border-radius: 40px;
   cursor: pointer;
-  border: 1.5px solid var(--BorderGray800);
+  border: 1.5px solid var(--Gray800);
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -21,7 +21,7 @@
   justify-content: center;
   gap: 8px;
   height: 40px;
-    transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .left {
@@ -49,14 +49,3 @@
   box-shadow: 0 12px 18px rgba(0, 0, 0, 0.08);
 }
 
-// .icon {
-//   filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%)
-//     contrast(100%); // white for active
-// }
-
-// .icon.active {
-//   filter: invert(34%) sepia(99%) saturate(7490%) hue-rotate(357deg)
-//     brightness(97%) contrast(110%); // fallback for red
-//   filter: brightness(0) saturate(100%) var(--text-color); // use text color for inactive
-//   transition: filter 0.2s;
-// }

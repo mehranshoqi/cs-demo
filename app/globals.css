@@ -4,10 +4,13 @@
   --background: #060b15;
   --foreground: #ededed;
   --text-color: #9dabbd;
+  --Text-Color-TextBodyGray300: #9dabbd;
+  --Text-Color-TextSubtitleGray400: #7F8D9F;
+  --Text-Color-TextPrimary300: #B282FC;
+  --Text-Color-TextPrimary500: #7D2EFA;
   --green-color: #80bd29;
   --Secondary500: #de4a7e;
   --TextBodyGray300: ‌ rgba(157, 171, 189, 1);
-  --BorderGray800: #222d3b;
   --Gray500: #616f81;
   --Gray800: #222d3b;
   --Gray900: #121925;

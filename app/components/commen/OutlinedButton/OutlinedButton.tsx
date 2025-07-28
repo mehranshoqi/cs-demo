@@ -8,7 +8,9 @@ interface OutlinedButtonProps {
   iconSize?: number;
   iconColor?: string;
   borderColor?: string;
+  padding?: string;
   titleColor?: string;
+  bgColor?: string;
   height?: string | number;
   width?: string | number;
   fontWeight?: string | number;
@@ -23,6 +25,8 @@ export default function OutlinedButton({
   iconColor,
   height,
   borderColor,
+  padding,
+  bgColor,
   titleColor,
   width,
   fontWeight,
@@ -35,7 +39,9 @@ export default function OutlinedButton({
       style={{
         height: height,
         width: width,
-        borderColor:borderColor,
+        borderColor: borderColor,
+        backgroundColor: bgColor,
+        padding: padding,
       }}
     >
       {iconSrc && (
