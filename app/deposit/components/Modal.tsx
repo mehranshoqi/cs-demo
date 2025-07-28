@@ -5,8 +5,8 @@ import Image from "next/image";
 import { CSSTransition } from "react-transition-group";
 import ImagePaths from "@/app/constants/ImagePaths";
 import styles from "./Modal.module.scss";
-import CryptoCurrencyModalLayout from "./layouts/CryptoCurrencyModalLayout";
-import PaymentMethodModalLayout from "./layouts/PaymentMethodModalLayout";
+import CryptoCurrencyModalLayout from "./layouts/CryptoCurrency";
+import PaymentMethodModalLayout from "./layouts/PaymentMethod";
 
 interface ModalProps {
     isOpen: boolean;
