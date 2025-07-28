@@ -23,9 +23,9 @@ export default function CryptoCurrency() {
                 {cryptoItems.map((item, index) => (
                     <div
                         key={index}
-                        className={`p-2 md:p-3 rounded-lg flex flex-row items-center gap-2 md:gap-3 ${index === cryptoItems.length - 1
-                                ? "bg-transparent border-2 border-[#7D2EFA]"
-                                : "bg-gray-800"
+                        className={`p-2 md:p-3 rounded-lg flex flex-row items-center gap-2 md:gap-3 transition-all duration-300 ease-in-out cursor-pointer hover:shadow-lg ${index === cryptoItems.length - 1
+                            ? "bg-transparent border-2 border-[#7D2EFA] hover:bg-[#7D2EFA]/10"
+                            : "bg-gray-800 hover:bg-gray-700"
                             }`}
                     >
                         <Image
@@ -33,9 +33,9 @@ export default function CryptoCurrency() {
                             alt={item.name}
                             width={50}
                             height={50}
-                            className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12"
+                            className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 transition-opacity duration-300 hover:opacity-80"
                         />
-                        <span className="text-xs md:text-sm lg:text-sm">{item.name}</span>
+                        <span className="text-xs md:text-sm lg:text-sm transition-colors duration-300 hover:text-white">{item.name}</span>
                     </div>
                 ))}
             </div>
