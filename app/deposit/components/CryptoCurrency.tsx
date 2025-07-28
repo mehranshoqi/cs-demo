@@ -64,7 +64,7 @@ export default function CryptoCurrency() {
                 isOpen={isModalOpen}
                 onClose={closeModal}
                 selectedItem={selectedItem}
-                title="Crypto Currency"
+                title={selectedItem ? `${selectedItem.name} Deposit information` : "Crypto Currency"}
                 layout="crypto"
             />
         </>

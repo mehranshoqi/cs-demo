@@ -55,7 +55,7 @@ export default function AlternativeCashDeposits() {
                 isOpen={isModalOpen}
                 onClose={closeModal}
                 selectedItem={selectedItem}
-                title="Payment Method"
+                title={selectedItem ? `${selectedItem.name} Deposit with SWAPPED` : "Payment Method"}
                 layout="payment"
             />
         </>
