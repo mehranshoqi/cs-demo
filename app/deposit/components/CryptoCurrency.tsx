@@ -65,6 +65,7 @@ export default function CryptoCurrency() {
                 onClose={closeModal}
                 selectedItem={selectedItem}
                 title="Crypto Currency"
+                layout="crypto"
             />
         </>
     );

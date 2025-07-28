@@ -5,15 +5,24 @@ import Image from "next/image";
 import { CSSTransition } from "react-transition-group";
 import ImagePaths from "@/app/constants/ImagePaths";
 import styles from "./Modal.module.scss";
+import CryptoCurrencyModalLayout from "./layouts/CryptoCurrencyModalLayout";
+import PaymentMethodModalLayout from "./layouts/PaymentMethodModalLayout";
 
 interface ModalProps {
     isOpen: boolean;
     onClose: () => void;
     selectedItem: { name: string; image: string } | null;
     title?: string;
+    layout?: "default" | "crypto" | "payment";
 }
 
-const Modal: React.FC<ModalProps> = ({ isOpen, onClose, selectedItem, title = "Selected Item" }) => {
+const Modal: React.FC<ModalProps> = ({
+    isOpen,
+    onClose,
+    selectedItem,
+    title = "Selected Item",
+    layout = "default"
+}) => {
     const nodeRef = useRef(null);
 
     useEffect(() => {
@@ -51,6 +60,30 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, selectedItem, title = "S
 
     if (!selectedItem) return null;
 
+    const renderContent = () => {
+        switch (layout) {
+            case "crypto":
+                return <CryptoCurrencyModalLayout selectedItem={selectedItem} onClose={onClose} />;
+
+            case "payment":
+                return <PaymentMethodModalLayout selectedItem={selectedItem} onClose={onClose} />;
+
+            default:
+                return (
+                    <div className={styles.modalCenter}>
+                        <Image
+                            src={selectedItem.image}
+                            alt={selectedItem.name}
+                            width={80}
+                            height={80}
+                            className={styles.itemIcon}
+                        />
+                        <h2 className={styles.itemName}>{selectedItem.name}</h2>
+                    </div>
+                );
+        }
+    };
+
     return (
         <CSSTransition
             in={isOpen}
@@ -86,16 +119,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, selectedItem, title = "S
                         </button>
                     </div>
 
-                    <div className={styles.modalCenter}>
-                        <Image
-                            src={selectedItem.image}
-                            alt={selectedItem.name}
-                            width={80}
-                            height={80}
-                            className={styles.itemIcon}
-                        />
-                        <h2 className={styles.itemName}>{selectedItem.name}</h2>
-                    </div>
+                    {renderContent()}
                 </div>
             </div>
         </CSSTransition>

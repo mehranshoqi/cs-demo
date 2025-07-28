@@ -56,6 +56,7 @@ export default function AlternativeCashDeposits() {
                 onClose={closeModal}
                 selectedItem={selectedItem}
                 title="Payment Method"
+                layout="payment"
             />
         </>
     );
