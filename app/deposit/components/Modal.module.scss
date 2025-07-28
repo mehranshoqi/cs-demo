@@ -1,0 +1,105 @@
+/* Modal.module.scss */
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #222d3ba3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 90000;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.modalContent {
+    background-color: var(--Gray900);
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    padding: 40px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.backgroundContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+}
+
+.backgroundImage {
+    border-radius: 12px;
+}
+
+.modalCenter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+    z-index: 2;
+    text-align: center;
+}
+
+.itemIcon {
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 12px;
+    width: 80px;
+    height: 80px;
+}
+
+.itemName {
+    font-size: 28px;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+}
+
+/* Transition animations */
+.modal-fade-enter {
+    opacity: 0;
+
+    .modalContent {
+        transform: translateY(-50px);
+    }
+}
+
+.modal-fade-enter-active {
+    opacity: 1;
+
+    .modalContent {
+        transform: translateY(0);
+    }
+
+    transition: opacity 300ms ease-in,
+    transform 300ms ease-in;
+}
+
+.modal-fade-exit {
+    opacity: 1;
+
+    .modalContent {
+        transform: translateY(0);
+    }
+}
+
+.modal-fade-exit-active {
+    opacity: 0;
+
+    .modalContent {
+        transform: translateY(-50px);
+    }
+
+    transition: opacity 300ms ease-out,
+    transform 300ms ease-out;
+}
