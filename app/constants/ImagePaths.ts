@@ -100,6 +100,12 @@ const ImagePaths = {
     cs2go: "/images/deposit-cs2go.png",
     rust: "/images/deposit-rust.png",
     dota2: "/images/deposit-dota2.png",
+    network: "/images/network.svg",
+    wallet: "/images/wallet.svg",
+    info: "/images/info.svg",
+    copy: "/images/copy.svg",
+    coinAlt: "/images/coin-alt.svg",
+
   },
   crypto: {
     bitcoin: "/images/crypto/bitcoin.svg",
@@ -112,6 +118,7 @@ const ImagePaths = {
     cardano: "/images/crypto/cardano.svg",
     ripple: "/images/crypto/ripple.svg",
     more: "/images/crypto/more.svg",
+    qr: "/images/qr.svg",
   },
   cash: {
     visa: "/images/cash/visacard.svg",
@@ -119,6 +126,13 @@ const ImagePaths = {
     paypal: "/images/cash/paypal.svg",
     applepay: "/images/cash/applepay.svg",
     googlepay: "/images/cash/googlepay.svg",
+  },
+  network: {
+    eth: "/images/crypto/networks/ethereum.svg",
+    bsc: "/images/crypto/networks/BSC.svg",
+    tron: "/images/crypto/networks/Tron.svg",
+    polygon: "/images/crypto/networks/Polygon.svg",
+    coin: "/images/crypto/networks/coin.svg",
   },
 };
 
