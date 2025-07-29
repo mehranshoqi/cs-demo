@@ -10,7 +10,7 @@ interface CryptoCurrencyModalLayoutProps {
 const CryptoCurrencyModalLayout: React.FC<CryptoCurrencyModalLayoutProps> = ({
     selectedItem,
     onClose
-}) => {
+}: CryptoCurrencyModalLayoutProps) => {
     const [selectedNetwork, setSelectedNetwork] = useState("Ethereum");
     const [inputValue, setInputValue] = useState("70.00");
 

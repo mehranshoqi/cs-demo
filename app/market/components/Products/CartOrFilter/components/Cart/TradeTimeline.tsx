@@ -10,7 +10,7 @@ interface TradeStep {
   title: string;
   description: string;
   status: TradeStepStatus;
-  stepNumber?: number; 
+  stepNumber?: number;
 }
 
 interface TradeTimelineProps {
@@ -30,8 +30,8 @@ const TradeTimeline: React.FC<TradeTimelineProps> = ({ steps }) => {
           isPrevStepCompleted;
 
         return (
-          <div className={styles.itemWrappper}>
-            <div key={step.id} className={styles.timelineItem}>
+          <div key={step.id} className={styles.itemWrappper}>
+            <div className={styles.timelineItem}>
               <div className={styles.iconColumn}>
                 <div
                   className={`${styles.statusCircle} ${styles[step.status]}`}
@@ -81,9 +81,8 @@ const TradeTimeline: React.FC<TradeTimelineProps> = ({ steps }) => {
             </div>
             {!isLastItem && (
               <div
-                className={`${styles.verticalLine} ${styles[step.status]} ${
-                  isCurrentOrPrevStepActiveOrCompleted ? styles.lineActive : ""
-                }`}
+                className={`${styles.verticalLine} ${styles[step.status]} ${isCurrentOrPrevStepActiveOrCompleted ? styles.lineActive : ""
+                  }`}
               ></div>
             )}
           </div>
@@ -100,6 +99,6 @@ export default TradeTimeline;
 export enum TradeStepStatus {
   Completed = "completed",
   Active = "active",
-  Failed = "failed", 
+  Failed = "failed",
   Default = "default",
 }

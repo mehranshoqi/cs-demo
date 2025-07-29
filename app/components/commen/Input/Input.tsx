@@ -28,7 +28,8 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     },
     ref
   ) => {
-    const inputId = id || React.useId();
+    const generatedId = React.useId();
+    const inputId = id || generatedId;
     const [isFocused, setIsFocused] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
 
@@ -76,9 +77,8 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
               alt={iconAlt}
               width={20}
               height={20}
-              className={`${styles.inputIcon} ${
-                shouldIconBeWhite ? styles.iconFocused : styles.iconBlurred
-              }`}
+              className={`${styles.inputIcon} ${shouldIconBeWhite ? styles.iconFocused : styles.iconBlurred
+                }`}
             />
           )}
           <input

@@ -22,7 +22,7 @@ const cryptoOptions = [
 const PaymentMethodModalLayout: React.FC<PaymentMethodModalLayoutProps> = ({
     selectedItem,
     onClose
-}) => {
+}: PaymentMethodModalLayoutProps) => {
     const [selectedValue, setSelectedValue] = React.useState(coinValues[0]);
     const [selectedCrypto, setSelectedCrypto] = React.useState(cryptoOptions[0]);
     const [coinValue, setCoinValue] = React.useState("0.00");
