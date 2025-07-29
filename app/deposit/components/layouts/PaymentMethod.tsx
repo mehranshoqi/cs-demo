@@ -25,6 +25,12 @@ const PaymentMethodModalLayout: React.FC<PaymentMethodModalLayoutProps> = ({
 }) => {
     const [selectedValue, setSelectedValue] = React.useState(coinValues[0]);
     const [selectedCrypto, setSelectedCrypto] = React.useState(cryptoOptions[0]);
+    const [coinValue, setCoinValue] = React.useState("0.00");
+
+    const handleCoinValueSelect = (value: string) => {
+        setSelectedValue(value);
+        setCoinValue(value);
+    };
     return (
         <div className="flex flex-col gap-8 p-6 z-2">
             <div className="flex flex-col items-start gap-10 text-left">
@@ -48,7 +54,7 @@ const PaymentMethodModalLayout: React.FC<PaymentMethodModalLayoutProps> = ({
                             width={16}
                             height={16}
                         />
-                        <div className="text-sm font-medium">0.00</div>
+                        <div id="coin-value" className="text-sm font-medium">{coinValue}</div>
                     </div>
                     <div className="text-gray-400">to</div>
                     <div className="flex flex-row items-center flex-1">
@@ -78,7 +84,7 @@ const PaymentMethodModalLayout: React.FC<PaymentMethodModalLayoutProps> = ({
                                 ? "bg-gray-700 text-white"
                                 : "hover:bg-gray-800"
                                 }`}
-                            onClick={() => setSelectedValue(value)}
+                            onClick={() => handleCoinValueSelect(value)}
                         >
                             <Image
                                 src={ImagePaths.network.coin}
