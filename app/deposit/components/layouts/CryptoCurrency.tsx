@@ -76,7 +76,7 @@ const CryptoCurrencyModalLayout: React.FC<CryptoCurrencyModalLayoutProps> = ({
                     <div>Wallet address</div>
                 </div>
 
-                <div className="flex w-[140px] mx-auto items-center justify-center my-4">
+                <div className="flex w-[140px] mx-auto items-center justify-center my-4 relative overflow-hidden">
                     <Image
                         src={ImagePaths.crypto.qr}
                         alt="qr"
@@ -84,6 +84,10 @@ const CryptoCurrencyModalLayout: React.FC<CryptoCurrencyModalLayoutProps> = ({
                         height={120}
                         className="mx-auto"
                     />
+                    <div className="absolute w-full animate-scan">
+                        <div className="w-full h-1 bg-white z-10"></div>
+                        <div className="w-full h-20 bg-gradient-to-b from-white/20 via-white/0 to-transparent"></div>
+                    </div>
                 </div>
 
                 <div className="flex flex-row gap-2 bg-gray-700 rounded-lg p-3 w-full justify-between items-center text-xs font-medium">
