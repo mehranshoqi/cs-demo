@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import ImagePaths from "@/app/constants/ImagePaths";
+import CryptoDropdown from "../CryptoDropdown";
 
 interface PaymentMethodModalLayoutProps {
     selectedItem: { name: string; image: string };
@@ -9,11 +10,21 @@ interface PaymentMethodModalLayoutProps {
 
 const coinValues = ['25.00', '50.00', '75.00', '100.00', '500.00', '1,000.00', '1,500.00', '2,000.00']
 
+const cryptoOptions = [
+    { name: "Tether", image: ImagePaths.crypto.tether },
+    { name: "Bitcoin", image: ImagePaths.crypto.bitcoin },
+    { name: "Ethereum", image: ImagePaths.crypto.ethereum },
+    { name: "Binance", image: ImagePaths.crypto.binance },
+    { name: "Dogecoin", image: ImagePaths.crypto.dogecoin },
+    { name: "Solana", image: ImagePaths.crypto.solana }
+];
+
 const PaymentMethodModalLayout: React.FC<PaymentMethodModalLayoutProps> = ({
     selectedItem,
     onClose
 }) => {
     const [selectedValue, setSelectedValue] = React.useState(coinValues[0]);
+    const [selectedCrypto, setSelectedCrypto] = React.useState(cryptoOptions[0]);
     return (
         <div className="flex flex-col gap-8 p-6 z-2">
             <div className="flex flex-col items-start gap-10 text-left">
@@ -37,12 +48,7 @@ const PaymentMethodModalLayout: React.FC<PaymentMethodModalLayoutProps> = ({
                             width={16}
                             height={16}
                         />
-                        <input
-                            type="text"
-                            readOnly
-                            className="bg-transparent text-sm outline-none text-white"
-                            placeholder="0.00"
-                        />
+                        <div className="text-sm font-medium">0.00</div>
                     </div>
                     <div className="text-gray-400">to</div>
                     <div className="flex flex-row items-center flex-1">
@@ -53,21 +59,11 @@ const PaymentMethodModalLayout: React.FC<PaymentMethodModalLayoutProps> = ({
                                 placeholder="0.00"
                             />
                         </div>
-                        <div className="text-white bg-gray-700 border border-gray-700 flex flex-row gap-2 items-center rounded-r-lg p-3 flex-1 text-left">
-                            <Image
-                                src={ImagePaths.crypto.tether}
-                                alt="wallet"
-                                width={20}
-                                height={20}
-                            />
-                            <div className="text-sm font-medium">Thether</div>
-                            <Image
-                                src={ImagePaths.icons.arrowDown}
-                                alt="wallet"
-                                width={12}
-                                height={12}
-                            />
-                        </div>
+                        <CryptoDropdown
+                            selectedCrypto={selectedCrypto}
+                            onCryptoChange={setSelectedCrypto}
+                            cryptoOptions={cryptoOptions}
+                        />
                     </div>
                 </div>
 
