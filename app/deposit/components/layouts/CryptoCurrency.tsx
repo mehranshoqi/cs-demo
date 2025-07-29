@@ -27,10 +27,10 @@ const CryptoCurrencyModalLayout: React.FC<CryptoCurrencyModalLayoutProps> = ({
     };
 
     const networks = [
-        { name: "Ethereum", image: ImagePaths.network.eth },
-        { name: "BSC", image: ImagePaths.network.bsc },
-        { name: "Tron", image: ImagePaths.network.tron },
-        { name: "Polygon", image: ImagePaths.network.polygon }
+        { name: "Ethereum", image: ImagePaths.network.eth, address: "0x31841bd605BB06b4Bf01C4C161DA012B6bdDC46F" },
+        { name: "BSC", image: ImagePaths.network.bsc, address: "0x742d35Cc6634C0532925a3b8D4C9db96C4b4d8b7" },
+        { name: "Tron", image: ImagePaths.network.tron, address: "TQn9Y2khDD8vq1LhL6v5yJ8nM4K2P3R1S9U" },
+        { name: "Polygon", image: ImagePaths.network.polygon, address: "0x8f2a55949038a9610f50fb23b5883af3b4ecb3c3" }
     ];
 
     return (
@@ -91,7 +91,7 @@ const CryptoCurrencyModalLayout: React.FC<CryptoCurrencyModalLayoutProps> = ({
                 </div>
 
                 <div className="flex flex-row gap-2 bg-gray-700 rounded-lg p-3 w-full justify-between items-center text-xs font-medium">
-                    <div className="text-sm">0x31841bd605BB06b4Bf01C4C161DA012B6bdDC46F</div>
+                    <div className="text-sm">{networks.find(net => net.name === selectedNetwork)?.address}</div>
                     <Image
                         src={ImagePaths.deposit.copy}
                         alt="wallet"
