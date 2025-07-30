@@ -101,6 +101,11 @@ const ImagePaths = {
     authBanner: "/images/authBanner.svg",
     authPattern: "/images/authPattern.svg",
     lightStarBg: "/images/light-star-bg.png",
+    bgCaseBattle: "/images/bg-case-battle.png",
+    arrowLeft: "/images/arrow-left.svg",
+    shieldCheck: "/images/shield-check.svg",
+    share: "/images/share.svg",
+    volumeHigh: "/images/volume-high.svg",
   },
   deposit: {
     cs2go: "/images/deposit-cs2go.png",
@@ -112,6 +117,21 @@ const ImagePaths = {
     copy: "/images/copy.svg",
     coinAlt: "/images/coin-alt.svg",
 
+  },
+  caseBattle: {
+    background: "/images/bg-case-battle.png",
+    arrowLeft: "/images/arrow-left.svg",
+    volumeHigh: "/images/volume-high.svg",
+    shieldCheck: "/images/shield-check.svg",
+    share: "/images/share.svg",
+    flash: "/case-battle/flash.svg",
+    equal: "/case-battle/equal.svg",
+    crown: "/case-battle/crown.svg",
+    grinTongueWink: "/case-battle/grin-tongue-wink.svg",
+    battleX: "/case-battle/battleX.svg",
+    case2: "/case-battle/case-2.png",
+    case3: "/case-battle/case-3.png",
+    case4: "/case-battle/case-4.png",
   },
   crypto: {
     bitcoin: "/images/crypto/bitcoin.svg",
