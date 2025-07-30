@@ -12,6 +12,8 @@ interface FillButtonProps {
   height?: string | number;
   width?: string | number;
   fontWeight?: string | number;
+  disabled?: boolean;
+  loading?: boolean;
   fontSize?: string | number;
 }
 
@@ -27,11 +29,14 @@ export default function FillButton({
   fontWeight,
   filledColor,
   fontSize,
+  disabled,
+  loading,
 }: FillButtonProps) {
   return (
     <button
       className={styles.fillButton}
       onClick={onClick}
+      disabled={disabled}
       style={{
         height: height,
         width: width,
@@ -57,15 +62,19 @@ export default function FillButton({
           }}
         />
       )}
-      <span
-        className={styles.title}
-        style={{
-          fontWeight: fontWeight,
-          fontSize: fontSize,
-        }}
-      >
-        {title}
-      </span>
+      {loading ? (
+        <p> ... </p>
+      ) : (
+        <span
+          className={styles.title}
+          style={{
+            fontWeight: fontWeight,
+            fontSize: fontSize,
+          }}
+        >
+          {title}
+        </span>
+      )}
     </button>
   );
 }

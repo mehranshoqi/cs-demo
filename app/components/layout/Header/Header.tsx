@@ -3,13 +3,16 @@
 import Image from "next/image";
 import LinkButton from "../../commen/LinkButton/LinkButton";
 import styles from "./Header.module.scss";
-import FillButton from "../../commen/FilledButton/FilledButton";
+
 import ImagePaths from "@/app/constants/ImagePaths";
-import HeaderDropDown from "./HeaderDropDown/HeaderDropDown";
+import HeaderDropDown from "./HeaderDropDown/HeaderDropDown"; 
+
 import { useAuth } from "@/app/context/AuthContext";
+import React, { useState } from "react"; 
+import UserAuthControls from "./HeaderDropDown/UserAuthControl";
+import FillButton from "../../commen/FilledButton/FilledButton";
 
 const Header: React.FC = () => {
-  const { openAuthModal } = useAuth();
   return (
     <header className={styles.header}>
       <div className={styles.leftNavigation}>
@@ -27,13 +30,13 @@ const Header: React.FC = () => {
       </div>
       <div className={styles.rightNavigation}>
         <HeaderDropDown imageSrc={ImagePaths.icons.coin} title="0.00" />
-        <HeaderDropDown title="Amir" />
+
+        <UserAuthControls />
+
         <FillButton
           title="Deposit"
           iconSrc={ImagePaths.icons.plusCircle}
-          onClick={() => {
-            openAuthModal();
-          }}
+          onClick={() => {}}
         />
       </div>
     </header>

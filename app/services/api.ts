@@ -1,0 +1,66 @@
+// services/api.ts
+import axios, {
+  AxiosInstance,
+  AxiosResponse,
+  AxiosError,
+  InternalAxiosRequestConfig,
+  AxiosRequestHeaders,
+} from "axios";
+import toast from "react-hot-toast";
+
+const api: AxiosInstance = axios.create({
+  baseURL:
+    process.env.NEXT_PUBLIC_API_URL || "https://auth.main.dev.csiran.com/web",
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
+
+api.interceptors.request.use(
+  (config: InternalAxiosRequestConfig) => {
+    config.headers.Authorization = `Bearer token`;
+    // const token = localStorage.getItem("authToken");
+    // if (token) {
+    //   if (!config.headers) {
+    //     config.headers = {} as AxiosRequestHeaders;
+    //   }
+    //   config.headers.Authorization = `Bearer ${token}`;
+    // }
+    return config;
+  },
+  (error: AxiosError) => {
+    return Promise.reject(error);
+  }
+);
+
+api.interceptors.response.use(
+  (response: AxiosResponse) => {
+    console.log(response.data["status"]);
+
+    if (response.data["status"] == 0) {
+      toast.error(response.data["type"]);
+    }
+
+    return response;
+  },
+  async (error: AxiosError) => {
+    const originalRequest = error.config;
+
+    if (
+      error.response?.status === 401 &&
+      originalRequest &&
+      !(originalRequest as any)._retry
+    ) {
+      (originalRequest as any)._retry = true;
+      // Implement token refresh logic here
+    }
+
+    if (error.response?.status === 401) {
+      // Potentially redirect to login or show a global error
+    }
+
+    return Promise.reject(error);
+  }
+);
+
+export default api;

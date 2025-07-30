@@ -5,6 +5,7 @@ import { Chakra_Petch } from "next/font/google";
 import Header from "./components/layout/Header/Header";
 import Footer from "./components/layout/Footer/Footer";
 import { AuthProvider } from "./context/AuthContext";
+import { Toaster } from "react-hot-toast";
 
 import AuthModal from "./components/Auth/AuthModal";
 import "./styles/_transitions.scss";
@@ -27,14 +28,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-        <AuthProvider>
-      <body className={chakraPetch.className}>
+      <AuthProvider>
+        <body className={chakraPetch.className}>
           <Header />
           <main style={{ paddingTop: 60 }}>{children}</main>
+          <Toaster position="bottom-center" reverseOrder={false} />
           <Footer />
           <AuthModal />
-      </body>
-        </AuthProvider>
+        </body>
+      </AuthProvider>
     </html>
   );
 }
