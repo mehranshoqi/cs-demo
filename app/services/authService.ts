@@ -66,6 +66,19 @@ interface PassRecoveryResponseData {
     token: string;
   };
 }
+interface PassResetRequestBody {
+  type: "passReset";
+  data: {
+    pass: string;
+    token: string;
+  };
+}
+
+interface PassResetResponseData {
+  type: "passReset";
+  status: 0 | 1;
+  data: string;
+}
 
 const AuthService = {
   register: (
@@ -115,6 +128,17 @@ const AuthService = {
       type: "passRecovery",
       data: {
         email,
+      },
+    };
+    return api.post<PassRecoveryResponseData>("", requestBody);
+  },
+
+  passReset: (pass: string, token: string) => {
+    const requestBody: PassResetRequestBody = {
+      type: "passReset",
+      data: {
+        pass,
+        token,
       },
     };
     return api.post<PassRecoveryResponseData>("", requestBody);

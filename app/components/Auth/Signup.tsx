@@ -12,7 +12,7 @@ interface SignupProps {
 
 const Signup: React.FC<SignupProps> = ({ onSignup }) => {
   const [email, setEmail] = useState<string>("");
-  const [username, setUsername] = useState<string>(""); // Maps to d_name in backend
+  const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
