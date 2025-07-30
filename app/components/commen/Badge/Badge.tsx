@@ -1,4 +1,4 @@
-import styles from "./Badge.module.scss";
+import styles from "./badge.module.scss";
 
 interface BadgeProps {
   text: string;
