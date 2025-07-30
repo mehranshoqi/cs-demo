@@ -12,7 +12,7 @@ import Signin from "./Signin";
 import ForgotPass from "./ForgotPass";
 
 const AuthModal: React.FC = () => {
-  const { isAuthModalOpen, closeAuthModal } = useAuth();
+  const { isAuthModalOpen, closeAuthModal, login } = useAuth();
   const [showSignup, setShowSignup] = useState(true);
   const [forgotPass, setForgotPass] = useState(false);
   const nodeRef = useRef(null);
@@ -89,9 +89,20 @@ const AuthModal: React.FC = () => {
             {forgotPass ? (
               <ForgotPass test={() => {}} />
             ) : showSignup ? (
-              <Signup />
+              <Signup
+                onSignup={(token,dName) => {
+                  login(token,dName)
+                  resetFormState();
+                }}
+              />
             ) : (
-              <Signin onForgotPass={() => setForgotPass(true)} />
+              <Signin
+                onSignIn={(token,dName) => {
+                  login(token,dName)
+                  resetFormState();
+                }}
+                onForgotPass={() => setForgotPass(true)}
+              />
             )}
             {!forgotPass && (
               <>
@@ -157,13 +168,9 @@ const AuthModal: React.FC = () => {
             )}
           </div>
           <div className={styles.modalRight}>
-            <Image
-              src={ImagePaths.general.authBanner}
-              className={styles.banner}
-              alt="Background"
-              layout="fill"
-              objectFit="cover"
-            />
+            <video className={styles.banner} autoPlay muted loop playsInline>
+              <source src={ImagePaths.video.authVideo} type="video/mp4" />
+            </video>
             <div className={styles.gradient}></div>
 
             <div className={styles.rightContent}>

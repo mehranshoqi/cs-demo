@@ -5,6 +5,7 @@ import ImagePaths from "@/app/constants/ImagePaths";
 import AppInput from "../commen/Input/Input";
 import FillButton from "../commen/FilledButton/FilledButton";
 import { useState } from "react";
+import AuthService from "@/app/services/authService";
 
 interface ForgotPassProps {
   test: () => void;
@@ -28,23 +29,51 @@ interface SendEmailProps {
   onSubmit: () => void;
 }
 const SendEmail: React.FC<SendEmailProps> = ({ onSubmit }) => {
+  const [email, setEmail] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
+
+    try {
+      const response = await AuthService.passRecovery(email);
+      if (response.data.status === 1) {
+        onSubmit();
+      } else {
+        setError("Failed. Please check your email.");
+      }
+    } catch (err: any) {
+      if (err.response && err.response.data && err.response.data.errorCode) {
+        setError(`Failed: ${err.response.data.errorCode}`);
+      } else {
+        setError("An unexpected error occurred.");
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <>
       <h4 className={styles.formTitle}>Rest Password </h4>
-      <form className={styles.authForm}>
+      <form className={styles.authForm} onSubmit={handleSubmit}>
         <AppInput
           iconSrc={ImagePaths.icons.envelope}
           placeholder="Enter your email"
           type="email"
           name="email"
+          onChange={(e) => setEmail(e.target.value)}
         />
 
         <FillButton
           title="Send Recovery Email"
-          onClick={onSubmit}
           height="48px"
           fontSize={16}
           fontWeight={600}
+          disabled={loading}
+          loading={loading}
         />
 
         <p className={styles.resetInfo}>
@@ -63,18 +92,18 @@ const SetNewPass: React.FC<SetNewPassProps> = ({ onSubmit }) => {
     <>
       <h4 className={styles.formTitle}>Set a new password</h4>
       <form className={styles.authForm}>
-          <AppInput
-            iconSrc={ImagePaths.icons.lockClose}
-            placeholder="Enter new password"
-            type="password"
-            name="password"
-          />
-            <AppInput
-            iconSrc={ImagePaths.icons.lockClose}
-            placeholder="Confirm new password"
-            type="password"
-            name="password"
-          />
+        <AppInput
+          iconSrc={ImagePaths.icons.lockClose}
+          placeholder="Enter new password"
+          type="password"
+          name="password"
+        />
+        <AppInput
+          iconSrc={ImagePaths.icons.lockClose}
+          placeholder="Confirm new password"
+          type="password"
+          name="password"
+        />
 
         <FillButton
           title="Set new password"

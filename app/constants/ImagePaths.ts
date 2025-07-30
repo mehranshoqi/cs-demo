@@ -35,6 +35,7 @@ const ImagePaths = {
     user: "/images/user.svg",
     lockClose: "/images/lock-close.svg",
     steam: "/images/steam.svg",
+    steam2: "/images/steam2.svg",
     google: "/images/google.svg",
     discord: "/images/discord.svg",
     eyeOff: "/images/eye-off.svg",
@@ -48,6 +49,11 @@ const ImagePaths = {
     xRed: "/images/x-red.svg",
     checkCircle: "/images/check-circle.svg",
     plus: "/images/plus.svg",
+    linkBroken: "/images/link-broken.svg",
+    bell1: "/images/bell1.svg",
+    arrowUD: "/images/arrowUD.svg",
+    user3: "/images/user3.svg",
+    logout: "/images/logout.svg",
   },
   // Product type icons
   productTypes: {
@@ -133,6 +139,9 @@ const ImagePaths = {
     tron: "/images/crypto/networks/Tron.svg",
     polygon: "/images/crypto/networks/Polygon.svg",
     coin: "/images/crypto/networks/coin.svg",
+  },
+  video: {
+    authVideo: "/video/auth-vid.mp4",
   },
 };
 
