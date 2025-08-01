@@ -8,7 +8,7 @@ import HeaderDropDown from "./HeaderDropDown";
 import UserMenuDropdown from "./UserDropDown";
 import FillButton from "../../../commen/FilledButton/FilledButton";
 import styles from "./HeaderDropDown.module.scss";
-import AuthService from "@/app/services/authService";
+import AuthService from "@/app/services/auth/authService";
 
 const UserAuthControls: React.FC = () => {
   const { openAuthModal, isLoggedIn, userDisplayName, logout } = useAuth();

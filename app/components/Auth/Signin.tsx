@@ -3,7 +3,7 @@ import styles from "./AuthModal.module.scss";
 import ImagePaths from "@/app/constants/ImagePaths";
 import AppInput from "../commen/Input/Input";
 import FillButton from "../commen/FilledButton/FilledButton";
-import AuthService from "@/app/services/authService";
+import AuthService from "@/app/services/auth/authService";
 
 interface SigninProps {
   onForgotPass: () => void;
@@ -18,6 +18,7 @@ const Signin: React.FC<SigninProps> = ({ onForgotPass, onSignIn }) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+
 
     try {
       const response = await AuthService.login(email, password);

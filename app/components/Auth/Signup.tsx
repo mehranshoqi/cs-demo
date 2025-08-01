@@ -3,7 +3,7 @@ import styles from "./AuthModal.module.scss";
 import ImagePaths from "@/app/constants/ImagePaths";
 import AppInput from "../commen/Input/Input";
 import FillButton from "../commen/FilledButton/FilledButton";
-import AuthService from "@/app/services/authService";
+import AuthService from "@/app/services/auth/authService";
 
 interface SignupProps {
   onSignup: (token: string, display_name: string) => void;

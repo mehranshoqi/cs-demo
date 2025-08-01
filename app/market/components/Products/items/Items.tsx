@@ -6,7 +6,10 @@ import ProductCard from "./components/ProductCard/ProductCard";
 import FillButton from "@/app/components/commen/FilledButton/FilledButton";
 import { CartItem, Chip, Product } from "@/app/types";
 import ImagePaths from "@/app/constants/ImagePaths";
+import { motion, AnimatePresence } from "framer-motion";
 import EmptyListView from "./components/EmptyView/EmptyView";
+import { useState } from "react";
+import ProductSearchBar from "./components/ProductSearchBar/ProductSearchBar";
 
 const chipData: Chip[] = [
   { label: "All Skins", iconSrc: "/images/knife.svg" },
@@ -24,47 +27,74 @@ interface ItemsProps {
   addToCart: (productToAdd: Product) => void;
   removeFromCart: (productId: string) => void;
   onLoadMore: () => void;
+  onSearch: (query: string) => void;
   cartItems: CartItem[];
   activeFilter: string;
+  loadingList: boolean;
 }
 
 const Items: React.FC<ItemsProps> = ({
   products,
   handleFilterChange,
   addToCart,
+  onSearch,
   onLoadMore,
   removeFromCart,
   cartItems,
   activeFilter,
+  loadingList,
 }) => {
+  const [showSearch, setShowSearch] = useState(true);
   return (
     <div className={styles.items}>
       <div className={styles.itemsHeader}>
-        <Chips
-          chips={chipData}
-          activeChip={activeFilter}
-          onChipClick={handleFilterChange}
-        />
+        <div className={styles.chipsWrapper}>
+          <Chips
+            chips={chipData}
+            activeChip={activeFilter}
+            onChipClick={handleFilterChange}
+          />
 
-        <div className={styles.searchSort}>
-          <span className={styles.chipStyle}>
-            <Image
-              src={ImagePaths.icons.search}
-              alt="Search"
-              className={styles.searchIcon}
-              width={20}
-              height={20}
-            />
-          </span>
-          <span className={styles.chipStyle}>
-            <Image
-              src={ImagePaths.icons.sort}
-              alt="Sort"
-              className={styles.sortIcon}
-              width={20}
-              height={20}
-            />
-          </span>
+          <div className={styles.searchSort}>
+            <span className={styles.chipStyle}>
+              <Image
+                src={
+                  showSearch ? ImagePaths.icons.xMark : ImagePaths.icons.search
+                }
+                alt="Search"
+                className={styles.searchIcon}
+                onClick={() => setShowSearch(!showSearch)}
+                width={20}
+                height={20}
+              />
+            </span>
+            <span className={styles.chipStyle}>
+              <Image
+                src={ImagePaths.icons.sort}
+                alt="Sort"
+                className={styles.sortIcon}
+                width={20}
+                height={20}
+              />
+            </span>
+          </div>
+        </div>
+        <div className={styles.searchWrapper}>
+          <AnimatePresence>
+            {showSearch && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 10 }}
+                transition={{ duration: 0.5 }}
+              >
+                <ProductSearchBar
+                  className={styles.searchBar}
+                  onSubmit={onSearch}
+                />
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </div>
       <div className={styles.itemsList}>
@@ -82,7 +112,9 @@ const Items: React.FC<ItemsProps> = ({
       <div
         style={{ display: "flex", justifyContent: "center", marginTop: "24px" }}
       >
-        {products.length !== 0 ? (
+        {loadingList ? (
+          <p>Loading ..</p>
+        ) : products.length !== 0 ? (
           <FillButton
             onClick={onLoadMore}
             title="View more"

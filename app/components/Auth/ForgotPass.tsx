@@ -5,7 +5,7 @@ import ImagePaths from "@/app/constants/ImagePaths";
 import AppInput from "../commen/Input/Input";
 import FillButton from "../commen/FilledButton/FilledButton";
 import { useState } from "react";
-import AuthService from "@/app/services/authService";
+import AuthService from "@/app/services/auth/authService";
 
 interface ForgotPassProps {
   test: () => void;

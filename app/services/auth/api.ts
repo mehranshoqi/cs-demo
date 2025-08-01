@@ -34,11 +34,7 @@ api.interceptors.request.use(
 
 api.interceptors.response.use(
   (response: AxiosResponse) => {
-    console.log(response.data["status"]);
-
-    if (response.data["status"] == 0) {
-      toast.error(response.data["type"]);
-    }
+    if (response.data["status"] == 0) toast.error(response.data["type"]);
 
     return response;
   },
