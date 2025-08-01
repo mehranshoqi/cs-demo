@@ -7,7 +7,7 @@ export default function CaseBattleRoulette() {
 
     return (
         <div className="relative p-[1px] rounded-lg w-full h-[366px] mx-auto mt-8 bg-gradient-to-r from-gray-600 to-gray-800">
-            <div className="relative bg-gray-900 rounded-lg w-full h-full p-2 flex gap-2">
+            <div className="relative bg-gray-700 rounded-lg w-full h-full p-2 flex gap-2">
                 <div className="flex gap-2 w-full h-full">
                     {Array.from({ length: itemCount }, (_, i) => (
                         <RouletteCard key={i} />
