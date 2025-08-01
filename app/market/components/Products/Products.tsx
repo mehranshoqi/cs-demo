@@ -186,7 +186,7 @@ export default function Products() {
     } else {
       console.log("No more products to load.");
     }
-  }, [loadedProductCount, productsData]);
+  }, [loadedProductCount]);
 
   return (
     <div className={styles.productsMain}>

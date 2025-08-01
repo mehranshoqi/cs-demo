@@ -11,28 +11,6 @@ import TradeTimeline, { TradeStepStatus } from "./TradeTimeline";
 
 const SellActionSteps = () => {
   const [isActive, setIsActive] = useState(false);
-  const itemClassName = `${styles.filterItem} ${isActive ? styles.active : ""}`;
-  const exampleTimeline1 = [
-    {
-      id: 1,
-      title: "Skin Sold",
-      description: "Your item has been purchased",
-      status: TradeStepStatus.Completed,
-    },
-    {
-      id: 2,
-      title: "You Sent the Item",
-      description: "You've sent the skin",
-      status: TradeStepStatus.Completed,
-    },
-    {
-      id: 3,
-      title: "Buyer Confirmed",
-      description: "The buyer hasn't confirmed the trade",
-      status: TradeStepStatus.Failed,
-    },
- 
-  ];
 
   const exampleTimeline2 = [
     {
@@ -60,7 +38,7 @@ const SellActionSteps = () => {
       description: "The transaction is complete",
       status: TradeStepStatus.Default,
     },
-       {
+    {
       id: 5,
       title: "Trade Disputed",
       description: "Contact support",
@@ -68,20 +46,6 @@ const SellActionSteps = () => {
     },
   ];
 
-  const exampleTimeline3 = [
-    {
-      id: 1,
-      title: "Pending Sale",
-      description: "Waiting for buyer to purchase",
-      status: TradeStepStatus.Default,
-    },
-    {
-      id: 2,
-      title: "Item Sent",
-      description: "You sent the item to the bot",
-      status: TradeStepStatus.Default,
-    },
-  ];
   return (
     <div className={styles.sellActionStepsContainer}>
       <div className={styles.infoBox}>

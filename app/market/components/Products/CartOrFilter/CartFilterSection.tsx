@@ -5,10 +5,6 @@ import styles from "./CartFilterSection.module.scss";
 import CartFilterSwitcher from "./components/switcher/CartFilterSwitcher";
 import Cart from "./components/Cart/Cart";
 import { CartItem, FilterModel } from "@/app/types";
-import Dropdown from "@/app/components/commen/DropDown/DropDown";
-import { div } from "framer-motion/client";
-import DropdownFramer from "@/app/components/commen/DropDown/DropDown";
-import ExpandableFramer from "@/app/components/commen/Expandable/Expandable";
 import Filters from "./components/Fiilters/Filters";
 
 interface CartFilterSectionProps {

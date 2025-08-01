@@ -4,7 +4,6 @@ import axios, {
   AxiosResponse,
   AxiosError,
   InternalAxiosRequestConfig,
-  AxiosRequestHeaders,
 } from "axios";
 import toast from "react-hot-toast";
 
@@ -44,21 +43,6 @@ api.interceptors.response.use(
     return response;
   },
   async (error: AxiosError) => {
-    const originalRequest = error.config;
-
-    if (
-      error.response?.status === 401 &&
-      originalRequest &&
-      !(originalRequest as any)._retry
-    ) {
-      (originalRequest as any)._retry = true;
-      // Implement token refresh logic here
-    }
-
-    if (error.response?.status === 401) {
-      // Potentially redirect to login or show a global error
-    }
-
     return Promise.reject(error);
   }
 );

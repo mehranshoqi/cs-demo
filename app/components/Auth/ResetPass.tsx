@@ -7,9 +7,9 @@ interface ResetPassProps {
   test: () => void;
 }
 
-const ResetPass: React.FC<ResetPassProps> = ({ test }) => {
+const ResetPass: React.FC<ResetPassProps> = ({}) => {
   return (
-    <div className={styles.resetContainer} >
+    <div className={styles.resetContainer}>
       <h4 className={styles.formTitle}>Rest Password </h4>
       <form className={styles.authForm}>
         <AppInput
