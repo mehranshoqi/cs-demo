@@ -4,7 +4,7 @@ import styles from "./AuthModal.module.scss";
 import ImagePaths from "@/app/constants/ImagePaths";
 import AppInput from "../commen/Input/Input";
 import FillButton from "../commen/FilledButton/FilledButton";
-import AuthService from "@/app/services/authService";
+import AuthService from "@/app/services/auth/authService";
 
 interface SigninProps {
   onForgotPass: () => void;
@@ -15,12 +15,11 @@ const Signin: React.FC<SigninProps> = ({ onForgotPass, onSignIn }) => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setError(null);
+
 
     try {
       const response = await AuthService.login(email, password);
@@ -30,15 +29,8 @@ const Signin: React.FC<SigninProps> = ({ onForgotPass, onSignIn }) => {
         localStorage.setItem("authToken", token);
         localStorage.setItem("userDisplayName", display_name);
         onSignIn(token, display_name);
-      } else {
-        setError("Login failed. Please check your email and password.");
       }
     } catch (err: any) {
-      if (err.response && err.response.data && err.response.data.errorCode) {
-        setError(`Login failed: ${err.response.data.errorCode}`);
-      } else {
-        setError("An unexpected error occurred during login.");
-      }
     } finally {
       setLoading(false);
     }
@@ -69,7 +61,6 @@ const Signin: React.FC<SigninProps> = ({ onForgotPass, onSignIn }) => {
             Forgot password?
           </span>
         </div>
-        {error && <p className={styles.errorMessage}>{error}</p>}
         <FillButton
           title="Continue"
           height="48px"

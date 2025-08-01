@@ -1,12 +1,32 @@
 .chips {
   display: flex;
   gap: 12px;
+
+  flex-wrap: nowrap;
+  overflow-x: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  scrollbar-width: none;
+
+  -ms-overflow-style: none;
+
+  @media (max-width: 1330px) {
+    width: 520px;
+
+    background: linear-gradient(to left, var(--Gray950), rgba(255, 0, 0, 0))
+        no-repeat right center / 70px 100%,
+      rgba(21, 255, 99, 0);
+  }
 }
 
 .chip {
   padding: 6px 12px;
   background: transparent;
   color: var(--text-color);
+  text-overflow: clip;
   display: flex;
   flex-direction: row;
   border-radius: 40px;
@@ -16,12 +36,12 @@
   font-weight: 500;
   cursor: pointer;
   transition: background 0.2s;
-  display: flex;
   align-items: center;
   justify-content: center;
   border: 1.5px solid var(--Gray800);
   padding-right: 24px;
   transition: all 0.3s ease-in-out;
+  white-space: nowrap;
 }
 
 .chip:hover {

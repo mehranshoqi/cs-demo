@@ -4,7 +4,7 @@ import styles from "./AuthModal.module.scss";
 import ImagePaths from "@/app/constants/ImagePaths";
 import AppInput from "../commen/Input/Input";
 import FillButton from "../commen/FilledButton/FilledButton";
-import AuthService from "@/app/services/authService";
+import AuthService from "@/app/services/auth/authService";
 
 interface SignupProps {
   onSignup: (token: string, display_name: string) => void;
@@ -35,18 +35,9 @@ const Signup: React.FC<SignupProps> = ({ onSignup }) => {
           localStorage.setItem("authToken", token);
           localStorage.setItem("userDisplayName", display_name);
           onSignup(token, display_name);
-        } else {
-          setError("Login failed. Please check your email and password.");
         }
-      } else {
-        setError("Registration failed. Please try again.");
       }
     } catch (err: any) {
-      if (err.response && err.response.data && err.response.data.errorCode) {
-        setError(`Registration failed: ${err.response.data.errorCode}`);
-      } else {
-        setError("An unexpected error occurred during registration.");
-      }
     } finally {
       setLoading(false);
     }
@@ -80,7 +71,6 @@ const Signup: React.FC<SignupProps> = ({ onSignup }) => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        {error && <p className={styles.errorMessage}>{error}</p>}
         <FillButton
           title="Register"
           height="48px"

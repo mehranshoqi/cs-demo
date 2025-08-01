@@ -5,10 +5,16 @@ import Items from "./items/Items";
 import styles from "./Products.module.scss";
 import { Product, CartItem, FilterModel } from "@/app/types";
 
+import {
+  MarketItem,
+  GetMarketItemsParams,
+} from "../../../services/market/marketService";
+
 import productsData from "../../../constants/data";
+import MarketService from "@/app/services/market/marketService";
 
 export default function Products() {
- const [products, setProducts] = useState<Product[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [currentFiltersModel, setCurrentFiltersModel] = useState<FilterModel>({
     priceRange: { min: null, max: null },
@@ -18,16 +24,54 @@ export default function Products() {
     colors: [],
     weapon: undefined,
   });
+
+  const [itemsParams, setItemsParams] = useState<GetMarketItemsParams>({
+    offset: 0,
+    limit: 5,
+  });
   const [activeProductTypeFilter, setActiveProductTypeFilter] =
     useState<string>("All Skins");
-
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [loadedProductCount, setLoadedProductCount] = useState<number>(0);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const getAllItems = async (append = false) => {
+    setLoading(true);
+    try {
+      const response = await MarketService.getItems(itemsParams);
+      // TODO: Mehran
+      const count = response.data.data.length;
+      const newItems: Product[] = Array.from({ length: count }, (_, index) => ({
+        id: `${itemsParams.offset + index}`,
+        name: "AK-47",
+        wear: "Minimal Wear",
+        wearValue: 0.05,
+        price: 100.0,
+        priceChange: "+6%",
+        priceChangeValue: 6,
+        image: "/images/gloves-sample2.png",
+        type: "Gloves",
+        skinType: "Emerlad",
+        discountPercentage: -10,
+        color: "Green500",
+        deliveryTime: "0-10 min",
+      }));
+
+      setProducts((prev) => (append ? [...prev, ...newItems] : newItems));
+      setLoadedProductCount((prev) => prev + newItems.length);
+    } catch (err: any) {
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const initialLoad = productsData.slice(0, 5); // Load initial 5 products
-    setProducts(initialLoad);
-    setLoadedProductCount(initialLoad.length);
+    if (itemsParams.offset === 0) return;
+    getAllItems(true);
+  }, [itemsParams]);
+
+  useEffect(() => {
+    getAllItems();
   }, []);
 
   const applyAllFilters = useCallback(() => {
@@ -174,19 +218,12 @@ export default function Products() {
   const removeAllFromCart = () => setCartItems([]);
 
   const handleLoadMoreProducts = useCallback(() => {
-    const nextBatchSize = 5;
-    const nextProducts = productsData.slice(
-      loadedProductCount,
-      loadedProductCount + nextBatchSize
-    );
-
-    if (nextProducts.length > 0) {
-      setProducts((prevProducts) => [...prevProducts, ...nextProducts]);
-      setLoadedProductCount((prevCount) => prevCount + nextProducts.length);
-    } else {
-      console.log("No more products to load.");
-    }
-  }, [loadedProductCount, productsData]);
+    const newOffset = itemsParams.offset + itemsParams.limit;
+    setItemsParams((prev) => ({
+      ...prev,
+      offset: newOffset,
+    }));
+  }, [itemsParams]);
 
   return (
     <div className={styles.productsMain}>

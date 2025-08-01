@@ -22,13 +22,13 @@ export default function ProductCard({
   const [isHovered, setIsHovered] = useState<boolean>(false);
 
   const cardVariants: Variants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 0 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6,
-        ease: "easeOut",
+        duration: 0.4,
+        ease: "linear",
         delay: animationDelay,
       },
     },
