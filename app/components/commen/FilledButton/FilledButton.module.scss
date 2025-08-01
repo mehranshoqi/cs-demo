@@ -17,9 +17,11 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  
   box-shadow: 0 12px 18px rgba(0, 0, 0, 0.08);
 
+}
+.loading {
+  opacity: 0.5;
 }
 
 .icon {

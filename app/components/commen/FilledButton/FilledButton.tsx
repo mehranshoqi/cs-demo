@@ -34,7 +34,7 @@ export default function FillButton({
 }: FillButtonProps) {
   return (
     <button
-      className={styles.fillButton}
+      className={`${styles.fillButton} ${loading ? styles.loading : undefined}`}
       onClick={onClick}
       disabled={disabled}
       style={{
@@ -62,19 +62,17 @@ export default function FillButton({
           }}
         />
       )}
-      {loading ? (
-        <p> ... </p>
-      ) : (
+      {
         <span
-          className={styles.title}
+          className={`${styles.title}`}
           style={{
             fontWeight: fontWeight,
             fontSize: fontSize,
           }}
         >
-          {title}
+          {title} {loading ? "..." : ""}
         </span>
-      )}
+      }
     </button>
   );
 }

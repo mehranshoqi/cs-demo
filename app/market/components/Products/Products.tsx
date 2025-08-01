@@ -10,12 +10,11 @@ import {
   GetMarketItemsParams,
 } from "../../../services/market/marketService";
 
-import productsData from "../../../constants/data";
 import MarketService from "@/app/services/market/marketService";
 
 export default function Products() {
   const [products, setProducts] = useState<Product[]>([]);
-  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+
   const [currentFiltersModel, setCurrentFiltersModel] = useState<FilterModel>({
     priceRange: { min: null, max: null },
     relativeToMarketPrice: [],
@@ -35,44 +34,45 @@ export default function Products() {
   const [loadedProductCount, setLoadedProductCount] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const getAllItems = async (append = false) => {
-    setLoading(true);
-    try {
-      const response = await MarketService.getItems(itemsParams);
-      // TODO: Mehran
-      const count = response.data.data.length;
-      const newItems: Product[] = Array.from({ length: count }, (_, index) => ({
-        id: `${itemsParams.offset + index}`,
-        name: "AK-47",
-        wear: "Minimal Wear",
-        wearValue: 0.05,
-        price: 100.0,
-        priceChange: "+6%",
-        priceChangeValue: 6,
-        image: "/images/gloves-sample2.png",
-        type: "Gloves",
-        skinType: "Emerlad",
-        discountPercentage: -10,
-        color: "Green500",
-        deliveryTime: "0-10 min",
-      }));
+  const getAllItems = useCallback(
+    async (append = false) => {
+      setLoading(true);
+      try {
+        const response = await MarketService.getItems(itemsParams);
 
-      setProducts((prev) => (append ? [...prev, ...newItems] : newItems));
-      setLoadedProductCount((prev) => prev + newItems.length);
-    } catch (err: any) {
-    } finally {
-      setLoading(false);
-    }
-  };
+        const count = response.data.data.length;
+        const newItems: Product[] = Array.from(
+          { length: count },
+          (_, index) => ({
+            id: `${itemsParams.offset + index}`,
+            name: "AK-47",
+            wear: "Minimal Wear",
+            wearValue: 0.05,
+            price: 100.0,
+            priceChange: "+6%",
+            priceChangeValue: 6,
+            image: "/images/gloves-sample2.png",
+            type: "Gloves",
+            skinType: "Emerlad",
+            discountPercentage: -10,
+            color: "Green500",
+            deliveryTime: "0-10 min",
+          })
+        );
+
+        setProducts((prev) => (append ? [...prev, ...newItems] : newItems));
+        setLoadedProductCount((prev) => prev + newItems.length);
+      } catch (err: any) {
+      } finally {
+        setLoading(false);
+      }
+    },
+    [itemsParams]
+  );
 
   useEffect(() => {
-    if (itemsParams.offset === 0) return;
-    getAllItems(true);
-  }, [itemsParams]);
-
-  useEffect(() => {
-    getAllItems();
-  }, []);
+    getAllItems(itemsParams.offset > 0);
+  }, [itemsParams, getAllItems]);
 
   const applyAllFilters = useCallback(() => {
     let tempFilteredProducts = [...products];
@@ -176,8 +176,6 @@ export default function Products() {
           product.color && currentFiltersModel.colors.includes(product.color)
       );
     }
-
-    setFilteredProducts(tempFilteredProducts);
   }, [products, activeProductTypeFilter, currentFiltersModel]);
 
   useEffect(() => {
@@ -190,6 +188,13 @@ export default function Products() {
   };
 
   const handleAllFiltersChange = (newFilters: FilterModel) => {
+    setProducts([]);
+    setItemsParams({
+      offset: 0,
+      limit: itemsParams.limit,
+      min_price: newFilters.priceRange.min,
+      max_price: newFilters.priceRange.max,
+    });
     setCurrentFiltersModel(newFilters);
   };
 
@@ -218,17 +223,16 @@ export default function Products() {
   const removeAllFromCart = () => setCartItems([]);
 
   const handleLoadMoreProducts = useCallback(() => {
-    const newOffset = itemsParams.offset + itemsParams.limit;
     setItemsParams((prev) => ({
       ...prev,
-      offset: newOffset,
+      offset: prev.offset + prev.limit,
     }));
-  }, [itemsParams]);
+  }, []);
 
   return (
     <div className={styles.productsMain}>
       <Items
-        products={filteredProducts}
+        products={products}
         handleFilterChange={handleProductTypeFilterChange}
         addToCart={addToCart}
         removeFromCart={removeFromCart}
