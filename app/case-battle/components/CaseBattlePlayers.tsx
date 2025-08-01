@@ -4,6 +4,19 @@ import ImagePaths from "@/app/constants/ImagePaths";
 export default function CaseBattlePlayers() {
     const itemCount = 6;
 
+    // Function to get random gun image
+    const getRandomGun = () => {
+        const gunImages = [
+            ImagePaths.caseBattle.gun1,
+            ImagePaths.caseBattle.gun2,
+            ImagePaths.caseBattle.gun3,
+            ImagePaths.caseBattle.gun4,
+            ImagePaths.caseBattle.gun5,
+            ImagePaths.caseBattle.gun6,
+        ];
+        return gunImages[Math.floor(Math.random() * gunImages.length)];
+    };
+
     return (
         <div className="relative p-[1px] rounded-lg w-full mx-auto">
             <div className="relative rounded-lg w-full h-full p-2 flex gap-2">
@@ -30,7 +43,7 @@ export default function CaseBattlePlayers() {
                                             <div>03</div>
                                             <div>40%</div>
                                         </div>
-                                        <Image src={ImagePaths.caseBattle.gun1} alt="gun-1" width={63} height={25} className="mx-auto w-[103px]" />
+                                        <Image src={getRandomGun()} alt="gun" width={63} height={25} className="mx-auto w-[103px]" />
                                         <div className="text-gray-400">Emerlad</div>
                                         <div className="text-[#FF5E15]">Titan Katowice 2014</div>
                                         <div className="flex justify-center items-center gap-1 mx-auto">

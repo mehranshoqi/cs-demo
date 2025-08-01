@@ -134,6 +134,11 @@ const ImagePaths = {
     case4: "/images/case-battle/case-4.png",
     playWith: "/images/case-battle/playWith.svg",
     gun1: "/images/case-battle/gun-1.png",
+    gun2: "/images/case-battle/gun-2.png",
+    gun3: "/images/case-battle/gun-3.png",
+    gun4: "/images/case-battle/gun-4.png",
+    gun5: "/images/case-battle/gun-5.png",
+    gun6: "/images/case-battle/gun-6.png",
   },
   crypto: {
     bitcoin: "/images/crypto/bitcoin.svg",
