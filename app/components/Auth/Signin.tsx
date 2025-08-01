@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useRouter } from "next/navigation";
 import styles from "./AuthModal.module.scss";
 import ImagePaths from "@/app/constants/ImagePaths";
 import AppInput from "../commen/Input/Input";
@@ -29,8 +28,9 @@ const Signin: React.FC<SigninProps> = ({ onForgotPass, onSignIn }) => {
         localStorage.setItem("authToken", token);
         localStorage.setItem("userDisplayName", display_name);
         onSignIn(token, display_name);
+      } else {
       }
-    } catch (err: any) {
+    } catch {
     } finally {
       setLoading(false);
     }

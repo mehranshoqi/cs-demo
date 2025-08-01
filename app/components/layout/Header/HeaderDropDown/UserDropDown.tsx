@@ -1,8 +1,7 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, {  useRef, useEffect } from "react";
 import Image from "next/image";
-import { Bell, Repeat2, User, LogOut } from "lucide-react";
 import { useAuth } from "@/app/context/AuthContext";
 import styles from "./HeaderDropDown.module.scss";
 import ImagePaths from "@/app/constants/ImagePaths";

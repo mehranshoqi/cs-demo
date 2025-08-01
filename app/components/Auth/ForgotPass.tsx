@@ -11,7 +11,7 @@ interface ForgotPassProps {
   test: () => void;
 }
 
-const ForgotPass: React.FC<ForgotPassProps> = ({ test }) => {
+const ForgotPass: React.FC<ForgotPassProps> = ({}) => {
   const [showNewPassForm, setShowNewPassForm] = useState(false);
 
   return (
@@ -31,19 +31,17 @@ interface SendEmailProps {
 const SendEmail: React.FC<SendEmailProps> = ({ onSubmit }) => {
   const [email, setEmail] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setError(null);
 
     try {
       const response = await AuthService.passRecovery(email);
       if (response.data.status === 1) {
         onSubmit();
       }
-    } catch (err: any) {
+    } catch {
     } finally {
       setLoading(false);
     }

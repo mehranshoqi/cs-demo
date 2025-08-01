@@ -103,9 +103,9 @@ const Items: React.FC<ItemsProps> = ({
             key={product.id}
             isSelected={cartItems.some((item) => item.id === product.id)}
             product={product}
-            onProductClick={(isSelected) => {
-              isSelected ? removeFromCart(product.id) : addToCart(product);
-            }}
+            onProductClick={(isSelected) =>
+              isSelected ? removeFromCart(product.id) : addToCart(product)
+            }
           />
         ))}
       </div>

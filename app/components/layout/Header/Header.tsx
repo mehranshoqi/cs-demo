@@ -5,10 +5,9 @@ import LinkButton from "../../commen/LinkButton/LinkButton";
 import styles from "./Header.module.scss";
 
 import ImagePaths from "@/app/constants/ImagePaths";
-import HeaderDropDown from "./HeaderDropDown/HeaderDropDown"; 
+import HeaderDropDown from "./HeaderDropDown/HeaderDropDown";
 
-import { useAuth } from "@/app/context/AuthContext";
-import React, { useState } from "react"; 
+import React from "react";
 import UserAuthControls from "./HeaderDropDown/UserAuthControl";
 import FillButton from "../../commen/FilledButton/FilledButton";
 

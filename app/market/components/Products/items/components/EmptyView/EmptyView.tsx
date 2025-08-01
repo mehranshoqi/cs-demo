@@ -1,7 +1,6 @@
 import Image from "next/image";
 import styles from "./EmptyView.module.scss";
 import ImagePaths from "@/app/constants/ImagePaths";
-import OutlinedButton from "@/app/components/commen/OutlinedButton/OutlinedButton";
 
 const EmptyListView = () => {
   return (

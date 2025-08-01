@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useRouter } from "next/navigation";
 import styles from "./AuthModal.module.scss";
 import ImagePaths from "@/app/constants/ImagePaths";
 import AppInput from "../commen/Input/Input";
@@ -15,13 +14,10 @@ const Signup: React.FC<SignupProps> = ({ onSignup }) => {
   const [username, setUsername] = useState<string>(""); // Maps to d_name in backend
   const [password, setPassword] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
-  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setError(null);
 
     try {
       const response = await AuthService.register(email, username, password);
@@ -37,7 +33,7 @@ const Signup: React.FC<SignupProps> = ({ onSignup }) => {
           onSignup(token, display_name);
         }
       }
-    } catch (err: any) {
+    } catch {
     } finally {
       setLoading(false);
     }

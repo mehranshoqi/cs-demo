@@ -39,8 +39,6 @@ api.interceptors.response.use(
     return response;
   },
   async (error: AxiosError) => {
-    const originalRequest = error.config;
-
     return Promise.reject(error);
   }
 );

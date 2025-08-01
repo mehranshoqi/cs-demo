@@ -1,6 +1,6 @@
 import Image from "next/image";
 import styles from "./Chips.module.scss";
-import { Chip, FilterType } from "@/app/types";
+import { Chip } from "@/app/types";
 
 interface ChipsProps {
   chips: Chip[];
