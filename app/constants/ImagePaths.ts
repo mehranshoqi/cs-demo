@@ -3,6 +3,15 @@ const ImagePaths = {
   logos: {
     logo: "/images/Logo.svg",
   },
+  // Avatar images
+  avatars: {
+    avatar1: "/images/avatar/avatar-1.png",
+    avatar2: "/images/avatar/avatar-2.png",
+    avatar3: "/images/avatar/avatar-3.png",
+    avatar4: "/images/avatar/avatar-4.png",
+    avatar5: "/images/avatar/avatar-5.png",
+    avatar6: "/images/avatar/avatar-6.png",
+  },
   // Icons
   icons: {
     pack: "/images/Pack.svg",

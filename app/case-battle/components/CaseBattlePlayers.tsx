@@ -17,6 +17,19 @@ export default function CaseBattlePlayers() {
         return gunImages[Math.floor(Math.random() * gunImages.length)];
     };
 
+    // Function to get avatar image based on player index
+    const getAvatarImage = (playerIndex: number) => {
+        const avatarImages = [
+            ImagePaths.avatars.avatar1,
+            ImagePaths.avatars.avatar2,
+            ImagePaths.avatars.avatar3,
+            ImagePaths.avatars.avatar4,
+            ImagePaths.avatars.avatar5,
+            ImagePaths.avatars.avatar6,
+        ];
+        return avatarImages[playerIndex] || avatarImages[0];
+    };
+
     return (
         <div className="relative p-[1px] rounded-lg w-full mx-auto">
             <div className="relative rounded-lg w-full h-full p-2 flex gap-2">
@@ -26,7 +39,13 @@ export default function CaseBattlePlayers() {
 
                             {/* Player */}
                             <div className="bg-gray-800 p-2 rounded-lg flex-1 gap-2 flex items-center relative before:content-[''] before:absolute before:top-[-8px] before:left-1/2 before:-translate-x-1/2 before:w-0 before:h-0 before:border-l-[8px] before:border-l-transparent before:border-r-[8px] before:border-r-transparent before:border-b-[8px] before:border-b-gray-800 before:z-10">
-                                <div id='avatar' className="w-10 h-10 rounded-full bg-gray-700"></div>
+                                <Image
+                                    src={getAvatarImage(i)}
+                                    alt={`Player ${i + 1} Avatar`}
+                                    width={40}
+                                    height={40}
+                                    className="w-10 h-10 rounded-full"
+                                />
                                 <div className="flex-1 gap-1 grid text-left">
                                     <div className="text-sm font-bold text-gray-300">Pouya</div>
                                     <div className="flex items-center gap-1">
