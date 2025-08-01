@@ -46,7 +46,7 @@ export interface GetMarketItemsParams
 
 const MarketService = {
   getItems: (params?: GetMarketItemsParams) => {
-    const queryParams: Record<string, any> = {};
+    const queryParams: Record<string, string | number | boolean | null | undefined> = {};
 
     if (params) {
       if (params.id !== undefined) queryParams.id = params.id;

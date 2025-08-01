@@ -62,7 +62,7 @@ export default function Products() {
 
         setProducts((prev) => (append ? [...prev, ...newItems] : newItems));
         setLoadedProductCount((prev) => prev + newItems.length);
-      } catch (err: any) {
+      } catch {
       } finally {
         setLoading(false);
       }
