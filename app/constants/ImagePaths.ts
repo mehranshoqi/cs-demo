@@ -54,6 +54,7 @@ const ImagePaths = {
     arrowUD: "/images/arrowUD.svg",
     user3: "/images/user3.svg",
     logout: "/images/logout.svg",
+    arrowRight: "/images/arrow-right.svg",
   },
   // Product type icons
   productTypes: {

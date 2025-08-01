@@ -187,8 +187,10 @@ export default function Products() {
     setActiveProductTypeFilter(filter);
   };
 
+  const clearList = () => setProducts([]);
+
   const handleAllFiltersChange = (newFilters: FilterModel) => {
-    setProducts([]);
+    clearList();
     setItemsParams({
       offset: 0,
       limit: itemsParams.limit,
@@ -229,6 +231,14 @@ export default function Products() {
     }));
   }, []);
 
+  const handleSearch = useCallback((query: string) => {
+    clearList();
+    setItemsParams((prev) => ({
+      ...prev,
+      name: query,
+    }));
+  }, []);
+
   return (
     <div className={styles.productsMain}>
       <Items
@@ -239,6 +249,8 @@ export default function Products() {
         activeFilter={activeProductTypeFilter}
         cartItems={cartItems}
         onLoadMore={handleLoadMoreProducts}
+        onSearch={handleSearch}
+        loadingList={loading}
       />
       <CartFilterSection
         cartItems={cartItems}
