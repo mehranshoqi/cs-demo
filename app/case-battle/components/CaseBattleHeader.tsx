@@ -15,15 +15,15 @@ export default function CaseBattleHeader() {
             {/* Center - always centered */}
             <div className="flex-1 flex justify-center gap-10">
                 <div className="flex gap-2 items-center">
-                    <span className="text-gray-500">Cost:</span>
+                    <span className="text-gray-500 text-sm">Cost:</span>
                     <span className="text-white">743.00</span>
                 </div>
                 <div className="flex gap-2 items-center">
-                    <span className="text-gray-500">Round:</span>
+                    <span className="text-gray-500 text-sm">Round:</span>
                     <span className="text-white">1/4</span>
                 </div>
                 <div className="flex gap-2 items-center">
-                    <span className="text-gray-500">Solo:</span>
+                    <span className="text-gray-500 text-sm">Solo:</span>
                     <span className="text-white">6x1</span>
                 </div>
             </div>

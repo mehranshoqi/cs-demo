@@ -8,8 +8,8 @@ export default function RouletteCard() {
             <BattleAnimation className="w-full overflow-hidden h-full flex items-center justify-center">
                 <div className="relative z-10">
                     <Image src={ImagePaths.caseBattle.gun1} alt="" width={160} height={49} className="mx-auto opacity-30 w-[160px]" />
-                    <div className="py-10">
-                        <Image src={ImagePaths.caseBattle.gun5} alt="" width={160} height={49} className="mx-auto w-[160px]" />
+                    <div className="py-10 flex-1 h-[250px]">
+                        <Image src={ImagePaths.caseBattle.gun5} alt="" width={160} height={49} className="mx-auto mt-6 w-[160px]" />
                         <div className="text-center grid gap-1 text-sm text-gray-400">
                             <div className="text-gray-400">Emerlad</div>
                             <div className="text-[#FF5E15]">Titan Katowice 2014</div>
