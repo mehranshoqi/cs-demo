@@ -113,6 +113,7 @@ const AuthModal: React.FC = () => {
                       : "Don't have an account?"}
                   </h3>
                   <span
+                    className="btn"
                     onClick={() => {
                       setShowSignup(!showSignup);
                     }}

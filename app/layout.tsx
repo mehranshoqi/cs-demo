@@ -9,6 +9,8 @@ import { Toaster } from "react-hot-toast";
 
 import AuthModal from "./components/Auth/AuthModal";
 import "./styles/_transitions.scss";
+import { ModalProvider } from "./context/ModalContext";
+import AppModal from "./components/commen/AppModal/AppModal";
 
 const chakraPetch = Chakra_Petch({
   subsets: ["latin"],
@@ -29,13 +31,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <AuthProvider>
-        <body className={chakraPetch.className}>
-          <Header />
-          <main style={{ paddingTop: 60 }}>{children}</main>
-          <Toaster position="bottom-center" reverseOrder={false} />
-          <Footer />
-          <AuthModal />
-        </body>
+        <ModalProvider>
+          <body className={chakraPetch.className}>
+            <Header />
+            <main style={{ paddingTop: 60 }}>{children}</main>
+            <Toaster position="bottom-center" reverseOrder={false} />
+            <Footer />
+            <AuthModal />
+            <AppModal />
+          </body>
+        </ModalProvider>
       </AuthProvider>
     </html>
   );

@@ -76,3 +76,7 @@ body {
 .animate-scan {
   animation: scan 3s ease-in-out infinite;
 }
+
+.btn {
+  cursor: pointer;
+}
