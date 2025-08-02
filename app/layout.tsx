@@ -39,7 +39,7 @@ export default function RootLayout({
             <Footer />
             <AuthModal />
             <AppModal />
-          </body>
+          </body> 
         </ModalProvider>
       </AuthProvider>
     </html>

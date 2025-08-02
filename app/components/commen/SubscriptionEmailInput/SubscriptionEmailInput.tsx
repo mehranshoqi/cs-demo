@@ -9,12 +9,14 @@ interface EmailSubscriptionInputProps {
   placeholder?: string;
   onSubmit?: (email: string) => void;
   className?: string;
+  border?: string;
 }
 
 const EmailSubscriptionInput: React.FC<EmailSubscriptionInputProps> = ({
   placeholder = "cs2skin@example.com",
   onSubmit,
   className,
+  border,
 }) => {
   const [email, setEmail] = useState("");
 
@@ -28,10 +30,16 @@ const EmailSubscriptionInput: React.FC<EmailSubscriptionInputProps> = ({
 
   return (
     <form
+      style={{ border: border }}
       onSubmit={handleSubmit}
       className={`${styles.subscriptionForm} ${className || ""}`}
     >
-      <Image src={ImagePaths.icons.envelope} alt="Logo" width={20} height={20} />
+      <Image
+        src={ImagePaths.icons.envelope}
+        alt="Logo"
+        width={20}
+        height={20}
+      />
       <input
         type="email"
         placeholder={placeholder}
@@ -46,7 +54,12 @@ const EmailSubscriptionInput: React.FC<EmailSubscriptionInputProps> = ({
         className={styles.subscriptionButton}
         aria-label="Subscribe"
       >
-        <Image src={ImagePaths.icons.arrowRightCircle} alt="Logo" width={20} height={20} />
+        <Image
+          src={ImagePaths.icons.arrowRightCircle}
+          alt="Logo"
+          width={20}
+          height={20}
+        />
       </button>
     </form>
   );

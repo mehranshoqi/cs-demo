@@ -1,17 +1,13 @@
 "use client";
 
-import React, { useEffect, useRef, useState, useCallback } from "react";
+import React, { useEffect, useRef, useCallback } from "react";
 import styles from "./AppModal.module.scss";
-import Image from "next/image";
-import { useAuth } from "@/app/context/AuthContext";
 import { CSSTransition } from "react-transition-group";
-import ImagePaths from "@/app/constants/ImagePaths";
 import { useModal } from "@/app/context/ModalContext";
 
 const AppModal: React.FC = () => {
   const { isModalOpen, closeModal, modalContent } = useModal();
-
-  const nodeRef = useRef(null);
+  const nodeRef = useRef<HTMLDivElement>(null);
 
   const handleCloseModal = useCallback(() => {
     closeModal();
@@ -19,10 +15,7 @@ const AppModal: React.FC = () => {
 
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
-      if (
-        nodeRef.current &&
-        !(nodeRef.current as HTMLElement).contains(event.target as Node)
-      ) {
+      if (nodeRef.current && !nodeRef.current.contains(event.target as Node)) {
         handleCloseModal();
       }
     };
@@ -37,10 +30,6 @@ const AppModal: React.FC = () => {
       document.addEventListener("mousedown", handleOutsideClick);
       document.addEventListener("keydown", handleEscapeKey);
       document.body.style.overflow = "hidden";
-    } else {
-      document.removeEventListener("mousedown", handleOutsideClick);
-      document.removeEventListener("keydown", handleEscapeKey);
-      document.body.style.overflow = "";
     }
 
     return () => {
@@ -48,7 +37,13 @@ const AppModal: React.FC = () => {
       document.removeEventListener("keydown", handleEscapeKey);
       document.body.style.overflow = "";
     };
-  }, [isModalOpen, closeModal, handleCloseModal]);
+  }, [isModalOpen, handleCloseModal]);
+
+  if (!isModalOpen || !modalContent) {
+    return null;
+  }
+
+  const { component, width } = modalContent;
 
   return (
     <CSSTransition
@@ -59,8 +54,16 @@ const AppModal: React.FC = () => {
       nodeRef={nodeRef}
     >
       <div className={styles.modalOverlay}>
-        <div ref={nodeRef} className={styles.modalContent}>
-          {modalContent}
+        <div
+          ref={nodeRef}
+          className={styles.modalContent}
+          onClick={(e) => e.stopPropagation()}
+          style={{
+            width: width || "auto",
+            padding: width === undefined ? undefined : "0px",
+          }}
+        >
+          {component}
         </div>
       </div>
     </CSSTransition>

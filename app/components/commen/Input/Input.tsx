@@ -4,6 +4,7 @@ import React, { InputHTMLAttributes, forwardRef, useState } from "react";
 import Image from "next/image";
 import styles from "./Input.module.scss";
 import ImagePaths from "@/app/constants/ImagePaths";
+import SolidSvg from "../svgMask/svgMask";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
@@ -72,13 +73,14 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         )}
         <div className={styles.inputContainer}>
           {iconSrc && (
-            <Image
-              src={iconSrc}
-              alt={iconAlt}
+            <SolidSvg
+              path={iconSrc}
+              // color={!isFocused ? "var(--Gray500)" : "white"}
               width={20}
               height={20}
-              className={`${styles.inputIcon} ${shouldIconBeWhite ? styles.iconFocused : styles.iconBlurred
-                }`}
+              className={`${styles.inputIcon} ${
+                shouldIconBeWhite ? styles.iconFocused : styles.iconBlurred
+              }`}
             />
           )}
           <input

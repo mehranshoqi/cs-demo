@@ -68,6 +68,7 @@ export default function FillButton({
           style={{
             fontWeight: fontWeight,
             fontSize: fontSize,
+            color: disabled ? 'var(--Gray600)' : undefined,
           }}
         >
           {title} {loading ? "..." : ""}

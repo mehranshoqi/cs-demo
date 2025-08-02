@@ -56,6 +56,9 @@ const ImagePaths = {
     logout: "/images/logout.svg",
     arrowRight: "/images/arrow-right.svg",
     camera: "/images/camera.svg",
+    avatar: "/images/avatar.png",
+    defaultAvatar: "/images/default-avatar.svg",
+    bigLock: "/images/big-lock.svg",
   },
   // Product type icons
   productTypes: {
@@ -113,7 +116,6 @@ const ImagePaths = {
     info: "/images/info.svg",
     copy: "/images/copy.svg",
     coinAlt: "/images/coin-alt.svg",
-
   },
   crypto: {
     bitcoin: "/images/crypto/bitcoin.svg",
@@ -141,6 +143,15 @@ const ImagePaths = {
     tron: "/images/crypto/networks/Tron.svg",
     polygon: "/images/crypto/networks/Polygon.svg",
     coin: "/images/crypto/networks/coin.svg",
+  },
+  profileMenu: {
+    profileMenu: "/images/profileMenu/user-Menu.svg",
+    userCheck: "/images/profileMenu/user-check.svg",
+    trades: "/images/profileMenu/trades.svg",
+    statistics: "/images/profileMenu/statistics.svg",
+    securityMenu: "/images/profileMenu/securityMenu.svg",
+    clock: "/images/profileMenu/clock.svg",
+    transactions: "/images/profileMenu/arrows-up-down.svg",
   },
   video: {
     authVideo: "/video/auth-vid.mp4",

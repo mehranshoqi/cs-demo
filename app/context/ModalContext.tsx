@@ -1,4 +1,3 @@
-// src/app/context/ModalContext.tsx
 "use client";
 
 import React, {
@@ -9,10 +8,15 @@ import React, {
   useCallback,
 } from "react";
 
+interface ModalContent {
+  component: ReactNode;
+  width?: string;
+}
+
 interface ModalContextType {
   isModalOpen: boolean;
-  modalContent: ReactNode | null; // اضافه کردن این ویژگی جدید
-  openModal: (content: ReactNode) => void; // تغییر در ورودی تابع
+  modalContent: ModalContent | null;
+  openModal: (component: ReactNode, width?: string) => void;
   closeModal: () => void;
 }
 
@@ -24,16 +28,16 @@ interface ModalProviderProps {
 
 export const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalContent, setModalContent] = useState<ReactNode | null>(null);
+  const [modalContent, setModalContent] = useState<ModalContent | null>(null);
 
-  const openModal = useCallback((content: ReactNode) => {
-    setModalContent(content);
+  const openModal = useCallback((component: ReactNode, width?: string) => {
+    setModalContent({ component, width });
     setIsModalOpen(true);
   }, []);
 
   const closeModal = useCallback(() => {
     setIsModalOpen(false);
-    setModalContent(null); // پاک کردن محتوا هنگام بستن
+    setModalContent(null);
   }, []);
 
   const value = {
