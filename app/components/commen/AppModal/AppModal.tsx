@@ -2,11 +2,12 @@
 
 import React, { useEffect, useRef, useCallback } from "react";
 import styles from "./AppModal.module.scss";
-import { CSSTransition } from "react-transition-group";
+import { motion, AnimatePresence } from "framer-motion";
 import { useModal } from "@/app/context/ModalContext";
 
 const AppModal: React.FC = () => {
-  const { isModalOpen, closeModal, modalContent } = useModal();
+  const { isModalOpen, closeModal, modalContent, disappearAnimation } =
+    useModal();
   const nodeRef = useRef<HTMLDivElement>(null);
 
   const handleCloseModal = useCallback(() => {
@@ -46,27 +47,32 @@ const AppModal: React.FC = () => {
   const { component, width } = modalContent;
 
   return (
-    <CSSTransition
-      in={isModalOpen}
-      timeout={300}
-      classNames="auth-modal-fade"
-      unmountOnExit
-      nodeRef={nodeRef}
-    >
-      <div className={styles.modalOverlay}>
-        <div
-          ref={nodeRef}
-          className={styles.modalContent}
-          onClick={(e) => e.stopPropagation()}
-          style={{
-            width: width || "auto",
-            padding: width === undefined ? undefined : "0px",
-          }}
+    <AnimatePresence>
+      {isModalOpen && (
+        <motion.div
+          initial={{ opacity: 0, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 0 }}
+          transition={{ duration: 0.25 }}
         >
-          {component}
-        </div>
-      </div>
-    </CSSTransition>
+          <div className={`${styles.modalOverlay} ${disappearAnimation ? styles.toFade : undefined}`}>
+            <div
+              ref={nodeRef}
+              className={`${styles.modalContent} ${
+                isModalOpen ? styles.downToTop : undefined
+              } ${disappearAnimation ? styles.topToDown : undefined}`}
+              onClick={(e) => e.stopPropagation()}
+              style={{
+                width: width || "auto",
+                padding: width === undefined ? undefined : "0px",
+              }}
+            >
+              {component}
+            </div>
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 };
 

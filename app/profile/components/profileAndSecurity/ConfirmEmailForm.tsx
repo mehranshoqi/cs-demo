@@ -1,4 +1,4 @@
-import styles from "../Profile.module.scss";
+import styles from "../../Profile.module.scss";
 import { useState } from "react";
 import VerificationCodeInput from "./VerificationCodeInput";
 

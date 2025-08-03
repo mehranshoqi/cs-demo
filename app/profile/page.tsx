@@ -5,12 +5,13 @@ import { useState } from "react";
 import styles from "./Profile.module.scss";
 import { ProfileMenu } from "../types";
 import ProfileMenuView from "./components/ProfileMenu";
-import ProfileView from "./components/ProfileView";
-import SecurityView from "./components/SecurityView";
+import TransactionsView from "./components/transactions/TransactionsView";
+import ProfileView from "./components/profileAndSecurity/ProfileView";
+import SecurityView from "./components/profileAndSecurity/SecurityView";
 
 const ProfilePage = () => {
   const [activeItem, setActiveItem] = useState<ProfileMenu>(
-    ProfileMenu.profile
+    ProfileMenu.transactions
   );
   const renderView = () => {
     switch (activeItem) {
@@ -18,6 +19,8 @@ const ProfilePage = () => {
         return <ProfileView />;
       case ProfileMenu.security:
         return <SecurityView />;
+      case ProfileMenu.transactions:
+        return <TransactionsView />;
 
       default:
         return <>Test</>;

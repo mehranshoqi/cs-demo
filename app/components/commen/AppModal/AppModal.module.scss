@@ -329,7 +329,7 @@
   text-align: center;
 }
 
-.resetContainer{
+.resetContainer {
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -345,4 +345,52 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.downToTop {
+  animation-name: downToTop;
+  animation-duration: 0.5s;
+}
+
+@keyframes downToTop {
+  from {
+    top: 120%;
+    opacity: 1;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+.topToDown {
+  top: 150%;
+  animation-name: topToDown;
+  animation-duration: 0.5s;
+}
+
+@keyframes topToDown {
+  from {
+    top: 0%;
+    opacity: 1;
+  }
+  to {
+    top: 120%;
+    opacity: 1;
+  }
+}
+
+.toFade {
+  opacity: 0;
+  animation-name: toFade;
+  animation-duration: 0.5s;
+}
+
+@keyframes toFade {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }

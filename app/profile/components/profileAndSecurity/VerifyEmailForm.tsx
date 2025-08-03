@@ -1,5 +1,5 @@
 import ImagePaths from "@/app/constants/ImagePaths";
-import styles from "../Profile.module.scss";
+import styles from "../../Profile.module.scss";
 import { useState } from "react";
 import Image from "next/image";
 import VerificationCodeInput from "./VerificationCodeInput";

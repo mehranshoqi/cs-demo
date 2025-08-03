@@ -1,7 +1,7 @@
 import AppAvatar from "@/app/components/commen/Avatar/Avatar";
-import ProfileRowDetails from "./ProfileRowDetrails";
+import ProfileRowDetails from "../ProfileRowDetails";
 import ImagePaths from "@/app/constants/ImagePaths";
-import styles from "../Profile.module.scss";
+import styles from "../../Profile.module.scss";
 import EmailSubscriptionInput from "@/app/components/commen/SubscriptionEmailInput/SubscriptionEmailInput";
 import { useModal } from "@/app/context/ModalContext";
 import ProfileEditModal from "./ProfileEditModal";
@@ -12,7 +12,7 @@ const ProfileView = () => {
   return (
     <div className={styles.viewContainer}>
       <ProfileRowDetails
-        title="Pooya"
+        title="Pooya" 
         titleFontSize="22px"
         desc="Personalize your profile by updating your name and avatar"
         primaryBtn={false}
@@ -27,7 +27,7 @@ const ProfileView = () => {
               onClose={closeModal}
               content={<EditUserProfileForm />}
             />,
-            "420px"
+            "420px",
           );
         }}
       />

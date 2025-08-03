@@ -1,6 +1,6 @@
 import AppAvatar from "@/app/components/commen/Avatar/Avatar";
 import ImagePaths from "@/app/constants/ImagePaths";
-import styles from "../Profile.module.scss";
+import styles from "../../Profile.module.scss";
 import { useState, useRef, ChangeEvent } from "react";
 import OutlinedButton from "@/app/components/commen/OutlinedButton/OutlinedButton";
 import Input from "@/app/components/commen/Input/Input";

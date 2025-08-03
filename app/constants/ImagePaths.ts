@@ -61,6 +61,8 @@ const ImagePaths = {
     defaultAvatar: "/images/default-avatar.svg",
     bigLock: "/images/big-lock.svg",
     shieldCheck: "/images/shield-check.svg",
+    arrowRight2: "/images/arrow-right2.svg",
+    arrowLeft2: "/images/arrow-left2.svg",
   },
   // Product type icons
   productTypes: {
@@ -154,6 +156,10 @@ const ImagePaths = {
     securityMenu: "/images/profileMenu/securityMenu.svg",
     clock: "/images/profileMenu/clock.svg",
     transactions: "/images/profileMenu/arrows-up-down.svg",
+  },
+  transactions: {
+    fiatIcon: "images/FiatIcon.svg",
+    dailyCasesIcon: "images/inbox-arrow-down.svg",
   },
   video: {
     authVideo: "/video/auth-vid.mp4",

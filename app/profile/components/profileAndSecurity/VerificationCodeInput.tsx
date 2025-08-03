@@ -1,5 +1,5 @@
 import { ChangeEvent, useRef, useState } from "react";
-import styles from "../Profile.module.scss";
+import styles from "../../Profile.module.scss";
 
 interface VerificationCodeInputProps {
   length: number;

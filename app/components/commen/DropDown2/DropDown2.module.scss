@@ -1,0 +1,96 @@
+.dropdown {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  cursor: pointer;
+  gap: 6px;
+  background-color: transparent;
+  box-shadow: none;
+  //   min-height: 44;
+  //   padding: 0 20px;
+}
+
+.avatar {
+  margin-left: 6px;
+}
+
+.title {
+  flex: 1;
+  text-align: center;
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--text-color);
+}
+
+.arrow {
+  //   margin-left: 0.75rem;
+}
+
+.dropDownWrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.menuContainer {
+  position: absolute;
+  top: 150%;
+  right: 0;
+  background-color: var(--Gray800);
+  border-radius: 12px;
+  padding: 12px;
+  width: 190px;
+}
+
+.DNameWrapper {
+  display: flex;
+  flex-direction: row;
+  padding: 12px 0;
+  justify-content: space-between;
+}
+
+.userDName {
+  font-size: 22px;
+  font-weight: 600;
+  color: white;
+}
+
+.steamConnection {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  border: 1.5px solid var(--Primary500);
+  border-radius: 40px;
+  height: 40px;
+  padding: 12px;
+
+  p {
+    font-size: 12px;
+    font-weight: 500;
+    color: white;
+  }
+}
+
+.customBorder {
+  width: 100%;
+  height: 4;
+  border-top: 1px solid var(--Gray900);
+  border-bottom: 1px solid var(--Gray700);
+}
+
+.menuItem {
+  display: flex;
+  padding: 6px 0;
+  cursor: pointer;
+  align-items: center;
+  gap: 10px;
+  height: 48px;
+  h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--Gray200);
+  }
+}

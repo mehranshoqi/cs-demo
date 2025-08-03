@@ -1,5 +1,5 @@
 import ImagePaths from "@/app/constants/ImagePaths";
-import styles from "../Profile.module.scss";
+import styles from "../../Profile.module.scss";
 import Input from "@/app/components/commen/Input/Input";
 
 const GetNewEmailForm = () => {

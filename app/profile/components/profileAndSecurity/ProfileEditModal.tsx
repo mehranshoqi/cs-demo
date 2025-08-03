@@ -1,5 +1,5 @@
 import Image from "next/image";
-import styles from "../Profile.module.scss";
+import styles from "../../Profile.module.scss";
 import ImagePaths from "@/app/constants/ImagePaths";
 import FillButton from "@/app/components/commen/FilledButton/FilledButton";
 import { ReactNode } from "react";

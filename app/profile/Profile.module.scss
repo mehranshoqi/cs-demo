@@ -302,3 +302,120 @@
     line-height: normal;
   }
 }
+
+.transactionsFilter {
+  align-self: flex-end;
+}
+
+.transItem {
+  height: 44px;
+  padding: 8px 16px;
+  background-color: var(--Gray900);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  &:hover {
+    background-color: #12192566;
+  }
+  img {
+    margin-right: 6px;
+  }
+  h3 {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: normal;
+    font-style: normal;
+    text-align: center;
+  }
+  .badgeWrapper {
+    flex-grow: 2;
+    display: flex;
+    justify-content: center;
+  }
+  .transStatusBadge {
+    border-radius: 6px;
+    padding: 6px;
+    height: 22px;
+    font-size: 14px;
+    font-weight: 600;
+    font-style: normal;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .complete {
+    color: var(--green-color);
+    background: var(--Background-Color-BgBadgeGrass800, #1a2608);
+  }
+  .pending {
+    color: var(--Text-Color-TextBodyGray300);
+    background-color: var(--Gray800);
+  }
+  .withdraw {
+    color: var(--Blood500);
+    background: var(--Background-Color-BgBlood800, #2f0e0b);
+  }
+
+  .coin {
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+    align-items: center;
+    flex-grow: 1;
+    h3 {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--Gray100);
+    }
+  }
+  .date {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--Text-Color-TextBodyGray300);
+  }
+}
+
+.emptyTransContainer {
+  border-radius: 8px;
+  margin: 6px 0;
+  height: 44px;
+  align-items: center;
+  padding: 6px 16px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  background-color: var(--Gray900);
+  h3 {
+    font-size: 14px;
+    color: var(--Gray100);
+    font-weight: 600;
+  }
+}
+
+.paginationControllerContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  // width: 100%;
+  gap: 8px;
+  justify-self: center !important;
+  text-align: center;
+
+  h3 {
+    font-size: 14px;
+    font-weight: 400;
+    width: 48px;
+    text-align: center;
+    color: var(--Text-Color-TextTitleGray000);
+  }
+  span {
+    margin-left: 8px;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--Text-Color-TextBodyGray300);
+  }
+}

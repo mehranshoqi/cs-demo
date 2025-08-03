@@ -18,6 +18,7 @@ interface ModalContextType {
   modalContent: ModalContent | null;
   openModal: (component: ReactNode, width?: string) => void;
   closeModal: () => void;
+  disappearAnimation: boolean;
 }
 
 const ModalContext = createContext<ModalContextType | undefined>(undefined);
@@ -28,6 +29,7 @@ interface ModalProviderProps {
 
 export const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [disappearAnimation, setDisappearAnimation] = useState(false);
   const [modalContent, setModalContent] = useState<ModalContent | null>(null);
 
   const openModal = useCallback((component: ReactNode, width?: string) => {
@@ -36,8 +38,16 @@ export const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
   }, []);
 
   const closeModal = useCallback(() => {
-    setIsModalOpen(false);
-    setModalContent(null);
+    setDisappearAnimation(true);
+
+    setTimeout(() => {
+      setIsModalOpen(false);
+      setModalContent(null);
+    }, 500);
+
+    setTimeout(() => {
+      setDisappearAnimation(false);
+    }, 550);
   }, []);
 
   const value = {
@@ -45,6 +55,7 @@ export const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
     modalContent,
     openModal,
     closeModal,
+    disappearAnimation,
   };
 
   return (
