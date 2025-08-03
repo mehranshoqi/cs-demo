@@ -21,14 +21,20 @@ const ProfileEditModal: React.FC<ProfileEditModalProps> = ({
     <div className={styles.profileEditModal}>
       <div className={styles.header}>
         <h3>{title}</h3>
-        <div className={`${styles.closeBtn} btn`} onClick={onClose} >
+        <div className={`${styles.closeBtn} btn`} onClick={onClose}>
           <Image src={ImagePaths.icons.xMark} width={20} height={20} alt="" />
         </div>
       </div>
 
       <div className={styles.content}>
         {content}
-        <FillButton title={buttonTitle} width="100%" height={48} fontSize={16} fontWeight={600} />
+        <FillButton
+          title={buttonTitle}
+          width="100%"
+          height={48}
+          fontSize={16}
+          fontWeight={600}
+        />
       </div>
     </div>
   );

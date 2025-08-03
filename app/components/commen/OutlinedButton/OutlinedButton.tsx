@@ -1,4 +1,3 @@
-import Image from "next/image";
 import styles from "./OutlinedButton.module.scss";
 import SolidSvg from "../svgMask/svgMask";
 
@@ -48,19 +47,9 @@ export default function OutlinedButton({
       {iconSrc && (
         <SolidSvg
           path={iconSrc}
-          color={iconColor ?? 'white'}
+          color={iconColor ?? "white"}
           width={iconSize}
           height={iconSize}
-
-          // className={styles.icon}
-          // style={{
-          //   width: iconSize,
-          //   height: iconSize,
-          //   filter: iconColor
-          //     ? `brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%)`
-          //     : undefined,
-          //   color: iconColor,
-          // }}
         />
       )}
       <span

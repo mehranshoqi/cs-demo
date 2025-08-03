@@ -6,6 +6,7 @@ import styles from "./Profile.module.scss";
 import { ProfileMenu } from "../types";
 import ProfileMenuView from "./components/ProfileMenu";
 import ProfileView from "./components/ProfileView";
+import SecurityView from "./components/SecurityView";
 
 const ProfilePage = () => {
   const [activeItem, setActiveItem] = useState<ProfileMenu>(
@@ -15,6 +16,8 @@ const ProfilePage = () => {
     switch (activeItem) {
       case ProfileMenu.profile:
         return <ProfileView />;
+      case ProfileMenu.security:
+        return <SecurityView />;
 
       default:
         return <>Test</>;

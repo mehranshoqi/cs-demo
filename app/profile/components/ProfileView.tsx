@@ -10,7 +10,7 @@ import VerifyEmailForm from "./VerifyEmailForm";
 const ProfileView = () => {
   const { isModalOpen, openModal, closeModal } = useModal();
   return (
-    <div className={styles.profileViewContainer}>
+    <div className={styles.viewContainer}>
       <ProfileRowDetails
         title="Pooya"
         titleFontSize="22px"
@@ -49,7 +49,7 @@ const ProfileView = () => {
         title="Discord Account"
         desc="Connect to get support, alerts, and community access."
         primaryBtn={false}
-        buttonLabel="Link Steam Account"
+        buttonLabel="Link Discord"
         titleIcon={ImagePaths.icons.discord}
         disabled={true}
       />
@@ -79,7 +79,10 @@ const ProfileView = () => {
         }}
       />
       <div style={{ height: "var(--sds-size-space-400)" }}></div>
-      <EmailSubscriptionInput border="solid 1px var(--Gray800)" />
+      <EmailSubscriptionInput
+        border="solid 1px var(--Gray800)"
+        actionIcon={ImagePaths.icons.xMarkSub}
+      />
     </div>
   );
 };

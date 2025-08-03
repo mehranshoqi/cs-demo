@@ -5,9 +5,6 @@ import { Product } from "@/app/types";
 import { useState } from "react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import ImagePaths from "@/app/constants/ImagePaths";
-import Modal from "@/app/deposit/components/Modal";
-import AppModal from "@/app/components/commen/AppModal/AppModal";
-import { useModal } from "@/app/context/ModalContext";
 
 interface ProductCardProps {
   isSelected?: boolean;
@@ -23,7 +20,6 @@ export default function ProductCard({
   animationDelay = 0,
 }: ProductCardProps) {
   const [isHovered, setIsHovered] = useState<boolean>(false);
-  const { openModal, isModalOpen } = useModal();
 
   const cardVariants: Variants = {
     hidden: { opacity: 0, y: 0 },
@@ -61,7 +57,6 @@ export default function ProductCard({
           isHovered={isHovered}
           isSelected={isSelected}
           onShowPreview={() => {}}
-          // onShowPreview={() => openModal(<>mehran</>)}
         />
         <div className={styles.smallImage}>
           <Image

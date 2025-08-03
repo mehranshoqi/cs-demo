@@ -1,19 +1,47 @@
 import AppAvatar from "@/app/components/commen/Avatar/Avatar";
 import ImagePaths from "@/app/constants/ImagePaths";
 import styles from "../Profile.module.scss";
-import { useState } from "react";
-import FillButton from "@/app/components/commen/FilledButton/FilledButton";
+import { useState, useRef, ChangeEvent } from "react";
 import OutlinedButton from "@/app/components/commen/OutlinedButton/OutlinedButton";
 import Input from "@/app/components/commen/Input/Input";
 
-
 const EditUserProfileForm = () => {
-  const [imgUploaded, setImageUploaded] = useState(false);
+  const [profileImage, setProfileImage] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleChoosePhotoClick = () => {
+    fileInputRef.current?.click();
+  };
+
+  const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const imageUrl = URL.createObjectURL(file);
+      setProfileImage(imageUrl);
+    }
+  };
+
+  const handleRemovePhoto = () => {
+    setProfileImage(null);
+  };
+
   return (
-    <div className={styles.editProfileFormContainer}>
-      <AppAvatar radius={98} />
+    <div className={styles.editContainer}>
+      <AppAvatar
+        radius={98}
+        src={profileImage || ImagePaths.icons.defaultAvatar}
+      />
+
+      <input
+        type="file"
+        ref={fileInputRef}
+        onChange={handleFileChange}
+        style={{ display: "none" }}
+        accept="image/*"
+      />
       <div style={{ height: "var(--sds-size-space-800)" }}></div>
-      {!imgUploaded ? (
+
+      {!profileImage ? (
         <OutlinedButton
           title="Choose photo"
           iconSrc={ImagePaths.icons.plus}
@@ -24,6 +52,7 @@ const EditUserProfileForm = () => {
           fontWeight={600}
           titleColor="var(--Text-Color-TextBodyGray300)"
           iconColor="var(--Text-Color-TextBodyGray300)"
+          onClick={handleChoosePhotoClick}
         />
       ) : (
         <div className={styles.uploadedActions}>
@@ -38,6 +67,7 @@ const EditUserProfileForm = () => {
             fontWeight={600}
             titleColor="var(--Text-Color-TextBodyGray300)"
             iconColor="var(--Text-Color-TextBodyGray300)"
+            onClick={handleRemovePhoto}
           />
           <OutlinedButton
             title="Change"
@@ -50,6 +80,7 @@ const EditUserProfileForm = () => {
             fontWeight={600}
             titleColor="var(--Text-Color-TextBodyGray300)"
             iconColor="var(--Text-Color-TextBodyGray300)"
+            onClick={handleChoosePhotoClick}
           />
         </div>
       )}
@@ -61,7 +92,7 @@ const EditUserProfileForm = () => {
         label="Username"
         height={48}
       />
-      <div style={{ height: "var(--sds-size-space-1200)" }}></div>
+      <div style={{ height: "var(--sds-size-space-600)" }}></div>
     </div>
   );
 };

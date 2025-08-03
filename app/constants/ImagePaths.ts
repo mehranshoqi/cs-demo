@@ -32,6 +32,7 @@ const ImagePaths = {
     trash: "/images/trash.svg",
     xMark: "/images/x-mark.svg",
     xMark2: "/images/x-mark2.svg",
+    xMarkSub: "/images/xmark-sub.svg",
     user: "/images/user.svg",
     lockClose: "/images/lock-close.svg",
     steam: "/images/steam.svg",
@@ -39,7 +40,7 @@ const ImagePaths = {
     google: "/images/google.svg",
     discord: "/images/discord.svg",
     eyeOff: "/images/eye-off.svg",
-    eyeOn: "/images/eye-off.svg",
+    eyeOn: "/images/eye.svg",
     autoTrade: "/images/arrow-path.svg",
     p2p: "/images/handshake.svg",
     deliveryRate: "/images/delivery-rate.svg",
@@ -59,6 +60,7 @@ const ImagePaths = {
     avatar: "/images/avatar.png",
     defaultAvatar: "/images/default-avatar.svg",
     bigLock: "/images/big-lock.svg",
+    shieldCheck: "/images/shield-check.svg",
   },
   // Product type icons
   productTypes: {
@@ -155,6 +157,9 @@ const ImagePaths = {
   },
   video: {
     authVideo: "/video/auth-vid.mp4",
+  },
+  temp: {
+    qrTest: "/images/qr-test.png",
   },
 };
 

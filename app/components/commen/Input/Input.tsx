@@ -9,15 +9,13 @@ import SolidSvg from "../svgMask/svgMask";
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   iconSrc?: string;
-  iconAlt?: string;
 }
 
-const Input = forwardRef<HTMLInputElement, InputProps>(
+const AppInput = forwardRef<HTMLInputElement, InputProps>(
   (
     {
       label,
       iconSrc,
-      iconAlt = "Input icon",
       className,
       id,
       onFocus,
@@ -71,7 +69,12 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             {label}
           </label>
         )}
-        <div className={styles.inputContainer}>
+        <div
+          className={styles.inputContainer}
+          style={{
+            padding: iconSrc != null ? "10px 14px" : " 10px 20px",
+          }}
+        >
           {iconSrc && (
             <SolidSvg
               path={iconSrc}
@@ -123,6 +126,6 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
   }
 );
 
-Input.displayName = "Input";
+AppInput.displayName = "Input";
 
-export default Input;
+export default AppInput;

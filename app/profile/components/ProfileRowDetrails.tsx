@@ -1,6 +1,5 @@
 import { ReactNode } from "react";
 import styles from "../Profile.module.scss";
-import Image from "next/image";
 import FillButton from "@/app/components/commen/FilledButton/FilledButton";
 import SolidSvg from "@/app/components/commen/svgMask/svgMask";
 
@@ -14,6 +13,7 @@ interface ProfileRowDetailsProps {
   buttonLabel?: string;
   primaryBtn?: boolean;
   titleFontSize?: string;
+  descFontSize?: string;
   buttonWidth?: string | undefined;
   onButtonClick?: () => void;
 }
@@ -30,6 +30,7 @@ const ProfileRowDetails: React.FC<ProfileRowDetailsProps> = ({
   onButtonClick,
   disabled = false,
   titleRightBadge,
+  descFontSize,
 }) => {
   return (
     <div className={styles.rowDetailsContainer}>
@@ -42,7 +43,7 @@ const ProfileRowDetails: React.FC<ProfileRowDetailsProps> = ({
           <h3 style={{ fontSize: titleFontSize }}>{title}</h3>
           {titleRightBadge}
         </div>
-        <p>{desc}</p>
+        <p style={{fontSize: descFontSize}}>{desc}</p>
       </div>
       {buttonLabel && (
         <FillButton

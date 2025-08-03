@@ -1,16 +1,14 @@
-import ImagePaths from "@/app/constants/ImagePaths";
 import styles from "../Profile.module.scss";
 import { useState } from "react";
-import Image from "next/image";
 import VerificationCodeInput from "./VerificationCodeInput";
 
-interface VerifyEmailFormProps {
+interface ConfirmEmailFormProps {
   email: string;
   onCodeVerified: (code: string) => void;
   onWrongEmail: () => void;
 }
 
-const VerifyEmailForm: React.FC<VerifyEmailFormProps> = ({
+const ConfirmEmailForm: React.FC<ConfirmEmailFormProps> = ({
   email,
   onCodeVerified,
   onWrongEmail,
@@ -20,13 +18,14 @@ const VerifyEmailForm: React.FC<VerifyEmailFormProps> = ({
 
   return (
     <div className={styles.verifyEmailContainer}>
-      <Image src={ImagePaths.icons.bigLock} width={72} height={72} alt="" />
-      <div style={{ height: "var(--sds-size-space-600)" }}></div>{" "}
+      <h3 className={styles.emailFormTitle}>
+        For security reasons, please confirm your current email before making
+        any changes.
+      </h3>
+      <div style={{ height: "var(--sds-size-space-800)" }}></div>{" "}
       <p>We’ve sent a 6-digit verification code to:</p>
       <div style={{ height: "var(--sds-size-space-300)" }}></div>{" "}
       <p className={styles.email}>Mehran@gmail.com</p>
-      <div style={{ height: "var(--sds-size-space-300)" }}></div>{" "}
-      <p className={styles.wrongEmail}>Wrong email adress?</p>
       <div style={{ height: "var(--sds-size-space-800)" }}></div>
       <p className={styles.inputLabel}>Enter verification code</p>
       <div style={{ height: "var(--sds-size-space-200)" }}></div>
@@ -49,4 +48,4 @@ const VerifyEmailForm: React.FC<VerifyEmailFormProps> = ({
   );
 };
 
-export default VerifyEmailForm;
+export default ConfirmEmailForm;

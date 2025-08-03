@@ -7,9 +7,12 @@ import ImagePaths from "@/app/constants/ImagePaths";
 
 interface EmailSubscriptionInputProps {
   placeholder?: string;
+  showRightIcon?: boolean;
   onSubmit?: (email: string) => void;
   className?: string;
+  actionIcon?: string;
   border?: string;
+  padding?: string | number | undefined;
 }
 
 const EmailSubscriptionInput: React.FC<EmailSubscriptionInputProps> = ({
@@ -17,6 +20,9 @@ const EmailSubscriptionInput: React.FC<EmailSubscriptionInputProps> = ({
   onSubmit,
   className,
   border,
+  padding,
+  actionIcon,
+  showRightIcon = true,
 }) => {
   const [email, setEmail] = useState("");
 
@@ -30,7 +36,7 @@ const EmailSubscriptionInput: React.FC<EmailSubscriptionInputProps> = ({
 
   return (
     <form
-      style={{ border: border }}
+      style={{ border: border, padding: padding }}
       onSubmit={handleSubmit}
       className={`${styles.subscriptionForm} ${className || ""}`}
     >
@@ -54,12 +60,14 @@ const EmailSubscriptionInput: React.FC<EmailSubscriptionInputProps> = ({
         className={styles.subscriptionButton}
         aria-label="Subscribe"
       >
-        <Image
-          src={ImagePaths.icons.arrowRightCircle}
-          alt="Logo"
-          width={20}
-          height={20}
-        />
+        {showRightIcon && (
+          <Image
+            src={actionIcon ?? ImagePaths.icons.arrowRightCircle}
+            alt="Logo"
+            width={20}
+            height={20}
+          />
+        )}
       </button>
     </form>
   );
