@@ -5,6 +5,7 @@ import ImagePaths from "@/app/constants/ImagePaths";
 import SolidSvg from "@/app/components/commen/svgMask/svgMask";
 import TradesItem from "./TradesItem";
 import DropDown2 from "@/app/components/commen/DropDown2/DropDown2";
+import PaginationController from "./PaginationContoller";
 
 const TradesView = () => {
     const [selectedFilters, setSelectedFilters] = useState<string[]>(["all"]);
@@ -76,29 +77,38 @@ const TradesView = () => {
                 style={{ margin: "var(--sds-size-space-300) 0 " }}
             ></div>
 
-            {filteredTradesData.length > 0 ? (
-                <div className="flex flex-col gap-2">
-                    {filteredTradesData.map((item, index) => (
-                        <TradesItem
-                            key={index}
-                            title={item.title}
-                            type={item.type}
-                            amount={item.amount}
-                            date={item.date}
-                        />
-                    ))}
-                </div>
-            ) : (
-                <div className="p-2.5 flex bg-[#121925] rounded-lg items-center justify-center gap-2">
-                    <SolidSvg
-                        path={ImagePaths.gameHistory.battle}
-                        width={20}
-                        height={20}
-                        color="#ffffff"
+            <div className="flex flex-col gap-2">
+                {filteredTradesData.map((item, index) => (
+                    <TradesItem
+                        key={index}
+                        title={item.title}
+                        type={item.type}
+                        amount={item.amount}
+                        date={item.date}
                     />
-                    <div>No trades found for selected filters</div>
-                </div>
-            )}
+                ))}
+            </div>
+
+            <div className="p-2.5 flex bg-[#121925] rounded-lg items-center justify-center gap-2">
+                <SolidSvg
+                    path={ImagePaths.gameHistory.battle}
+                    width={20}
+                    height={20}
+                    color="#ffffff"
+                />
+                <div>No trades found for selected filters</div>
+            </div>
+
+
+            <div style={{ height: "var(--sds-size-space-1200)" }}></div>
+            <div>
+                <PaginationController
+                    onPageChange={(i) => { }}
+                    itemsPerPage={5}
+                    totalItems={60}
+                />
+            </div>
+
 
         </div>
     );

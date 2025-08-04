@@ -4,7 +4,6 @@ import styles from "../../Profile.module.scss";
 import { useModal } from "@/app/context/ModalContext";
 import ProfileRowDetails from "../ProfileRowDetails";
 import DropDown2 from "@/app/components/commen/DropDown2/DropDown2";
-import { TransactionsFilters } from "@/app/types";
 import TransactionItem from "./TransactionItem";
 import EmptyTransList from "./EmptyTransList";
 import PaginationController from "./PaginationContoller";
