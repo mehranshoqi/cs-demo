@@ -161,6 +161,10 @@ const ImagePaths = {
     fiatIcon: "images/FiatIcon.svg",
     dailyCasesIcon: "images/inbox-arrow-down.svg",
   },
+  gameHistory: {
+    cases: "/images/gameHistory/case.svg",
+    battle: "/images/gameHistory/battle.svg",
+  },
   video: {
     authVideo: "/video/auth-vid.mp4",
   },

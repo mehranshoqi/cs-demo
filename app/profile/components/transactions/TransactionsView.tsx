@@ -40,7 +40,7 @@ const TransactionsView = () => {
       <div style={{ height: "var(--sds-size-space-1200)" }}></div>
       <div>
         <PaginationController
-          onPageChange={(i) => {}}
+          onPageChange={(i) => { }}
           itemsPerPage={5}
           totalItems={60}
         />

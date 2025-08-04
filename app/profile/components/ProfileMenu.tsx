@@ -45,9 +45,8 @@ const SingleMenu: React.FC<SingleMenuProps> = ({
 }) => {
   return (
     <div
-      className={`${styles.menuItem} btn ${
-        isSelect ? styles.active : styles.deactive
-      }`}
+      className={`${styles.menuItem} btn ${isSelect ? styles.active : styles.deactive
+        }`}
       onClick={() => onSelect(item.item)}
     >
       <SolidSvg

@@ -5,6 +5,7 @@
   padding: 40px 0 48px 0;
   justify-content: center;
 }
+
 .profileContainer {
   width: 1080px;
   display: flex;
@@ -32,15 +33,17 @@
   align-items: center;
   gap: 10px;
   transition: all 0.5s;
+
   * {
     transition: all 0.5s;
   }
+
   &:hover {
     background-color: var(--Gray900);
   }
 
-  img {
-  }
+  img {}
+
   p {
     font-size: 14px;
     font-weight: 400;
@@ -51,6 +54,7 @@
 
 .active {
   background-color: var(--Gray900);
+
   p {
     color: white;
   }
@@ -68,6 +72,7 @@
   * {
     line-height: normal;
   }
+
   height: 44px;
   gap: 8px;
 }
@@ -81,11 +86,13 @@
   flex-grow: 1;
   gap: 12px;
   line-height: normal;
+
   .titleWrapper {
     line-height: normal;
     gap: 8px;
     display: flex;
     flex-direction: row;
+
     h3 {
       line-height: normal;
       font-size: 16px;
@@ -93,11 +100,13 @@
       color: white;
     }
   }
+
   p {
     font-size: 12px;
     font-weight: 400;
     color: var(--Text-Color-TextBodyGray300);
   }
+
   font-size: 14px;
 }
 
@@ -129,6 +138,7 @@
 
 .profileEditModal {
   width: 100%;
+
   .header {
     padding: 8px 24px;
     display: flex;
@@ -144,6 +154,7 @@
       font-size: normal;
       line-height: normal;
     }
+
     .closeBtn {
       display: flex;
       justify-content: center;
@@ -152,6 +163,7 @@
       height: 40px;
     }
   }
+
   .content {
     padding: 24px;
     width: 100%;
@@ -163,6 +175,7 @@
   justify-content: center;
   flex-direction: column;
   align-items: center;
+
   .uploadedActions {
     display: flex;
     flex-direction: row;
@@ -179,11 +192,13 @@
   align-items: center;
   line-height: normal;
   font-style: normal;
+
   p {
     font-size: 14px;
     font-weight: 600;
     color: var(--Text-Color-TextSubtitleGray400);
   }
+
   .email {
     color: white;
     font-size: 16px;
@@ -191,6 +206,7 @@
     leading-trim: both;
     text-edge: cap;
   }
+
   .wrongEmail {
     color: var(--Primary500);
     font-size: 12px;
@@ -202,6 +218,7 @@
 
 .codeInputContainer {
   width: 100%;
+
   .inputWrapper {
     flex-grow: 1;
     display: flex;
@@ -210,6 +227,7 @@
 
     justify-content: space-between;
   }
+
   display: flex;
   justify-content: space-between;
 
@@ -219,11 +237,12 @@
 
   padding: 6px 0px;
 
-  > input {
+  >input {
     font-size: 14px;
     font-weight: 400;
   }
-  > input::placeholder {
+
+  >input::placeholder {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -298,6 +317,7 @@
   list-style: disc;
   padding: 0 24px;
   color: var(--Text-Color-TextSubtitleGray400);
+
   li {
     font-size: 14px;
     font-style: normal;
@@ -319,12 +339,15 @@
   align-items: center;
   justify-content: space-between;
   margin-bottom: 6px;
+
   &:hover {
     background-color: #12192566;
   }
+
   img {
     margin-right: 6px;
   }
+
   h3 {
     font-size: 14px;
     font-weight: 600;
@@ -332,15 +355,18 @@
     font-style: normal;
     text-align: center;
   }
+
   .transTitle {
     width: 150px;
     text-align: start;
   }
+
   .badgeWrapper {
     flex-grow: 2;
     display: flex;
     justify-content: center;
   }
+
   .transStatusBadge {
     border-radius: 6px;
     padding: 6px;
@@ -357,10 +383,12 @@
     color: var(--green-color);
     background: var(--Background-Color-BgBadgeGrass800, #1a2608);
   }
+
   .pending {
     color: var(--Text-Color-TextBodyGray300);
     background-color: var(--Gray800);
   }
+
   .withdraw {
     color: var(--Blood500);
     background: var(--Background-Color-BgBlood800, #2f0e0b);
@@ -372,12 +400,14 @@
     gap: 6px;
     align-items: center;
     flex-grow: 1;
+
     h3 {
       font-size: 14px;
       font-weight: 600;
       color: var(--Gray100);
     }
   }
+
   .date {
     font-size: 12px;
     font-weight: 400;
@@ -395,6 +425,7 @@
   justify-content: center;
   gap: 8px;
   background-color: var(--Gray900);
+
   h3 {
     font-size: 14px;
     color: var(--Gray100);
@@ -418,6 +449,7 @@
     text-align: center;
     color: var(--Text-Color-TextTitleGray000);
   }
+
   span {
     margin-left: 8px;
     font-size: 14px;
@@ -452,12 +484,11 @@
     justify-content: center;
     align-items: center;
     border-radius: 12px;
-    background: linear-gradient(
-      180deg,
-      rgba(99, 37, 200, 0) 0%,
-      rgba(99, 37, 200, 0.1) 67.29%,
-      rgba(99, 37, 200, 0.4) 100%
-    );
+    background: linear-gradient(180deg,
+        rgba(99, 37, 200, 0) 0%,
+        rgba(99, 37, 200, 0.1) 67.29%,
+        rgba(99, 37, 200, 0.4) 100%);
+
     div {
       width: 100%;
       display: flex;
@@ -465,9 +496,11 @@
       align-items: flex-start;
       gap: 6px;
       align-self: stretch;
+
       span {
         font-size: 16px;
       }
+
       :first-child {
         color: var(--Text-Color-TextBodyGray300);
         font-weight: 400;
@@ -480,6 +513,7 @@
     }
   }
 }
+
 .transPrice {
   display: flex;
   flex-direction: row;
@@ -490,12 +524,14 @@
   border-radius: 100px;
   width: 100%;
   padding: 6px 24px;
+
   span {
     flex-grow: 1;
     font-size: 16px;
     font-weight: 600;
     line-height: normal;
   }
+
   h5 {
     font-size: 14px;
     font-weight: 600;
@@ -511,6 +547,7 @@
   flex-direction: column;
   gap: 8px;
   align-items: center;
+
   h5 {
     font-size: 14px;
     font-weight: 600;
@@ -518,6 +555,7 @@
     color: var(--Text-Color-TextBodyGray300);
     font-style: normal;
   }
+
   .cryptoDetails {
     border: solid 1px var(--Gray800);
     border-radius: 12px;
@@ -526,25 +564,30 @@
     width: 100%;
     flex-direction: column;
     gap: var(--sds-size-space-600);
+
     .method {
       display: flex;
       flex-direction: row;
+
       :first-child {
         flex-grow: 1;
         display: flex;
         flex-direction: column;
         gap: 4px;
+
         :first-child {
           font-size: 16px;
           font-weight: 400;
           color: var(--Text-Color-TextBodyGray300);
         }
+
         :last-child {
           font-size: 16px;
           font-weight: 600;
           color: var(--Text-Color-TextTitleGray000);
         }
       }
+
       .viewBtn {
         display: flex;
         justify-content: center;
@@ -556,11 +599,13 @@
         font-size: 12px;
       }
     }
+
     .amount {
       display: flex;
       flex-direction: row;
       font-size: 14px;
       font-weight: 600;
+
       :first-child {
         flex-grow: 1;
         color: var(--Text-Color-TextBodyGray300);

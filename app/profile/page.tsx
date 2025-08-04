@@ -8,6 +8,7 @@ import ProfileMenuView from "./components/ProfileMenu";
 import TransactionsView from "./components/transactions/TransactionsView";
 import ProfileView from "./components/profileAndSecurity/ProfileView";
 import SecurityView from "./components/profileAndSecurity/SecurityView";
+import GameHistoryView from "./components/gameHistory/GameHistoryView";
 
 const ProfilePage = () => {
   const [activeItem, setActiveItem] = useState<ProfileMenu>(
@@ -21,6 +22,8 @@ const ProfilePage = () => {
         return <SecurityView />;
       case ProfileMenu.transactions:
         return <TransactionsView />;
+      case ProfileMenu.gameHistory:
+        return <GameHistoryView />;
 
       default:
         return <>Test</>;
