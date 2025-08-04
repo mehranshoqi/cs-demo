@@ -1,5 +1,6 @@
 import ImagePaths from "@/app/constants/ImagePaths";
 import styles from "../../Profile.module.scss";
+import SolidSvg from "@/app/components/commen/svgMask/svgMask";
 import Image from "next/image";
 
 interface GameHistoryItemProps {
@@ -19,19 +20,34 @@ const GameHistoryItem: React.FC<GameHistoryItemProps> = ({
     date,
     onClick
 }) => {
+    const getGameIcon = (gameType: string) => {
+        switch (gameType.toLowerCase()) {
+            case "cases":
+                return ImagePaths.gameHistory.cases;
+            case "battles":
+                return ImagePaths.gameHistory.battle;
+            case "roulette":
+                return ImagePaths.gameHistory.roulette;
+            case "crash":
+                return ImagePaths.gameHistory.crash;
+            default:
+                return ImagePaths.gameHistory.cases; // fallback
+        }
+    };
+
     return (
         <div
             className={`${styles.transItem} btn`}
             onClick={onClick}
         >
-            <Image
-                src={ImagePaths.gameHistory.cases}
+            <SolidSvg
+                path={getGameIcon(gameType)}
                 width={20}
                 height={20}
-                alt=""
+                color="#7F8D9F"
             />
 
-            <h3 className={styles.transTitle}>{gameType}</h3>
+            <h3 className={`${styles.transTitle} text-white ml-2`}>{gameType}</h3>
 
             <div className={styles.badgeWrapper}>
                 <div className={`${styles.transStatusBadge} ${result === "WON" ? styles.complete : styles.withdraw}`}>

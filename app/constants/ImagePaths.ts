@@ -164,6 +164,8 @@ const ImagePaths = {
   gameHistory: {
     cases: "/images/gameHistory/case.svg",
     battle: "/images/gameHistory/battle.svg",
+    roulette: "/images/gameHistory/roulette.svg",
+    crash: "/images/gameHistory/crash.svg",
   },
   video: {
     authVideo: "/video/auth-vid.mp4",
