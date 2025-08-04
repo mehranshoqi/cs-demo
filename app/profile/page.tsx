@@ -21,6 +21,7 @@ const TAB_CONFIG = {
   gameHistory: ProfileMenu.gameHistory,
   statistics: ProfileMenu.statistics,
   trades: ProfileMenu.trades,
+  verifyIdentity: ProfileMenu.verifyIdentity,
 } as const;
 
 const VIEW_COMPONENTS = {
@@ -30,6 +31,7 @@ const VIEW_COMPONENTS = {
   [ProfileMenu.gameHistory]: GameHistoryView,
   [ProfileMenu.statistics]: StatisticsView,
   [ProfileMenu.trades]: TradesView,
+  [ProfileMenu.verifyIdentity]: ErrorView,
 } as const;
 
 const ProfilePage = () => {
