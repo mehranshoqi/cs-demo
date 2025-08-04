@@ -14,7 +14,6 @@ import StatisticsView from "./components/statistics/StatisticsView";
 import TradesView from "./components/trades/TradesView";
 import ErrorView from "./components/ErrorView";
 
-// Tab configuration mapping
 const TAB_CONFIG = {
   profile: ProfileMenu.profile,
   security: ProfileMenu.security,
@@ -24,7 +23,6 @@ const TAB_CONFIG = {
   trades: ProfileMenu.trades,
 } as const;
 
-// View components mapping
 const VIEW_COMPONENTS = {
   [ProfileMenu.profile]: ProfileView,
   [ProfileMenu.security]: SecurityView,
@@ -39,7 +37,6 @@ const ProfilePage = () => {
   const searchParams = useSearchParams();
   const [activeItem, setActiveItem] = useState<ProfileMenu>(ProfileMenu.profile);
 
-  // Get tab parameter from URL
   const getTabFromUrl = useCallback((tab: string | null): ProfileMenu => {
     if (!tab) return ProfileMenu.profile;
 
@@ -47,26 +44,22 @@ const ProfilePage = () => {
     return menuItem || ProfileMenu.profile;
   }, []);
 
-  // Get URL parameter from tab
   const getUrlFromTab = useCallback((tab: ProfileMenu): string => {
     const urlParam = Object.entries(TAB_CONFIG).find(([_, value]) => value === tab);
     return urlParam?.[0] || 'profile';
   }, []);
 
-  // Initialize tab from URL
   useEffect(() => {
     const tab = searchParams.get('tab');
     const menuItem = getTabFromUrl(tab);
 
     setActiveItem(menuItem);
 
-    // If no tab in URL, redirect to profile
     if (!tab) {
       router.replace('/profile?tab=profile');
     }
   }, [searchParams, router, getTabFromUrl]);
 
-  // Handle tab change
   const handleTabChange = useCallback((newTab: ProfileMenu) => {
     setActiveItem(newTab);
     const urlParam = getUrlFromTab(newTab);

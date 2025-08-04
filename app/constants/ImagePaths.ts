@@ -63,6 +63,7 @@ const ImagePaths = {
     shieldCheck: "/images/shield-check.svg",
     arrowRight2: "/images/arrow-right2.svg",
     arrowLeft2: "/images/arrow-left2.svg",
+    statistics: "/images/statistics.svg",
   },
   // Product type icons
   productTypes: {
