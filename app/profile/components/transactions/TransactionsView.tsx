@@ -6,7 +6,7 @@ import ProfileRowDetails from "../ProfileRowDetails";
 import DropDown2 from "@/app/components/commen/DropDown2/DropDown2";
 import TransactionItem from "./TransactionItem";
 import EmptyTransList from "./EmptyTransList";
-import PaginationController from "./PaginationContoller";
+import PaginationController from "../PaginationContoller";
 
 const TransactionsView = () => {
   const { openModal, closeModal } = useModal();

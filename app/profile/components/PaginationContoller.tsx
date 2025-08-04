@@ -1,7 +1,7 @@
 "use client";
 
 import FillButton from "@/app/components/commen/FilledButton/FilledButton";
-import styles from "../../Profile.module.scss";
+import styles from "../Profile.module.scss";
 import ImagePaths from "@/app/constants/ImagePaths";
 import { useState, useEffect } from "react";
 import React from "react";

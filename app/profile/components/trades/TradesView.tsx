@@ -5,7 +5,7 @@ import ImagePaths from "@/app/constants/ImagePaths";
 import SolidSvg from "@/app/components/commen/svgMask/svgMask";
 import TradesItem from "./TradesItem";
 import DropDown2 from "@/app/components/commen/DropDown2/DropDown2";
-import PaginationController from "./PaginationContoller";
+import PaginationController from "../PaginationContoller";
 
 const TradesView = () => {
     const [selectedFilters, setSelectedFilters] = useState<string[]>(["all"]);
