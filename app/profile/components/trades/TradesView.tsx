@@ -2,7 +2,6 @@ import { useState } from "react";
 import styles from "../../Profile.module.scss";
 import ProfileRowDetails from "../ProfileRowDetails";
 import ImagePaths from "@/app/constants/ImagePaths";
-import Image from "next/image";
 import SolidSvg from "@/app/components/commen/svgMask/svgMask";
 import TradesItem from "./TradesItem";
 import DropDown2 from "@/app/components/commen/DropDown2/DropDown2";
@@ -42,6 +41,13 @@ const TradesView = () => {
         console.log("Selected filters:", filters);
     };
 
+    const filteredTradesData = tradesData.filter(item => {
+        if (selectedFilters.includes("all")) {
+            return true;
+        }
+        return selectedFilters.includes(item.type.toLowerCase());
+    });
+
     return (
         <div className={`${styles.viewContainer} flex flex-col gap-4`}>
             <div className="flex items-center justify-between gap-2">
@@ -70,7 +76,19 @@ const TradesView = () => {
                 style={{ margin: "var(--sds-size-space-300) 0 " }}
             ></div>
 
-            <div className="flex flex-col gap-2">
+            {filteredTradesData.length > 0 ? (
+                <div className="flex flex-col gap-2">
+                    {filteredTradesData.map((item, index) => (
+                        <TradesItem
+                            key={index}
+                            title={item.title}
+                            type={item.type}
+                            amount={item.amount}
+                            date={item.date}
+                        />
+                    ))}
+                </div>
+            ) : (
                 <div className="p-2.5 flex bg-[#121925] rounded-lg items-center justify-center gap-2">
                     <SolidSvg
                         path={ImagePaths.gameHistory.battle}
@@ -78,18 +96,9 @@ const TradesView = () => {
                         height={20}
                         color="#ffffff"
                     />
-                    <div>Your trades will appear here once you start trading</div>
+                    <div>No trades found for selected filters</div>
                 </div>
-                {tradesData.map((item, index) => (
-                    <TradesItem
-                        key={index}
-                        title={item.title}
-                        type={item.type}
-                        amount={item.amount}
-                        date={item.date}
-                    />
-                ))}
-            </div>
+            )}
 
         </div>
     );

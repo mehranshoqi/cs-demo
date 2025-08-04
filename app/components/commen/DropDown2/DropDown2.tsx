@@ -43,9 +43,23 @@ const DropDown2: React.FC<DropDown2Props> = ({
   }, [activeFilters, label]);
 
   const handleFilterChange = (newFilters: string[]) => {
-    setActiveFilters(newFilters);
+    // If "all" is being selected
+    if (newFilters.includes("all")) {
+      // Clear all other selections and keep only "all"
+      const updatedFilters = ["all"];
+      setActiveFilters(updatedFilters);
+      if (onFilterChange) {
+        onFilterChange(updatedFilters);
+      }
+      return;
+    }
+
+    // If other filters are being selected/deselected
+    // Remove "all" if it was selected, keep other selections
+    const updatedFilters = newFilters.filter(filter => filter !== "all");
+    setActiveFilters(updatedFilters);
     if (onFilterChange) {
-      onFilterChange(newFilters);
+      onFilterChange(updatedFilters);
     }
   };
 
