@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 import styles from "./Profile.module.scss";
@@ -14,94 +14,71 @@ import StatisticsView from "./components/statistics/StatisticsView";
 import TradesView from "./components/trades/TradesView";
 import ErrorView from "./components/ErrorView";
 
+// Tab configuration mapping
+const TAB_CONFIG = {
+  profile: ProfileMenu.profile,
+  security: ProfileMenu.security,
+  transactions: ProfileMenu.transactions,
+  gameHistory: ProfileMenu.gameHistory,
+  statistics: ProfileMenu.statistics,
+  trades: ProfileMenu.trades,
+} as const;
+
+// View components mapping
+const VIEW_COMPONENTS = {
+  [ProfileMenu.profile]: ProfileView,
+  [ProfileMenu.security]: SecurityView,
+  [ProfileMenu.transactions]: TransactionsView,
+  [ProfileMenu.gameHistory]: GameHistoryView,
+  [ProfileMenu.statistics]: StatisticsView,
+  [ProfileMenu.trades]: TradesView,
+} as const;
+
 const ProfilePage = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const [activeItem, setActiveItem] = useState<ProfileMenu>(ProfileMenu.profile);
 
-  const [activeItem, setActiveItem] = useState<ProfileMenu>(
-    ProfileMenu.profile
-  );
+  // Get tab parameter from URL
+  const getTabFromUrl = useCallback((tab: string | null): ProfileMenu => {
+    if (!tab) return ProfileMenu.profile;
 
-  // Get tab from URL on component mount
+    const menuItem = TAB_CONFIG[tab as keyof typeof TAB_CONFIG];
+    return menuItem || ProfileMenu.profile;
+  }, []);
+
+  // Get URL parameter from tab
+  const getUrlFromTab = useCallback((tab: ProfileMenu): string => {
+    const urlParam = Object.entries(TAB_CONFIG).find(([_, value]) => value === tab);
+    return urlParam?.[0] || 'profile';
+  }, []);
+
+  // Initialize tab from URL
   useEffect(() => {
     const tab = searchParams.get('tab');
-    if (tab) {
-      switch (tab) {
-        case 'profile':
-          setActiveItem(ProfileMenu.profile);
-          break;
-        case 'security':
-          setActiveItem(ProfileMenu.security);
-          break;
-        case 'transactions':
-          setActiveItem(ProfileMenu.transactions);
-          break;
-        case 'gameHistory':
-          setActiveItem(ProfileMenu.gameHistory);
-          break;
-        case 'statistics':
-          setActiveItem(ProfileMenu.statistics);
-          break;
-        case 'trades':
-          setActiveItem(ProfileMenu.trades);
-          break;
-        default:
-          setActiveItem(ProfileMenu.profile);
-      }
-    } else {
-      // If no tab in URL, set to profile and update URL
+    const menuItem = getTabFromUrl(tab);
+
+    setActiveItem(menuItem);
+
+    // If no tab in URL, redirect to profile
+    if (!tab) {
       router.replace('/profile?tab=profile');
     }
-  }, [searchParams, router]);
+  }, [searchParams, router, getTabFromUrl]);
 
-  const handleTabChange = (newTab: ProfileMenu) => {
+  // Handle tab change
+  const handleTabChange = useCallback((newTab: ProfileMenu) => {
     setActiveItem(newTab);
+    const urlParam = getUrlFromTab(newTab);
+    router.push(`/profile?tab=${urlParam}`);
+  }, [router, getUrlFromTab]);
 
-    // Update URL based on selected tab
-    let tabParam = 'profile';
-    switch (newTab) {
-      case ProfileMenu.profile:
-        tabParam = 'profile';
-        break;
-      case ProfileMenu.security:
-        tabParam = 'security';
-        break;
-      case ProfileMenu.transactions:
-        tabParam = 'transactions';
-        break;
-      case ProfileMenu.gameHistory:
-        tabParam = 'gameHistory';
-        break;
-      case ProfileMenu.statistics:
-        tabParam = 'statistics';
-        break;
-      case ProfileMenu.trades:
-        tabParam = 'trades';
-        break;
-    }
+  // Render appropriate view component
+  const renderView = useCallback(() => {
+    const ViewComponent = VIEW_COMPONENTS[activeItem as keyof typeof VIEW_COMPONENTS];
+    return ViewComponent ? <ViewComponent /> : <ErrorView />;
+  }, [activeItem]);
 
-    router.push(`/profile?tab=${tabParam}`);
-  };
-
-  const renderView = () => {
-    switch (activeItem) {
-      case ProfileMenu.profile:
-        return <ProfileView />;
-      case ProfileMenu.security:
-        return <SecurityView />;
-      case ProfileMenu.transactions:
-        return <TransactionsView />;
-      case ProfileMenu.gameHistory:
-        return <GameHistoryView />;
-      case ProfileMenu.statistics:
-        return <StatisticsView />;
-      case ProfileMenu.trades:
-        return <TradesView />;
-
-      default:
-        return <ErrorView />;
-    }
-  };
   return (
     <div className={styles.profilePage}>
       <div className={styles.profileContainer}>
