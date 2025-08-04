@@ -65,7 +65,16 @@ const GameHistoryView = () => {
                 style={{ margin: "var(--sds-size-space-300) 0 " }}
             ></div>
 
-            <div>
+            <div className="flex flex-col gap-2">
+                <div className="p-2.5 flex bg-[#121925] rounded-lg items-center justify-center gap-2">
+                    <SolidSvg
+                        path={ImagePaths.gameHistory.battle}
+                        width={20}
+                        height={20}
+                        color="#ffffff"
+                    />
+                    <div>Your game history will appear here once you start playing</div>
+                </div>
                 {gameHistoryData.map((item, index) => (
                     <GameHistoryItem
                         key={index}
@@ -82,15 +91,7 @@ const GameHistoryView = () => {
                 ))}
             </div>
 
-            <div className="p-2.5 flex bg-[#121925] rounded-lg items-center justify-center gap-2">
-                <SolidSvg
-                    path={ImagePaths.gameHistory.battle}
-                    width={20}
-                    height={20}
-                    color="#ffffff"
-                />
-                <div>Your game history will appear here once you start playing</div>
-            </div>
+
 
         </div>
     );

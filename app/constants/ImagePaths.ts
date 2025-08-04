@@ -64,6 +64,7 @@ const ImagePaths = {
     arrowRight2: "/images/arrow-right2.svg",
     arrowLeft2: "/images/arrow-left2.svg",
     statistics: "/images/statistics.svg",
+    trades: "/images/trades.svg",
   },
   // Product type icons
   productTypes: {

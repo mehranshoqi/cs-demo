@@ -37,35 +37,34 @@ const GameHistoryItem: React.FC<GameHistoryItemProps> = ({
 
     return (
         <div
-            className={`${styles.transItem} btn`}
+            className="grid grid-cols-5 p-2.5 bg-[#121925] rounded-lg items-center gap-4 btn"
             onClick={onClick}
         >
-            <SolidSvg
-                path={getGameIcon(gameType)}
-                width={20}
-                height={20}
-                color="#7F8D9F"
-            />
-
-            <h3 className={`${styles.transTitle} text-white ml-2`}>{gameType}</h3>
-
-            <div className={styles.badgeWrapper}>
-                <div className={`${styles.transStatusBadge} ${result === "WON" ? styles.complete : styles.withdraw}`}>
-                    {result}
-                </div>
+            <div className="flex items-center gap-2">
+                <SolidSvg
+                    path={getGameIcon(gameType)}
+                    width={20}
+                    height={20}
+                    color="#7F8D9F"
+                />
+                <div className="truncate">{gameType}</div>
             </div>
 
-            <div className={styles.coin}>
+            <div className={`px-2 py-1 text-xs rounded w-fit ${result === "WON" ? "bg-green-900 text-green-400" : "bg-red-900 text-red-400"}`}>
+                {result}
+            </div>
+
+            <div className="flex items-center gap-2">
                 <Image src={ImagePaths.icons.coin} width={20} height={20} alt="" />
-                <h3>{winAmount.toFixed(2)}</h3>
+                <div>{winAmount.toFixed(2)}</div>
             </div>
 
-            <div className={styles.coin}>
+            <div className="flex items-center gap-2">
                 <Image src={ImagePaths.icons.coin} width={20} height={20} alt="" />
-                <h3>{betAmount.toFixed(2)}</h3>
+                <div>{betAmount.toFixed(2)}</div>
             </div>
 
-            <h4 className={styles.date}>{date}</h4>
+            <div className="text-xs text-gray-400 truncate">{date}</div>
         </div>
     );
 };
