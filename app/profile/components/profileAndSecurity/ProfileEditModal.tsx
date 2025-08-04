@@ -8,6 +8,7 @@ interface ProfileEditModalProps {
   title: string;
   buttonTitle: string;
   content: ReactNode;
+  primaryBtn?: boolean;
   onClose: () => void;
 }
 
@@ -15,6 +16,7 @@ const ProfileEditModal: React.FC<ProfileEditModalProps> = ({
   title,
   buttonTitle,
   content,
+  primaryBtn,
   onClose,
 }) => {
   return (
@@ -33,6 +35,9 @@ const ProfileEditModal: React.FC<ProfileEditModalProps> = ({
           width="100%"
           height={48}
           fontSize={16}
+          filledColor={
+            primaryBtn ? "var(--Primary500)" : "rgba(255,255,255,.06)"
+          }
           fontWeight={600}
         />
       </div>

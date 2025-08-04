@@ -1,10 +1,39 @@
 import ImagePaths from "@/app/constants/ImagePaths";
 import styles from "../../Profile.module.scss";
 import Image from "next/image";
+import { useModal } from "@/app/context/ModalContext";
+import ProfileEditModal from "../profileAndSecurity/ProfileEditModal";
+import DailyCasesOpenDetails from "./DailyCaseOpenDetails";
+import CryptoDepositDetails from "./CryptoDepositDetails";
+import EditUserProfileForm from "../profileAndSecurity/EditUserProfileForm";
 
 const TransactionItem = () => {
+  const { openModal, closeModal } = useModal();
+
   return (
-    <div className={styles.transItem}>
+    <div
+      className={`${styles.transItem} btn`}
+      onClick={() => {
+        openModal(
+          // <ProfileEditModal
+          //   title="Daily Case Open"
+          //   onClose={closeModal}
+          //   buttonTitle="Close"
+          //   primaryBtn={false}
+          //   content={<DailyCasesOpenDetails />}
+
+          // />,
+          <ProfileEditModal
+            title="Daily Case Open"
+            onClose={closeModal}
+            buttonTitle="Close"
+            primaryBtn={false}
+            content={<CryptoDepositDetails />}
+          />,
+          "400px"
+        );
+      }}
+    >
       <Image
         src={ImagePaths.transactions.fiatIcon}
         width={20}
@@ -12,7 +41,7 @@ const TransactionItem = () => {
         alt=""
       />
 
-      <h3>Daily Case Open</h3>
+      <h3 className={styles.transTitle}>Daily Case Open</h3>
 
       <div className={styles.badgeWrapper}>
         {/* TODO: complete - pending - withdraw */}
