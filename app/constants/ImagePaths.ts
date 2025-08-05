@@ -3,6 +3,15 @@ const ImagePaths = {
   logos: {
     logo: "/images/Logo.svg",
   },
+  // Avatar images
+  avatars: {
+    avatar1: "/images/avatar/avatar-1.png",
+    avatar2: "/images/avatar/avatar-2.png",
+    avatar3: "/images/avatar/avatar-3.png",
+    avatar4: "/images/avatar/avatar-4.png",
+    avatar5: "/images/avatar/avatar-5.png",
+    avatar6: "/images/avatar/avatar-6.png",
+  },
   // Icons
   icons: {
     pack: "/images/Pack.svg",
@@ -112,6 +121,11 @@ const ImagePaths = {
     authBanner: "/images/authBanner.svg",
     authPattern: "/images/authPattern.svg",
     lightStarBg: "/images/light-star-bg.png",
+    bgCaseBattle: "/images/bg-case-battle.png",
+    arrowLeft: "/images/arrow-left.svg",
+    shieldCheck: "/images/shield-check.svg",
+    share: "/images/share.svg",
+    volumeHigh: "/images/volume-high.svg",
   },
   deposit: {
     cs2go: "/images/deposit-cs2go.png",
@@ -122,6 +136,28 @@ const ImagePaths = {
     info: "/images/info.svg",
     copy: "/images/copy.svg",
     coinAlt: "/images/coin-alt.svg",
+  },
+  caseBattle: {
+    background: "/images/bg-case-battle.png",
+    arrowLeft: "/images/arrow-left.svg",
+    volumeHigh: "/images/volume-high.svg",
+    shieldCheck: "/images/shield-check.svg",
+    share: "/images/share.svg",
+    flash: "/images/case-battle/flash.svg",
+    equal: "/images/case-battle/equal.svg",
+    crown: "/images/case-battle/crown.svg",
+    grinTongueWink: "/images/case-battle/grin-tongue-wink.svg",
+    battleX: "/images/case-battle/battleX.svg",
+    case2: "/images/case-battle/case-2.png",
+    case3: "/images/case-battle/case-3.png",
+    case4: "/images/case-battle/case-4.png",
+    playWith: "/images/case-battle/playWith.svg",
+    gun1: "/images/case-battle/gun-1.png",
+    gun2: "/images/case-battle/gun-2.png",
+    gun3: "/images/case-battle/gun-3.png",
+    gun4: "/images/case-battle/gun-4.png",
+    gun5: "/images/case-battle/gun-5.png",
+    gun6: "/images/case-battle/gun-6.png",
   },
   crypto: {
     bitcoin: "/images/crypto/bitcoin.svg",
