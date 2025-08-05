@@ -63,7 +63,6 @@ const StatisticsView = () => {
                 <h3>No statistics yet! Start playing to see your performance stats grow. </h3>
             </EmptyListItem>
 
-
             <div className="flex flex-col">
                 {statisticsData.map((item, index) => (
                     <StatisticsItem
