@@ -5,18 +5,23 @@ import ImagePaths from "@/app/constants/ImagePaths";
 import styles from "./DropDown2.module.scss";
 import { useRef } from "react";
 import Image from "next/image";
-import { TransactionsFilters } from "@/app/types";
 import FilterSelection from "../FilterSelection/FilterSelection";
 import { useAuth } from "@/app/context/AuthContext";
 
 interface DropDown2Props {
-  items?: TransactionsFilters[];
+  filters?: Array<{ id: string; title: string }>;
+  onFilterChange?: (filters: string[]) => void;
+  label?: string;
 }
 
-const DropDown2: React.FC<DropDown2Props> = () => {
+const DropDown2: React.FC<DropDown2Props> = ({
+  filters = [],
+  onFilterChange,
+  label = "All Transactions"
+}) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [activeFilters, setActiveFilters] = useState<string[]>(["all"]);
-  const [activeLabel, setActiveLabel] = useState<string>("All Transactions");
+  const [activeLabel, setActiveLabel] = useState<string>(label);
 
   const openDropDown = () => setIsDropdownOpen((prev) => !prev);
   const closeDropdown = () => setIsDropdownOpen(false);
@@ -24,18 +29,39 @@ const DropDown2: React.FC<DropDown2Props> = () => {
 
   const calculateFilterLabel = (filters: string[]) => {
     if (filters.includes("all")) {
-      return "All Transactions";
+      return label;
     } else if (filters.length > 0) {
-      return `Transactions (${filters.length})`;
+      return `${label.split(' ')[0]} (${filters.length})`;
     } else {
-      return "Transactions";
+      return label.split(' ')[0];
     }
   };
 
   useEffect(() => {
     const newLabel = calculateFilterLabel(activeFilters);
     setActiveLabel(newLabel);
-  }, [activeFilters]);
+  }, [activeFilters, label]);
+
+  const handleFilterChange = (newFilters: string[]) => {
+    // If "all" is being selected
+    if (newFilters.includes("all")) {
+      // Clear all other selections and keep only "all"
+      const updatedFilters = ["all"];
+      setActiveFilters(updatedFilters);
+      if (onFilterChange) {
+        onFilterChange(updatedFilters);
+      }
+      return;
+    }
+
+    // If other filters are being selected/deselected
+    // Remove "all" if it was selected, keep other selections
+    const updatedFilters = newFilters.filter(filter => filter !== "all");
+    setActiveFilters(updatedFilters);
+    if (onFilterChange) {
+      onFilterChange(updatedFilters);
+    }
+  };
 
   return (
     <div className={styles.dropDownWrapper}>
@@ -47,11 +73,9 @@ const DropDown2: React.FC<DropDown2Props> = () => {
       {isDropdownOpen && (
         <UserMenuDropdown
           onClose={closeDropdown}
-          setNew={(newItems) => {
-            console.log(`Set New`, newItems);
-            setActiveFilters(newItems);
-          }}
+          setNew={handleFilterChange}
           activeFilters={activeFilters}
+          filters={filters}
         />
       )}
     </div>
@@ -95,12 +119,14 @@ interface UserMenuDropdownProps {
   onClose: () => void;
   setNew: (newItems: string[]) => void;
   activeFilters: string[];
+  filters: Array<{ id: string; title: string }>;
 }
 
 const UserMenuDropdown: React.FC<UserMenuDropdownProps> = ({
   onClose,
   setNew,
   activeFilters,
+  filters,
 }) => {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const { userDisplayName } = useAuth();
@@ -124,12 +150,7 @@ const UserMenuDropdown: React.FC<UserMenuDropdownProps> = ({
   return (
     <div ref={dropdownRef} className={styles.menuContainer}>
       <FilterSelection
-        filters={[
-          { id: "all", title: "All Transactions" },
-          { id: "crypto", title: "Crypto" },
-          { id: "daily", title: "Daily Cases" },
-          { id: "fiat", title: "Fiat" },
-        ]}
+        filters={filters}
         itemPadding="6px"
         initialSelected={activeFilters}
         onSelectionChange={setNew}

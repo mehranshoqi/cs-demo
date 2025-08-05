@@ -1,15 +1,22 @@
+import { useState } from "react";
 import styles from "../../Profile.module.scss";
 
 import { useModal } from "@/app/context/ModalContext";
 import ProfileRowDetails from "../ProfileRowDetails";
 import DropDown2 from "@/app/components/commen/DropDown2/DropDown2";
-import { TransactionsFilters } from "@/app/types";
 import TransactionItem from "./TransactionItem";
 import EmptyTransList from "./EmptyTransList";
-import PaginationController from "./PaginationContoller";
+import PaginationController from "../PaginationContoller";
 
 const TransactionsView = () => {
   const { openModal, closeModal } = useModal();
+  const [selectedFilters, setSelectedFilters] = useState<string[]>(["all"]);
+
+  const handleFilterChange = (filters: string[]) => {
+    setSelectedFilters(filters);
+    console.log("Selected transaction filters:", filters);
+  };
+
   return (
     <div className={styles.viewContainer}>
       <ProfileRowDetails
@@ -20,7 +27,16 @@ const TransactionsView = () => {
       />
 
       <div className={styles.transactionsFilter}>
-        <DropDown2 />
+        <DropDown2
+          filters={[
+            { id: "all", title: "All Transactions" },
+            { id: "crypto", title: "Crypto" },
+            { id: "daily", title: "Daily Cases" },
+            { id: "fiat", title: "Fiat" },
+          ]}
+          onFilterChange={handleFilterChange}
+          label="All Transactions"
+        />
       </div>
 
       <div
@@ -40,7 +56,7 @@ const TransactionsView = () => {
       <div style={{ height: "var(--sds-size-space-1200)" }}></div>
       <div>
         <PaginationController
-          onPageChange={(i) => {}}
+          onPageChange={(i) => { }}
           itemsPerPage={5}
           totalItems={60}
         />
