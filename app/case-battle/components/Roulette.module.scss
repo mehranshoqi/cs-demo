@@ -1,0 +1,31 @@
+.rouletteAnimation {
+    animation: rouletteSpin 3s ease-in-out forwards;
+}
+
+@keyframes rouletteSpin {
+    0% {
+        transform: translateY(-970px);
+    }
+
+    100% {
+        transform: translateY(850px);
+    }
+}
+
+.itemScale {
+    animation: itemScale 0.5s ease-in-out 3s forwards;
+}
+
+@keyframes itemScale {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.3);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}

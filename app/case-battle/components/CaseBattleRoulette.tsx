@@ -1,6 +1,7 @@
 import Image from "next/image";
 import ImagePaths from "@/app/constants/ImagePaths";
 import RouletteCard from "./RouletteCard";
+import RouletteAnimationCard from "./RouletteAnimationCard";
 
 export default function CaseBattleRoulette() {
     const itemCount = 6;
@@ -9,9 +10,12 @@ export default function CaseBattleRoulette() {
         <div className="relative p-[1px] rounded-lg w-full h-[366px] mx-auto mt-8 bg-gradient-to-r from-gray-600 to-gray-800">
             <div className="relative bg-gray-700 rounded-lg w-full h-full p-2 flex gap-2">
                 <div className="flex gap-2 w-full h-full">
-                    {Array.from({ length: itemCount }, (_, i) => (
-                        <RouletteCard key={i} />
-                    ))}
+                    {Array.from({ length: itemCount }, (_, i) => {
+                        if (i === 3) {
+                            return <RouletteCard key={i} />;
+                        }
+                        return <RouletteAnimationCard key={i} />;
+                    })}
                 </div>
                 {/* VS icons */}
                 {Array.from({ length: itemCount - 1 }, (_, i) => (
