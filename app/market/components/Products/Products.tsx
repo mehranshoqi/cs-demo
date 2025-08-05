@@ -5,11 +5,16 @@ import Items from "./items/Items";
 import styles from "./Products.module.scss";
 import { Product, CartItem, FilterModel } from "@/app/types";
 
-import productsData from "../../../constants/data";
+import {
+  MarketItem,
+  GetMarketItemsParams,
+} from "../../../services/market/marketService";
+
+import MarketService from "@/app/services/market/marketService";
 
 export default function Products() {
- const [products, setProducts] = useState<Product[]>([]);
-  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
+
   const [currentFiltersModel, setCurrentFiltersModel] = useState<FilterModel>({
     priceRange: { min: null, max: null },
     relativeToMarketPrice: [],
@@ -18,17 +23,56 @@ export default function Products() {
     colors: [],
     weapon: undefined,
   });
+
+  const [itemsParams, setItemsParams] = useState<GetMarketItemsParams>({
+    offset: 0,
+    limit: 5,
+  });
   const [activeProductTypeFilter, setActiveProductTypeFilter] =
     useState<string>("All Skins");
-
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [loadedProductCount, setLoadedProductCount] = useState<number>(0);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const getAllItems = useCallback(
+    async (append = false) => {
+      setLoading(true);
+      try {
+        const response = await MarketService.getItems(itemsParams);
+
+        const count = response.data.data.length;
+        const newItems: Product[] = Array.from(
+          { length: count },
+          (_, index) => ({
+            id: `${itemsParams.offset + index}`,
+            name: "AK-47",
+            wear: "Minimal Wear",
+            wearValue: 0.05,
+            price: 100.0,
+            priceChange: "+6%",
+            priceChangeValue: 6,
+            image: "/images/gloves-sample2.png",
+            type: "Gloves",
+            skinType: "Emerlad",
+            discountPercentage: -10,
+            color: "Green500",
+            deliveryTime: "0-10 min",
+          })
+        );
+
+        setProducts((prev) => (append ? [...prev, ...newItems] : newItems));
+        setLoadedProductCount((prev) => prev + newItems.length);
+      } catch {
+      } finally {
+        setLoading(false);
+      }
+    },
+    [itemsParams]
+  );
 
   useEffect(() => {
-    const initialLoad = productsData.slice(0, 5); // Load initial 5 products
-    setProducts(initialLoad);
-    setLoadedProductCount(initialLoad.length);
-  }, []);
+    getAllItems(itemsParams.offset > 0);
+  }, [itemsParams, getAllItems]);
 
   const applyAllFilters = useCallback(() => {
     let tempFilteredProducts = [...products];
@@ -132,8 +176,6 @@ export default function Products() {
           product.color && currentFiltersModel.colors.includes(product.color)
       );
     }
-
-    setFilteredProducts(tempFilteredProducts);
   }, [products, activeProductTypeFilter, currentFiltersModel]);
 
   useEffect(() => {
@@ -145,7 +187,16 @@ export default function Products() {
     setActiveProductTypeFilter(filter);
   };
 
+  const clearList = () => setProducts([]);
+
   const handleAllFiltersChange = (newFilters: FilterModel) => {
+    clearList();
+    setItemsParams({
+      offset: 0,
+      limit: itemsParams.limit,
+      min_price: newFilters.priceRange.min,
+      max_price: newFilters.priceRange.max,
+    });
     setCurrentFiltersModel(newFilters);
   };
 
@@ -174,30 +225,32 @@ export default function Products() {
   const removeAllFromCart = () => setCartItems([]);
 
   const handleLoadMoreProducts = useCallback(() => {
-    const nextBatchSize = 5;
-    const nextProducts = productsData.slice(
-      loadedProductCount,
-      loadedProductCount + nextBatchSize
-    );
+    setItemsParams((prev) => ({
+      ...prev,
+      offset: prev.offset + prev.limit,
+    }));
+  }, []);
 
-    if (nextProducts.length > 0) {
-      setProducts((prevProducts) => [...prevProducts, ...nextProducts]);
-      setLoadedProductCount((prevCount) => prevCount + nextProducts.length);
-    } else {
-      console.log("No more products to load.");
-    }
-  }, [loadedProductCount, productsData]);
+  const handleSearch = useCallback((query: string) => {
+    clearList();
+    setItemsParams((prev) => ({
+      ...prev,
+      name: query,
+    }));
+  }, []);
 
   return (
     <div className={styles.productsMain}>
       <Items
-        products={filteredProducts}
+        products={products}
         handleFilterChange={handleProductTypeFilterChange}
         addToCart={addToCart}
         removeFromCart={removeFromCart}
         activeFilter={activeProductTypeFilter}
         cartItems={cartItems}
         onLoadMore={handleLoadMoreProducts}
+        onSearch={handleSearch}
+        loadingList={loading}
       />
       <CartFilterSection
         cartItems={cartItems}

@@ -5,21 +5,26 @@
   --foreground: #ededed;
   --text-color: #9dabbd;
   --Text-Color-TextBodyGray0000: #fff;
+  --Text-Color-TextTitleGray000: #fff;
   --Text-Color-TextBodyGray300: #9dabbd;
-  --Text-Color-TextSubtitleGray400: #7F8D9F;
-  --Text-Color-TextPrimary300: #B282FC;
-  --Text-Color-TextPrimary500: #7D2EFA;
+  --Text-Color-TextSubtitleGray400: #7f8d9f;
+  --Text-Color-TextPrimary300: #b282fc;
+  --Text-Color-TextPrimary500: #7d2efa;
   --green-color: #80bd29;
   --Secondary500: #de4a7e;
   --TextBodyGray300: ‌ rgba(157, 171, 189, 1);
-  --Gray200: #BDC8D6;
+  --Gray100: #F1F5F9;
+  --Gray200: #bdc8d6;
   --Gray500: #616f81;
+  --Gray600: #4D5B6D;
   --Gray700: #475566;
   --Gray800: #222d3b;
   --Gray900: #121925;
   --Gray950: #060b15;
+
   --BgPrimary500: rgba(125, 46, 250, 1);
   --header-height: 72px;
+
   --white: #ffffff;
   --Blood500: #ed4438;
   --Sun500: #f8a605;
@@ -33,10 +38,23 @@
   --Sky600: #1c59e2;
   --Primary500: #7d2efa;
   --Pink500: #e22efa;
-  --Background-Color-BgBlood800: #2F0E0B;
+  --Background-Color-BgBlood800: #2f0e0b;
   --Background-Color-BgBadgeSun900: #322101;
-  --Background-Color-BgBadgeGrass800: #1A2608;
+  --Background-Color-BgBadgeGrass800: #1a2608;
 
+  --sds-size-space-0: 0;
+  --sds-size-space-50: 2px;
+  --sds-size-space-100: 4px;
+  --sds-size-space-150: 6px;
+  --sds-size-space-200: 8px;
+  --sds-size-space-300: 12px;
+  --sds-size-space-400: 16px;
+  --sds-size-space-600: 24px;
+  --sds-size-space-800: 32px;
+  --sds-size-space-1200: 48px;
+  --sds-size-space-1600: 64px;
+  --sds-size-space-2400: 96px;
+  --sds-size-space-4000: 160px;
 }
 
 @theme inline {
@@ -75,4 +93,8 @@ body {
 
 .animate-scan {
   animation: scan 3s ease-in-out infinite;
+}
+
+.btn {
+  cursor: pointer;
 }

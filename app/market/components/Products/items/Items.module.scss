@@ -2,14 +2,33 @@
   flex-grow: 1;
   overflow-y: auto;
   height: 100%;
-
-  
 }
 .itemsHeader {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-direction: column;
+  gap: 16px;
   margin-bottom: 36px;
+
+  width: 100%;
+}
+.searchWrapper {
+  width: 100%;
+
+  // display: flex;
+
+  .searchBar {
+    width: 100%;
+    flex-grow: 1;
+  }
+}
+
+.chipsWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .chips {
@@ -38,8 +57,6 @@
   grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
   gap: 16px;
 }
-
-
 
 .searchSort {
   display: flex;

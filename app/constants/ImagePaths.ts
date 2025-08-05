@@ -41,6 +41,7 @@ const ImagePaths = {
     trash: "/images/trash.svg",
     xMark: "/images/x-mark.svg",
     xMark2: "/images/x-mark2.svg",
+    xMarkSub: "/images/xmark-sub.svg",
     user: "/images/user.svg",
     lockClose: "/images/lock-close.svg",
     steam: "/images/steam.svg",
@@ -48,7 +49,7 @@ const ImagePaths = {
     google: "/images/google.svg",
     discord: "/images/discord.svg",
     eyeOff: "/images/eye-off.svg",
-    eyeOn: "/images/eye-off.svg",
+    eyeOn: "/images/eye.svg",
     autoTrade: "/images/arrow-path.svg",
     p2p: "/images/handshake.svg",
     deliveryRate: "/images/delivery-rate.svg",
@@ -63,6 +64,16 @@ const ImagePaths = {
     arrowUD: "/images/arrowUD.svg",
     user3: "/images/user3.svg",
     logout: "/images/logout.svg",
+    arrowRight: "/images/arrow-right.svg",
+    camera: "/images/camera.svg",
+    avatar: "/images/avatar.png",
+    defaultAvatar: "/images/default-avatar.svg",
+    bigLock: "/images/big-lock.svg",
+    shieldCheck: "/images/shield-check.svg",
+    arrowRight2: "/images/arrow-right2.svg",
+    arrowLeft2: "/images/arrow-left2.svg",
+    statistics: "/images/statistics.svg",
+    trades: "/images/trades.svg",
   },
   // Product type icons
   productTypes: {
@@ -125,7 +136,6 @@ const ImagePaths = {
     info: "/images/info.svg",
     copy: "/images/copy.svg",
     coinAlt: "/images/coin-alt.svg",
-
   },
   caseBattle: {
     background: "/images/bg-case-battle.png",
@@ -176,8 +186,30 @@ const ImagePaths = {
     polygon: "/images/crypto/networks/Polygon.svg",
     coin: "/images/crypto/networks/coin.svg",
   },
+  profileMenu: {
+    profileMenu: "/images/profileMenu/user-Menu.svg",
+    userCheck: "/images/profileMenu/user-check.svg",
+    trades: "/images/profileMenu/trades.svg",
+    statistics: "/images/profileMenu/statistics.svg",
+    securityMenu: "/images/profileMenu/securityMenu.svg",
+    clock: "/images/profileMenu/clock.svg",
+    transactions: "/images/profileMenu/arrows-up-down.svg",
+  },
+  transactions: {
+    fiatIcon: "images/FiatIcon.svg",
+    dailyCasesIcon: "images/inbox-arrow-down.svg",
+  },
+  gameHistory: {
+    cases: "/images/gameHistory/case.svg",
+    battle: "/images/gameHistory/battle.svg",
+    roulette: "/images/gameHistory/roulette.svg",
+    crash: "/images/gameHistory/crash.svg",
+  },
   video: {
     authVideo: "/video/auth-vid.mp4",
+  },
+  temp: {
+    qrTest: "/images/qr-test.png",
   },
 };
 

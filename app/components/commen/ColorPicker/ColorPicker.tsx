@@ -15,7 +15,6 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
   onSelectionChange,
   initialSelectedColors = [],
   allowMultipleSelection = true,
-  showNoneOption = true,
 }) => {
   const [selectedColors, setSelectedColors] = useState<string[]>(
     initialSelectedColors
@@ -58,7 +57,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
     onSelectionChange(newSelected);
   };
 
-  const isNoneSelected = selectedColors.length === 0;
+
 
   return (
     <div className={styles.colorPickerContainer}>

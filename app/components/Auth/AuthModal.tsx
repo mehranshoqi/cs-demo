@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import styles from "./AuthModal.module.scss";
 import Image from "next/image";
 import { useAuth } from "@/app/context/AuthContext";
@@ -16,6 +16,14 @@ const AuthModal: React.FC = () => {
   const [showSignup, setShowSignup] = useState(true);
   const [forgotPass, setForgotPass] = useState(false);
   const nodeRef = useRef(null);
+
+  const resetFormState = useCallback(() => {
+    closeAuthModal();
+    setTimeout(function () {
+      setForgotPass(false);
+      setShowSignup(true);
+    }, 800);
+  }, [closeAuthModal]);
 
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
@@ -48,15 +56,7 @@ const AuthModal: React.FC = () => {
       document.removeEventListener("keydown", handleEscapeKey);
       document.body.style.overflow = "";
     };
-  }, [isAuthModalOpen, closeAuthModal]);
-
-  const resetFormState = () => {
-    closeAuthModal();
-    setTimeout(function () {
-      setForgotPass(false);
-      setShowSignup(true);
-    }, 800);
-  };
+  }, [isAuthModalOpen, closeAuthModal, resetFormState]);
 
   return (
     <CSSTransition
@@ -90,15 +90,15 @@ const AuthModal: React.FC = () => {
               <ForgotPass test={() => {}} />
             ) : showSignup ? (
               <Signup
-                onSignup={(token,dName) => {
-                  login(token,dName)
+                onSignup={(token, dName) => {
+                  login(token, dName);
                   resetFormState();
                 }}
               />
             ) : (
               <Signin
-                onSignIn={(token,dName) => {
-                  login(token,dName)
+                onSignIn={(token, dName) => {
+                  login(token, dName);
                   resetFormState();
                 }}
                 onForgotPass={() => setForgotPass(true)}
@@ -113,6 +113,7 @@ const AuthModal: React.FC = () => {
                       : "Don't have an account?"}
                   </h3>
                   <span
+                    className="btn"
                     onClick={() => {
                       setShowSignup(!showSignup);
                     }}

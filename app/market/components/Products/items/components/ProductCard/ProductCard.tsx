@@ -3,7 +3,7 @@ import styles from "./ProductCard.module.scss";
 import WearBar from "../WearSlider/WearSlider";
 import { Product } from "@/app/types";
 import { useState } from "react";
-import { motion, Variants } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import ImagePaths from "@/app/constants/ImagePaths";
 
 interface ProductCardProps {
@@ -22,13 +22,13 @@ export default function ProductCard({
   const [isHovered, setIsHovered] = useState<boolean>(false);
 
   const cardVariants: Variants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 0 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6,
-        ease: "easeOut",
+        duration: 0.4,
+        ease: "linear",
         delay: animationDelay,
       },
     },
@@ -52,11 +52,12 @@ export default function ProductCard({
           width={200}
           height={200}
         />
-        {isSelected && (
-          <div className={styles.selectedIcon}>
-            <Image src={ImagePaths.icons.done} alt="" width={20} height={20} />
-          </div>
-        )}
+
+        <SelectedOrHoveredBadge
+          isHovered={isHovered}
+          isSelected={isSelected}
+          onShowPreview={() => {}}
+        />
         <div className={styles.smallImage}>
           <Image
             src={ImagePaths.icons.angle}
@@ -85,3 +86,42 @@ export default function ProductCard({
     </motion.div>
   );
 }
+
+interface SelectedOrHoveredBadgeProps {
+  isHovered: boolean;
+  isSelected: boolean;
+  onShowPreview: () => void;
+}
+
+const SelectedOrHoveredBadge: React.FC<SelectedOrHoveredBadgeProps> = ({
+  isHovered,
+  isSelected,
+  onShowPreview,
+}) => {
+  return (
+    <AnimatePresence>
+      {(isHovered || isSelected) && (
+        <motion.div
+          initial={{ opacity: 0, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 0 }}
+          transition={{ duration: 0.15 }}
+        >
+          <div
+            onMouseEnter={onShowPreview}
+            className={`${styles.selectedIcon} ${
+              isHovered ? styles.hoveredIcon : undefined
+            }`}
+          >
+            <Image
+              src={isHovered ? ImagePaths.icons.camera : ImagePaths.icons.done}
+              alt="badge-icon"
+              width={20}
+              height={20}
+            />
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+};

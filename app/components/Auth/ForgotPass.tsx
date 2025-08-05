@@ -5,13 +5,13 @@ import ImagePaths from "@/app/constants/ImagePaths";
 import AppInput from "../commen/Input/Input";
 import FillButton from "../commen/FilledButton/FilledButton";
 import { useState } from "react";
-import AuthService from "@/app/services/authService";
+import AuthService from "@/app/services/auth/authService";
 
 interface ForgotPassProps {
   test: () => void;
 }
 
-const ForgotPass: React.FC<ForgotPassProps> = ({ test }) => {
+const ForgotPass: React.FC<ForgotPassProps> = ({}) => {
   const [showNewPassForm, setShowNewPassForm] = useState(false);
 
   return (
@@ -31,26 +31,17 @@ interface SendEmailProps {
 const SendEmail: React.FC<SendEmailProps> = ({ onSubmit }) => {
   const [email, setEmail] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setError(null);
 
     try {
       const response = await AuthService.passRecovery(email);
       if (response.data.status === 1) {
         onSubmit();
-      } else {
-        setError("Failed. Please check your email.");
       }
-    } catch (err: any) {
-      if (err.response && err.response.data && err.response.data.errorCode) {
-        setError(`Failed: ${err.response.data.errorCode}`);
-      } else {
-        setError("An unexpected error occurred.");
-      }
+    } catch {
     } finally {
       setLoading(false);
     }
