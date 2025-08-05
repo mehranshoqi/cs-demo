@@ -1,58 +1,68 @@
+import { useState } from "react";
 import GameHistoryItem from "./GameHistoryItem";
 import ImagePaths from "@/app/constants/ImagePaths";
 import styles from "../../Profile.module.scss";
 import Image from "next/image";
 import ProfileRowDetails from "../ProfileRowDetails";
-import SolidSvg from "@/app/components/commen/svgMask/svgMask";
+import DropDown2 from "@/app/components/commen/DropDown2/DropDown2";
+import PaginationController from "../PaginationContoller";
+import EmptyListItem from "../EmptyListItem";
 
 const GameHistoryView = () => {
+    const [selectedFilters, setSelectedFilters] = useState<string[]>(["all"]);
+
     const gameHistoryData = [
         {
             gameType: "Cases",
-            result: "LOST" as const,
+            state: "LOST" as const,
             betAmount: 4.50,
             winAmount: 0.00,
             date: "April 23, 2024 10:15 AM"
         },
         {
             gameType: "Battles",
-            result: "WON" as const,
+            state: "WON" as const,
             betAmount: 2.25,
             winAmount: 8.75,
-            date: "April 22, 2024 09:30 AM"
+            date: "April 23, 2024 10:15 AM"
         },
         {
             gameType: "Roulette",
-            result: "LOST" as const,
+            state: "LOST" as const,
             betAmount: 4.50,
             winAmount: 0.00,
-            date: "April 21, 2024 14:20 PM"
+            date: "April 23, 2024 10:15 AM"
         },
         {
             gameType: "Crash",
-            result: "WON" as const,
+            state: "WON" as const,
             betAmount: 1.50,
             winAmount: 12.00,
-            date: "April 20, 2024 16:45 PM"
+            date: "April 23, 2024 10:15 AM"
         },
         {
             gameType: "Cases",
-            result: "WON" as const,
+            state: "WON" as const,
             betAmount: 3.00,
             winAmount: 15.50,
-            date: "April 19, 2024 11:30 AM"
+            date: "April 23, 2024 10:15 AM"
         },
         {
             gameType: "Battles",
-            result: "LOST" as const,
+            state: "LOST" as const,
             betAmount: 5.75,
             winAmount: 0.00,
-            date: "April 18, 2024 16:45 PM"
+            date: "April 23, 2024 10:15 AM"
         }
     ];
 
+    const handleFilterChange = (filters: string[]) => {
+        setSelectedFilters(filters);
+        console.log("Selected game history filters:", filters);
+    };
+
     return (
-        <div className={`${styles.viewContainer} flex flex-col gap-4`}>
+        <div className={styles.viewContainer}>
             <ProfileRowDetails
                 title="Game History"
                 titleFontSize="24px"
@@ -60,39 +70,56 @@ const GameHistoryView = () => {
                 desc="Track your gaming journey — view all your past games, wins, and losses here"
             />
 
+            <div className={styles.transactionsFilter}>
+                <DropDown2
+                    filters={[
+                        { id: "all", title: "All Games" },
+                        { id: "cases", title: "Cases" },
+                        { id: "battles", title: "Battles" },
+                        { id: "roulette", title: "Roulette" },
+                        { id: "crash", title: "Crash" },
+                    ]}
+                    onFilterChange={handleFilterChange}
+                    label="All Games"
+                />
+            </div>
+
             <div
                 className={styles.border}
                 style={{ margin: "var(--sds-size-space-300) 0 " }}
             ></div>
 
-            <div className="flex flex-col gap-2">
-                <div className="p-2.5 flex bg-[#121925] rounded-lg items-center justify-center gap-2">
-                    <SolidSvg
-                        path={ImagePaths.gameHistory.battle}
-                        width={20}
-                        height={20}
-                        color="#ffffff"
-                    />
-                    <div>Your game history will appear here once you start playing</div>
-                </div>
+            <EmptyListItem>
+                <Image
+                    src={ImagePaths.gameHistory.battle}
+                    width={20}
+                    height={20}
+                    alt="icon"
+                />
+                <h3>Your game history will appear here once you start playing</h3>
+            </EmptyListItem>
+            <>
                 {gameHistoryData.map((item, index) => (
                     <GameHistoryItem
                         key={index}
                         gameType={item.gameType}
-                        result={item.result}
+                        state={item.state}
                         betAmount={item.betAmount}
                         winAmount={item.winAmount}
                         date={item.date}
-                        onClick={() => {
-                            // TODO: Add modal or navigation for game details
-                            console.log("Game history item clicked:", item);
-                        }}
                     />
                 ))}
+            </>
+
+
+            <div style={{ height: "var(--sds-size-space-1200)" }}></div>
+            <div>
+                <PaginationController
+                    onPageChange={(i) => { }}
+                    itemsPerPage={5}
+                    totalItems={60}
+                />
             </div>
-
-
-
         </div>
     );
 };
