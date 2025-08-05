@@ -2,7 +2,8 @@ import { useState } from "react";
 import styles from "../../Profile.module.scss";
 import ProfileRowDetails from "../ProfileRowDetails";
 import ImagePaths from "@/app/constants/ImagePaths";
-import SolidSvg from "@/app/components/commen/svgMask/svgMask";
+import Image from "next/image";
+import EmptyListItem from "../EmptyListItem";
 import TradesItem from "./TradesItem";
 import DropDown2 from "@/app/components/commen/DropDown2/DropDown2";
 import PaginationController from "../PaginationContoller";
@@ -12,28 +13,34 @@ const TradesView = () => {
 
     const tradesData = [
         {
-            title: "AK-47 | Redline",
+            title: "AK-47",
+            type: "In Process" as const,
+            amount: 45.50,
+            date: "April 23, 2024 10:15 AM"
+        },
+        {
+            title: "AK-47",
             type: "Buy" as const,
             amount: 45.50,
-            date: "April 23, 2024"
+            date: "April 23, 2024 10:15 AM"
         },
         {
-            title: "M4A4 | Howl",
+            title: "AK-47",
             type: "Sell" as const,
             amount: 120.75,
-            date: "April 22, 2024"
+            date: "April 23, 2024 10:15 AM"
         },
         {
-            title: "AWP | Dragon Lore",
+            title: "AK-47",
             type: "Buy" as const,
             amount: 2500.00,
-            date: "April 21, 2024"
+            date: "April 23, 2024 10:15 AM"
         },
         {
-            title: "Karambit | Fade",
+            title: "AK-47",
             type: "Sell" as const,
             amount: 850.25,
-            date: "April 20, 2024"
+            date: "April 23, 2024 10:15 AM"
         }
     ];
 
@@ -77,7 +84,19 @@ const TradesView = () => {
                 style={{ margin: "var(--sds-size-space-300) 0 " }}
             ></div>
 
-            <div className="flex flex-col gap-2">
+
+
+
+            <div className="flex flex-col">
+                <EmptyListItem>
+                    <Image
+                        src={ImagePaths.profileMenu.trades}
+                        width={20}
+                        height={20}
+                        alt="icon"
+                    />
+                    <h3>No trades yet — hit the marketplace to get started </h3>
+                </EmptyListItem>
                 {filteredTradesData.map((item, index) => (
                     <TradesItem
                         key={index}
@@ -87,16 +106,6 @@ const TradesView = () => {
                         date={item.date}
                     />
                 ))}
-            </div>
-
-            <div className="p-2.5 flex bg-[#121925] rounded-lg items-center justify-center gap-2">
-                <SolidSvg
-                    path={ImagePaths.gameHistory.battle}
-                    width={20}
-                    height={20}
-                    color="#ffffff"
-                />
-                <div>No trades found for selected filters</div>
             </div>
 
 

@@ -3,9 +3,7 @@ import styles from "../../Profile.module.scss";
 import Image from "next/image";
 import { useModal } from "@/app/context/ModalContext";
 import ProfileEditModal from "../profileAndSecurity/ProfileEditModal";
-import DailyCasesOpenDetails from "./DailyCaseOpenDetails";
 import CryptoDepositDetails from "./CryptoDepositDetails";
-import EditUserProfileForm from "../profileAndSecurity/EditUserProfileForm";
 
 const TransactionItem = () => {
   const { openModal, closeModal } = useModal();

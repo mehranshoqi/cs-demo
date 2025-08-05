@@ -204,6 +204,7 @@ const ImagePaths = {
     battle: "/images/gameHistory/battle.svg",
     roulette: "/images/gameHistory/roulette.svg",
     crash: "/images/gameHistory/crash.svg",
+    aryaCase: "/images/gameHistory/aryaCase.png",
   },
   video: {
     authVideo: "/video/auth-vid.mp4",

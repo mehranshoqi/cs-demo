@@ -1,25 +1,30 @@
 import ImagePaths from "@/app/constants/ImagePaths";
 import styles from "../../Profile.module.scss";
-import SolidSvg from "@/app/components/commen/svgMask/svgMask";
 import Image from "next/image";
+import { useModal } from "@/app/context/ModalContext";
+import ProfileEditModal from "../profileAndSecurity/ProfileEditModal";
+import CaseDetails from "./CaseDetails";
+import BattleDetails from "./BattleDetails";
+import RouletteDetails from "./RouletteDetails";
+import CrashDetails from "./CrashDetails";
 
 interface GameHistoryItemProps {
     gameType: string;
-    result: "WON" | "LOST";
+    state: "WON" | "LOST";
     betAmount: number;
     winAmount: number;
     date: string;
-    onClick?: () => void;
 }
 
 const GameHistoryItem: React.FC<GameHistoryItemProps> = ({
     gameType,
-    result,
+    state,
     betAmount,
     winAmount,
-    date,
-    onClick
+    date
 }) => {
+    const { openModal, closeModal } = useModal();
+
     const getGameIcon = (gameType: string) => {
         switch (gameType.toLowerCase()) {
             case "cases":
@@ -35,36 +40,57 @@ const GameHistoryItem: React.FC<GameHistoryItemProps> = ({
         }
     };
 
+    const getGameDetailsComponent = (gameType: string) => {
+        switch (gameType.toLowerCase()) {
+            case "cases":
+                return <CaseDetails />;
+            case "battles":
+                return <BattleDetails />;
+            case "roulette":
+                return <RouletteDetails />;
+            case "crash":
+                return <CrashDetails />;
+            default:
+                return <CaseDetails />; // fallback
+        }
+    };
+
     return (
         <div
-            className="grid grid-cols-5 p-2.5 bg-[#121925] rounded-lg items-center gap-4 btn"
-            onClick={onClick}
+            className={`${styles.transItem} btn`}
+            onClick={() => {
+                openModal(
+                    <ProfileEditModal
+                        title={`${gameType}`}
+                        onClose={closeModal}
+                        buttonTitle="Verify"
+                        primaryBtn={false}
+                        content={getGameDetailsComponent(gameType)}
+                    />,
+                    "400px"
+                );
+            }}
         >
-            <div className="flex items-center gap-2">
-                <SolidSvg
-                    path={getGameIcon(gameType)}
-                    width={20}
-                    height={20}
-                    color="#7F8D9F"
-                />
-                <div className="truncate">{gameType}</div>
+            <Image
+                src={getGameIcon(gameType)}
+                width={20}
+                height={20}
+                alt=""
+            />
+
+            <h3 className={styles.transTitle}>{gameType}</h3>
+
+            <div className={styles.badgeWrapper}>
+                <div className={`${styles.transStatusBadge} ${state === "WON" ? styles.complete : styles.withdraw}`}>
+                    {state}
+                </div>
             </div>
 
-            <div className={`px-2 py-1 text-xs rounded w-fit ${result === "WON" ? "bg-green-900 text-green-400" : "bg-red-900 text-red-400"}`}>
-                {result}
-            </div>
-
-            <div className="flex items-center gap-2">
+            <div className={styles.coin}>
                 <Image src={ImagePaths.icons.coin} width={20} height={20} alt="" />
-                <div>{winAmount.toFixed(2)}</div>
+                <h3>{winAmount.toFixed(2)}</h3>
             </div>
-
-            <div className="flex items-center gap-2">
-                <Image src={ImagePaths.icons.coin} width={20} height={20} alt="" />
-                <div>{betAmount.toFixed(2)}</div>
-            </div>
-
-            <div className="text-xs text-gray-400 truncate">{date}</div>
+            <h4 className={styles.date}>{date}</h4>
         </div>
     );
 };

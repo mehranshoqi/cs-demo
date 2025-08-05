@@ -2,8 +2,8 @@ import ImagePaths from "@/app/constants/ImagePaths";
 import styles from "../../Profile.module.scss";
 import ProfileRowDetails from "../ProfileRowDetails";
 import Image from "next/image";
-import SolidSvg from "@/app/components/commen/svgMask/svgMask";
 import StatisticsItem from "./StatisticsItem";
+import EmptyListItem from "../EmptyListItem";
 
 const StatisticsView = () => {
     const statisticsData = [
@@ -13,15 +13,15 @@ const StatisticsView = () => {
         },
         {
             title: "Battles",
-            amount: 12.75
+            amount: 3.50
         },
         {
             title: "Roulette",
-            amount: 8.25
+            amount: 3.50
         },
         {
             title: "Crash",
-            amount: 5.00
+            amount: 3.50
         }
     ];
 
@@ -52,27 +52,27 @@ const StatisticsView = () => {
                 style={{ margin: "var(--sds-size-space-300) 0 " }}
             ></div>
 
-            {statisticsData.length > 0 ? (
-                <div className="flex flex-col gap-2">
-                    {statisticsData.map((item, index) => (
-                        <StatisticsItem
-                            key={index}
-                            title={item.title}
-                            amount={item.amount}
-                        />
-                    ))}
-                </div>
-            ) : (
-                <div className="p-2.5 flex bg-[#121925] rounded-lg items-center justify-center gap-2">
-                    <SolidSvg
-                        path={ImagePaths.gameHistory.battle}
-                        width={20}
-                        height={20}
-                        color="#ffffff"
+
+            <EmptyListItem>
+                <Image
+                    src={ImagePaths.icons.statistics}
+                    width={20}
+                    height={20}
+                    alt="icon"
+                />
+                <h3>No statistics yet! Start playing to see your performance stats grow. </h3>
+            </EmptyListItem>
+
+            <div className="flex flex-col">
+                {statisticsData.map((item, index) => (
+                    <StatisticsItem
+                        key={index}
+                        title={item.title}
+                        amount={item.amount}
                     />
-                    <div>No statistics yet! Start playing to see your performance stats grow.</div>
-                </div>
-            )}
+                ))}
+            </div>
+
         </div>
     );
 };
