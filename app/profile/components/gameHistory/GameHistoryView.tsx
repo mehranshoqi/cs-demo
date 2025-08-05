@@ -14,7 +14,7 @@ const GameHistoryView = () => {
     const gameHistoryData = [
         {
             gameType: "Cases",
-            state: "LOST" as const,
+            state: "WON" as const,
             betAmount: 4.50,
             winAmount: 0.00,
             date: "April 23, 2024 10:15 AM"

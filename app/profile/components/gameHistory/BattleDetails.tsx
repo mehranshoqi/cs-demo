@@ -4,19 +4,20 @@ import Image from "next/image";
 
 const BattleDetails: React.FC = () => {
     return (
-        <div className="flex flex-col gap-2 text-center">
-            <div className={styles.gameHistoryDate}>Made on April 23, 2024 10:15 AM</div>
-            <div className={styles.gameHistoryCaseDetails}>
-                <div className={styles.title}>Arya Case</div>
-                <Image
-                    src={ImagePaths.gameHistory.aryaCase}
-                    width={200}
-                    height={150}
-                    alt=""
-                />
-                <div className={styles.sticker}>Sticker</div>
-                <div className={styles.supercharger}>Supercharger</div>
+        <div className={styles.cryptoDepositDetails}>
+            <h5>Made on April 23, 2024 10:15 AM</h5>
+            <div className={styles.cryptoDetails}>
+                <div className={styles.method}>
+                    <div>1v1</div>
+                    <div className={styles.viewBtn}>View</div>
+                </div>
             </div>
+            <div className={styles.transPrice}>
+                <span>You Lost</span>
+                <Image src={ImagePaths.icons.coin} width={20} height={20} alt="item" />
+                <h5 className="!text-[#ED4438]">3.24</h5>
+            </div>
+            <div style={{ height: "var(--sds-size-space-300)" }}></div>
         </div>
     );
 };

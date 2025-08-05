@@ -17,6 +17,18 @@ const CaseDetails: React.FC = () => {
                 <div className={styles.sticker}>Sticker</div>
                 <div className={styles.supercharger}>Supercharger</div>
             </div>
+            <div className="border border-gray-800 rounded-full mb-3 px-4 py-2 flex justify-between">
+                <div className="font-bold text-gray-100">You Received</div>
+                <div className="text-[#80BD29] flex items-center gap-2 font-bold">
+                    <Image
+                        src={ImagePaths.icons.coin}
+                        width={20}
+                        height={20}
+                        alt=""
+                    />
+                    4.50
+                </div>
+            </div>
         </div>
     );
 };
