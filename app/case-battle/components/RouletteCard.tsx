@@ -4,7 +4,7 @@ import ImagePaths from '@/app/constants/ImagePaths';
 
 export default function RouletteCard() {
     return (
-        <div className="h-full rounded-lg flex-1 relative bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900">
+        <div className="h-full rounded-lg flex-1 relative bg-gradient-to-b from-gray-950 via-gray-800 to-gray-950">
             <BattleAnimation className="w-full overflow-hidden h-full flex items-center justify-center">
                 <div className="relative z-10">
                     <Image src={ImagePaths.caseBattle.gun1} alt="" width={160} height={49} className="mx-auto opacity-30 w-[160px]" />
