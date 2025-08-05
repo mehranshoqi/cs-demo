@@ -90,7 +90,7 @@ const TradesView = () => {
             <div className="flex flex-col">
                 <EmptyListItem>
                     <Image
-                        src={ImagePaths.icons.trades}
+                        src={ImagePaths.profileMenu.trades}
                         width={20}
                         height={20}
                         alt="icon"

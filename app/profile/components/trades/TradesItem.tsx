@@ -4,7 +4,7 @@ import Image from "next/image";
 
 interface TradesItemProps {
     title: string;
-    type: "Buy" | "Sell";
+    type: "Buy" | "Sell" | "In Process";
     amount: number;
     date: string;
 }
