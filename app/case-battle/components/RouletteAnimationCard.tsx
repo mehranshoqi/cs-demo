@@ -29,13 +29,14 @@ export default function RouletteAnimationCard() {
                 <div className="h-[100px] w-full bg-gradient-to-b from-black via-black/70 to-transparent absolute top-0 left-0 right-0 z-20 rounded-t-lg"></div>
                 <div id="roulette-animation" className={`relative z-10 ${styles.rouletteAnimation}`}>
                     {Array.from({ length: 18 }, (_, i) => (
-                        <div key={i} className={`h-[130px] relative flex items-center justify-center ${i === 2 ? styles.itemScale : ''}`}>
+                        <div key={i} className={`h-[150px] relative flex items-center justify-center ${i === 16 ? styles.itemScale : ''}`}>
+                            <div className={styles.backgroundEffect}></div>
                             <Image
                                 src={randomizedImages[i]}
                                 alt=""
                                 width={130}
                                 height={49}
-                                className="mx-auto w-[130px]"
+                                className="mx-auto w-[150px] z-30"
                                 priority={i < 6}
                                 loading="eager"
                             />
