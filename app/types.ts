@@ -44,3 +44,26 @@ export interface Chip {
 }
 
 export type FilterType = "All Skins" | Product["type"];
+
+export enum ProfileMenu {
+  profile,
+  security,
+  transactions,
+  gameHistory,
+  statistics,
+  trades,
+  verifyIdentity,
+}
+
+export interface ProfileMenuItem {
+  title: string;
+  iconSrc: string;
+  item: ProfileMenu;
+}
+
+export enum TransactionsFilters {
+  all,
+  crypto,
+  daily,
+  fiat,
+}

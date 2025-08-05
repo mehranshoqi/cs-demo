@@ -44,7 +44,7 @@ const Items: React.FC<ItemsProps> = ({
   activeFilter,
   loadingList,
 }) => {
-  const [showSearch, setShowSearch] = useState(true);
+  const [showSearch, setShowSearch] = useState(false);
   return (
     <div className={styles.items}>
       <div className={styles.itemsHeader}>
@@ -62,7 +62,7 @@ const Items: React.FC<ItemsProps> = ({
                   showSearch ? ImagePaths.icons.xMark : ImagePaths.icons.search
                 }
                 alt="Search"
-                className={styles.searchIcon}
+                className={`${styles.searchIcon} btn`}
                 onClick={() => setShowSearch(!showSearch)}
                 width={20}
                 height={20}

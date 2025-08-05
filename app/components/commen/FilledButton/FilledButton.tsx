@@ -2,7 +2,7 @@ import Image from "next/image";
 import styles from "./FilledButton.module.scss";
 
 interface FillButtonProps {
-  title: string;
+  title?: string;
   onClick?: () => void;
   iconSrc?: string;
   iconSize?: number;
@@ -13,6 +13,7 @@ interface FillButtonProps {
   width?: string | number;
   fontWeight?: string | number;
   disabled?: boolean;
+  circleBtn?: boolean;
   loading?: boolean;
   fontSize?: string | number;
 }
@@ -31,10 +32,13 @@ export default function FillButton({
   fontSize,
   disabled,
   loading,
+  circleBtn,
 }: FillButtonProps) {
   return (
     <button
-      className={`${styles.fillButton} ${loading ? styles.loading : undefined}`}
+      className={`${styles.fillButton} ${
+        loading ? styles.loading : undefined
+      } ${circleBtn ? styles.circleBtn : undefined}`}
       onClick={onClick}
       disabled={disabled}
       style={{
@@ -62,12 +66,13 @@ export default function FillButton({
           }}
         />
       )}
-      {
+      {title &&
         <span
           className={`${styles.title}`}
           style={{
             fontWeight: fontWeight,
             fontSize: fontSize,
+            color: disabled ? "var(--Gray600)" : undefined,
           }}
         >
           {title} {loading ? "..." : ""}

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import styles from "./FilterSelection.module.scss";
 
-interface FilterItem {
+export interface FilterItem {
   id: string;
   iconSrc?: string;
   title: string;
@@ -14,6 +14,7 @@ interface FilterSelectionProps {
   filters: FilterItem[];
   onSelectionChange: (selectedIds: string[]) => void;
   initialSelected?: string[];
+  itemPadding?: string;
   allowMultipleSelection?: boolean;
 }
 
@@ -22,6 +23,7 @@ const FilterSelection: React.FC<FilterSelectionProps> = ({
   onSelectionChange,
   initialSelected = [],
   allowMultipleSelection = true,
+  itemPadding,
 }) => {
   const [selectedFilters, setSelectedFilters] =
     useState<string[]>(initialSelected);
@@ -52,6 +54,7 @@ const FilterSelection: React.FC<FilterSelectionProps> = ({
 
         return (
           <div
+            style={{ padding: itemPadding }}
             key={filter.id}
             className={`${itemClassName} ${
               simpleOption ? styles.simpleOption : undefined

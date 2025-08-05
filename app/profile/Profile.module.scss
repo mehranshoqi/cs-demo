@@ -1,0 +1,615 @@
+.profilePage {
+  width: 100vw;
+
+  display: inline-flex;
+  padding: 40px 0 48px 0;
+  justify-content: center;
+}
+
+.profileContainer {
+  width: 1080px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: start;
+  gap: 64px;
+  padding: 24px;
+}
+
+.MenuContainer {
+  width: 261px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sds-size-space-300);
+}
+
+.menuItem {
+  height: 44px;
+  border-radius: 8px;
+  padding: 6px 14px;
+  display: flex;
+  line-height: normal;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.5s;
+
+  * {
+    transition: all 0.5s;
+  }
+
+  &:hover {
+    background-color: var(--Gray900);
+  }
+
+  img {}
+
+  p {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: normal;
+    color: var(--Gray200);
+  }
+}
+
+.active {
+  background-color: var(--Gray900);
+
+  p {
+    color: white;
+  }
+}
+
+.viewWrapper {
+  flex-grow: 1;
+}
+
+.rowDetailsContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  * {
+    line-height: normal;
+  }
+
+  height: 44px;
+  gap: 8px;
+}
+
+.titleDesc {
+  display: flex;
+  flex-direction: column;
+  leading-trim: both;
+  text-edge: cap;
+  font-style: normal;
+  flex-grow: 1;
+  gap: 12px;
+  line-height: normal;
+
+  .titleWrapper {
+    line-height: normal;
+    gap: 8px;
+    display: flex;
+    flex-direction: row;
+
+    h3 {
+      line-height: normal;
+      font-size: 16px;
+      font-weight: 600;
+      color: white;
+    }
+  }
+
+  p {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--Text-Color-TextBodyGray300);
+  }
+
+  font-size: 14px;
+}
+
+.viewContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.border {
+  width: 100%;
+  margin: var(--sds-size-space-600) 0;
+  background-color: var(--Gray700);
+  height: 1px;
+}
+
+.verifiedBadge {
+  color: var(--green-color);
+  border-radius: 6px;
+  background: var(--Background-Color-BgBadgeGrass800, #1a2608);
+  padding: 0 6px;
+  height: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  font-style: normal;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profileEditModal {
+  width: 100%;
+
+  .header {
+    padding: 8px 24px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    border-bottom: 1px solid var(--Border-Color-BorderGray800, #222d3b);
+
+    h3 {
+      font-size: 16px;
+      font-weight: 600;
+      font-size: normal;
+      line-height: normal;
+    }
+
+    .closeBtn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  .content {
+    padding: 24px;
+    width: 100%;
+  }
+}
+
+.editContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+  .uploadedActions {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: var(--sds-size-space-300);
+  }
+}
+
+.verifyEmailContainer {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  line-height: normal;
+  font-style: normal;
+
+  p {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--Text-Color-TextSubtitleGray400);
+  }
+
+  .email {
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    leading-trim: both;
+    text-edge: cap;
+  }
+
+  .wrongEmail {
+    color: var(--Primary500);
+    font-size: 12px;
+    line-height: normal;
+    font-style: normal;
+    font-weight: 500;
+  }
+}
+
+.codeInputContainer {
+  width: 100%;
+
+  .inputWrapper {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    justify-content: space-between;
+  }
+
+  display: flex;
+  justify-content: space-between;
+
+  background-color: var(--Gray950);
+
+  border-radius: 300px !important;
+
+  padding: 6px 0px;
+
+  >input {
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  >input::placeholder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--Gray500);
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14px;
+  }
+}
+
+.codeInput {
+  width: 48px;
+  border-radius: 300px !important;
+  height: 48px;
+  flex-grow: 1;
+
+  background-color: var(--Gray950);
+
+  border: 1px solid var(--Border-Color-BorderDefaultGray700);
+  border-radius: var(--sds-size-space-100);
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+  border-radius: 0;
+  color: var(--Gray500);
+  caret-color: var(--Primary500);
+
+  &:focus {
+    outline: none;
+    border-color: var(--Primary500);
+  }
+}
+
+.rightBorder {
+  height: 12px;
+  background-color: var(--Gray800);
+  width: 1px;
+}
+
+.inputLabel {
+  font-size: 14px;
+  font-weight: 600;
+  font-style: normal;
+  line-height: normal;
+  color: (--Text-Color-TextSubtitleGray400);
+}
+
+.emailFormTitle {
+  width: 100%;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.didNotGetCode {
+  font-size: 12px;
+  font-weight: 500;
+  color: red;
+}
+
+.qrImg {
+  border-radius: 10px;
+}
+
+.qrContent {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--Text-Color-TextTitleGray000);
+}
+
+.info {
+  list-style: disc;
+  padding: 0 24px;
+  color: var(--Text-Color-TextSubtitleGray400);
+
+  li {
+    font-size: 14px;
+    font-style: normal;
+    line-height: normal;
+  }
+}
+
+.transactionsFilter {
+  align-self: flex-end;
+}
+
+.transItem {
+  height: 44px;
+  padding: 8px 16px;
+  background-color: var(--Gray900);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+
+  &:hover {
+    background-color: #12192566;
+  }
+
+  img {
+    margin-right: 6px;
+  }
+
+  h3 {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: normal;
+    font-style: normal;
+    text-align: center;
+  }
+
+  .transTitle {
+    width: 150px;
+    text-align: start;
+  }
+
+  .badgeWrapper {
+    flex-grow: 2;
+    display: flex;
+    justify-content: center;
+  }
+
+  .transStatusBadge {
+    border-radius: 6px;
+    padding: 6px;
+    height: 22px;
+    font-size: 14px;
+    font-weight: 600;
+    font-style: normal;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .complete {
+    color: var(--green-color);
+    background: var(--Background-Color-BgBadgeGrass800, #1a2608);
+  }
+
+  .pending {
+    color: var(--Text-Color-TextBodyGray300);
+    background-color: var(--Gray800);
+  }
+
+  .withdraw {
+    color: var(--Blood500);
+    background: var(--Background-Color-BgBlood800, #2f0e0b);
+  }
+
+  .coin {
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+    align-items: center;
+    flex-grow: 1;
+
+    h3 {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--Gray100);
+    }
+  }
+
+  .date {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--Text-Color-TextBodyGray300);
+  }
+}
+
+.emptyTransContainer {
+  border-radius: 8px;
+  margin: 6px 0;
+  height: 44px;
+  align-items: center;
+  padding: 6px 16px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  background-color: var(--Gray900);
+
+  h3 {
+    font-size: 14px;
+    color: var(--Gray100);
+    font-weight: 600;
+  }
+}
+
+.paginationControllerContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  // width: 100%;
+  gap: 8px;
+  justify-self: center !important;
+  text-align: center;
+
+  h3 {
+    font-size: 14px;
+    font-weight: 400;
+    width: 48px;
+    text-align: center;
+    color: var(--Text-Color-TextTitleGray000);
+  }
+
+  span {
+    margin-left: 8px;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--Text-Color-TextBodyGray300);
+  }
+}
+
+.dailyCaseOpenDetails {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+
+  h5 {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: normal;
+    color: var(--Text-Color-TextBodyGray300);
+    font-style: normal;
+  }
+
+  .itemImg {
+    width: 100%;
+    padding: 24px;
+    flex-shrink: 0;
+    border: solid 1px var(--Gray800);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+    background: linear-gradient(180deg,
+        rgba(99, 37, 200, 0) 0%,
+        rgba(99, 37, 200, 0.1) 67.29%,
+        rgba(99, 37, 200, 0.4) 100%);
+
+    div {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+      align-self: stretch;
+
+      span {
+        font-size: 16px;
+      }
+
+      :first-child {
+        color: var(--Text-Color-TextBodyGray300);
+        font-weight: 400;
+      }
+
+      :last-child {
+        font-weight: 600;
+        color: var(--Text-Color-TextTitleGray000);
+      }
+    }
+  }
+}
+
+.transPrice {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 48px;
+  border: solid 1px var(--Gray800);
+  border-radius: 100px;
+  width: 100%;
+  padding: 6px 24px;
+
+  span {
+    flex-grow: 1;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: normal;
+  }
+
+  h5 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--green-color);
+    margin-left: 6px;
+  }
+}
+
+.cryptoDepositDetails {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+
+  h5 {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: normal;
+    color: var(--Text-Color-TextBodyGray300);
+    font-style: normal;
+  }
+
+  .cryptoDetails {
+    border: solid 1px var(--Gray800);
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: var(--sds-size-space-600);
+
+    .method {
+      display: flex;
+      flex-direction: row;
+
+      :first-child {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+
+        :first-child {
+          font-size: 16px;
+          font-weight: 400;
+          color: var(--Text-Color-TextBodyGray300);
+        }
+
+        :last-child {
+          font-size: 16px;
+          font-weight: 600;
+          color: var(--Text-Color-TextTitleGray000);
+        }
+      }
+
+      .viewBtn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 100px;
+        background-color: #ffffff0f;
+        width: 72px;
+        height: 40px;
+        font-size: 12px;
+      }
+    }
+
+    .amount {
+      display: flex;
+      flex-direction: row;
+      font-size: 14px;
+      font-weight: 600;
+
+      :first-child {
+        flex-grow: 1;
+        color: var(--Text-Color-TextBodyGray300);
+      }
+    }
+  }
+}

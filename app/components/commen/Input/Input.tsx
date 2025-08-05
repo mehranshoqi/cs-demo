@@ -4,19 +4,18 @@ import React, { InputHTMLAttributes, forwardRef, useState } from "react";
 import Image from "next/image";
 import styles from "./Input.module.scss";
 import ImagePaths from "@/app/constants/ImagePaths";
+import SolidSvg from "../svgMask/svgMask";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   iconSrc?: string;
-  iconAlt?: string;
 }
 
-const Input = forwardRef<HTMLInputElement, InputProps>(
+const AppInput = forwardRef<HTMLInputElement, InputProps>(
   (
     {
       label,
       iconSrc,
-      iconAlt = "Input icon",
       className,
       id,
       onFocus,
@@ -70,15 +69,21 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             {label}
           </label>
         )}
-        <div className={styles.inputContainer}>
+        <div
+          className={styles.inputContainer}
+          style={{
+            padding: iconSrc != null ? "10px 14px" : " 10px 20px",
+          }}
+        >
           {iconSrc && (
-            <Image
-              src={iconSrc}
-              alt={iconAlt}
+            <SolidSvg
+              path={iconSrc}
+              // color={!isFocused ? "var(--Gray500)" : "white"}
               width={20}
               height={20}
-              className={`${styles.inputIcon} ${shouldIconBeWhite ? styles.iconFocused : styles.iconBlurred
-                }`}
+              className={`${styles.inputIcon} ${
+                shouldIconBeWhite ? styles.iconFocused : styles.iconBlurred
+              }`}
             />
           )}
           <input
@@ -121,6 +126,6 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
   }
 );
 
-Input.displayName = "Input";
+AppInput.displayName = "Input";
 
-export default Input;
+export default AppInput;

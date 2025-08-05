@@ -7,14 +7,22 @@ import ImagePaths from "@/app/constants/ImagePaths";
 
 interface EmailSubscriptionInputProps {
   placeholder?: string;
+  showRightIcon?: boolean;
   onSubmit?: (email: string) => void;
   className?: string;
+  actionIcon?: string;
+  border?: string;
+  padding?: string | number | undefined;
 }
 
 const EmailSubscriptionInput: React.FC<EmailSubscriptionInputProps> = ({
   placeholder = "cs2skin@example.com",
   onSubmit,
   className,
+  border,
+  padding,
+  actionIcon,
+  showRightIcon = true,
 }) => {
   const [email, setEmail] = useState("");
 
@@ -28,10 +36,16 @@ const EmailSubscriptionInput: React.FC<EmailSubscriptionInputProps> = ({
 
   return (
     <form
+      style={{ border: border, padding: padding }}
       onSubmit={handleSubmit}
       className={`${styles.subscriptionForm} ${className || ""}`}
     >
-      <Image src={ImagePaths.icons.envelope} alt="Logo" width={20} height={20} />
+      <Image
+        src={ImagePaths.icons.envelope}
+        alt="Logo"
+        width={20}
+        height={20}
+      />
       <input
         type="email"
         placeholder={placeholder}
@@ -46,7 +60,14 @@ const EmailSubscriptionInput: React.FC<EmailSubscriptionInputProps> = ({
         className={styles.subscriptionButton}
         aria-label="Subscribe"
       >
-        <Image src={ImagePaths.icons.arrowRightCircle} alt="Logo" width={20} height={20} />
+        {showRightIcon && (
+          <Image
+            src={actionIcon ?? ImagePaths.icons.arrowRightCircle}
+            alt="Logo"
+            width={20}
+            height={20}
+          />
+        )}
       </button>
     </form>
   );
