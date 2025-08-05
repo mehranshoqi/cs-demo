@@ -1,4 +1,5 @@
 import ImagePaths from "@/app/constants/ImagePaths";
+import styles from "../../Profile.module.scss";
 import Image from "next/image";
 
 interface StatisticsItemProps {
@@ -8,8 +9,8 @@ interface StatisticsItemProps {
 
 const StatisticsItem: React.FC<StatisticsItemProps> = ({ title, amount }) => {
     return (
-        <div className="grid grid-cols-2 p-2.5 bg-[#121925] rounded-lg items-center gap-4">
-            <div className="truncate">{title}</div>
+        <div className={`${styles.transItem} btn`}>
+            <div className="font-bold text-gray-300 text-sm">{title}</div>
             <div className="flex items-center gap-2 justify-end">
                 <Image
                     src={ImagePaths.icons.coin}
@@ -19,7 +20,7 @@ const StatisticsItem: React.FC<StatisticsItemProps> = ({ title, amount }) => {
                 />
                 <div>{amount.toFixed(2)}</div>
             </div>
-        </div>
+        </div >
     );
 };
 
