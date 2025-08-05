@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 import styles from "./Profile.module.scss";
@@ -34,7 +34,7 @@ const VIEW_COMPONENTS = {
   [ProfileMenu.verifyIdentity]: ErrorView,
 } as const;
 
-const ProfilePage = () => {
+const ProfilePageContent = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [activeItem, setActiveItem] = useState<ProfileMenu>(ProfileMenu.profile);
@@ -81,6 +81,14 @@ const ProfilePage = () => {
         <div className={styles.viewWrapper}>{renderView()}</div>
       </div>
     </div>
+  );
+};
+
+const ProfilePage = () => {
+  return (
+    <Suspense fallback={<div className={styles.profilePage}>Loading...</div>}>
+      <ProfilePageContent />
+    </Suspense>
   );
 };
 
