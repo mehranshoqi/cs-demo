@@ -9,7 +9,7 @@ import toast from "react-hot-toast";
 
 const api: AxiosInstance = axios.create({
   baseURL:
-    process.env.NEXT_PUBLIC_API_URL || "https://auth.main.dev.csiran.com/web",
+    process.env.NEXT_PUBLIC_AUTH_API_URL,
   headers: {
     "Content-Type": "application/json",
   },
@@ -17,7 +17,7 @@ const api: AxiosInstance = axios.create({
 
 api.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
-    config.headers.Authorization = `Bearer token`;
+    config.headers.Authorization = `Bearer ${process.env.NEXT_PUBLIC_AUTH_TOKEN}`;
     // const token = localStorage.getItem("authToken");
     // if (token) {
     //   if (!config.headers) {
