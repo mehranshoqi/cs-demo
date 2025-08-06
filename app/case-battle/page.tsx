@@ -11,16 +11,16 @@ export default function CaseBattle() {
             style={{ backgroundImage: `url(${ImagePaths.caseBattle.background})` }}
         >
             {/* Top items */}
-            <CaseBattleHeader />
+            {/* <CaseBattleHeader /> */}
 
             {/* Case Battle */}
-            <CaseBattleComponent />
+            {/* <CaseBattleComponent /> */}
 
             {/* Case Battle Roulette */}
             <CaseBattleRoulette />
 
             {/* Case Battle Players */}
-            <CaseBattlePlayers />
+            {/* <CaseBattlePlayers /> */}
         </div>
     );
 } 
