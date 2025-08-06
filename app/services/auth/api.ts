@@ -6,6 +6,7 @@ import axios, {
   InternalAxiosRequestConfig,
 } from "axios";
 import toast from "react-hot-toast";
+import { getErrorMessageByCode } from "../../constants/errorCodes";
 
 const api: AxiosInstance = axios.create({
   baseURL:
@@ -34,7 +35,17 @@ api.interceptors.request.use(
 
 api.interceptors.response.use(
   (response: AxiosResponse) => {
-    if (response.data["status"] == 0) toast.error(response.data["type"]);
+    // Check if response status is 200 but data status is 0 (error case)
+    if (response.data && response.data.status === 0) {
+      const errorCode = response.data.error;
+
+      if (errorCode && typeof errorCode === 'number') {
+        const errorMessage = getErrorMessageByCode(errorCode);
+        toast.error(errorMessage);
+      } else {
+        toast.error(response.data.type || 'An error occurred');
+      }
+    }
 
     return response;
   },
