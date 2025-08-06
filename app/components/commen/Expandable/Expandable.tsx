@@ -24,7 +24,7 @@ const ExpandableFramer: React.FC<ExpandableFramerProps> = ({
   headerPadding,
   extraBadge,
 }) => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState<boolean>(true);
 
   const toggleExpand = (): void => {
     setIsOpen(!isOpen);

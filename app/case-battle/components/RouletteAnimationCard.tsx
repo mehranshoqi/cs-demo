@@ -70,7 +70,6 @@ const RouletteAnimationCard: React.FC<RouletteAnimationCardProps> = ({
                       }}`}
                     >
                       <MyLottiePlayer />
-                      
                     </div>
                   )}
 

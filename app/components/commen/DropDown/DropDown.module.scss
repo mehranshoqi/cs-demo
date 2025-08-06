@@ -26,7 +26,7 @@
   cursor: pointer;
   display: flex; /* To center SVG */
   align-items: center;
-//   color: #e0e0e0;
+  //   color: #e0e0e0;
 }
 
 .dropdownTitle .arrowIcon svg {
@@ -38,8 +38,8 @@
   justify-content: space-between;
   align-items: center;
   background-color: #3b404d; /* Slightly lighter dark for the header */
-//   padding: 12px 15px;
-//   border-radius: 6px;
+  //   padding: 12px 15px;
+  //   border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.2s ease-in-out;
 }
@@ -53,14 +53,14 @@
   display: flex;
   align-items: center;
   gap: 10px; /* Space between items if your custom input has multiple */
-//   font-size: 1.1em;
+  //   font-size: 1.1em;
   color: #ffffff;
 }
 
 .dropdownArrow {
   display: flex; /* To center SVG */
   align-items: center;
-//   color: #e0e0e0; /* Color for the arrow icon */
+  //   color: #e0e0e0; /* Color for the arrow icon */
 }
 
 .dropdownArrow svg {
@@ -68,11 +68,11 @@
 }
 
 .dropdownContent {
-//   background-color: #343842; /* Background for the dropdown content */
-//   border-radius: 6px;
-//   margin-top: 10px; /* Space between header and content */
-//   padding: 15px;
-//   border: 1px solid #4a4f5d; /* Subtle border for content */
+  //   background-color: #343842; /* Background for the dropdown content */
+  //   border-radius: 6px;
+  //   margin-top: 10px; /* Space between header and content */
+  //   padding: 15px;
+  //   border: 1px solid #4a4f5d; /* Subtle border for content */
 }
 .buttonHeader {
   display: flex;
@@ -90,4 +90,7 @@
 .dropdownToggle {
   width: 100%;
   padding: 0px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
 }
