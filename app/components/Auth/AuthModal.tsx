@@ -87,7 +87,7 @@ const AuthModal: React.FC = () => {
             />
 
             {forgotPass ? (
-              <ForgotPass test={() => {}} />
+              <ForgotPass test={() => { }} />
             ) : showSignup ? (
               <Signup
                 onSignup={(token, dName) => {
