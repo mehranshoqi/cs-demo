@@ -67,6 +67,30 @@ interface PassRecoveryResponseData {
   };
 }
 
+interface GetProfileRequestBody {
+  type: "getProfile";
+  data: {
+    token: string;
+  };
+}
+
+interface GetProfileResponseData {
+  type: "getProfile";
+  status: 0 | 1;
+  data: {
+    balance: string;
+    created_at: string;
+    display_name: string;
+    email: string;
+    first_name: string;
+    id: number;
+    last_name: string;
+    password: string;
+    referred_by: string | null;
+    steam_id: string | null;
+  };
+}
+
 const AuthService = {
   register: (
     email: string,
@@ -118,6 +142,16 @@ const AuthService = {
       },
     };
     return api.post<PassRecoveryResponseData>("", requestBody);
+  },
+
+  getProfile: (token: string) => {
+    const requestBody: GetProfileRequestBody = {
+      type: "getProfile",
+      data: {
+        token,
+      },
+    };
+    return api.post<GetProfileResponseData>("", requestBody);
   },
 };
 

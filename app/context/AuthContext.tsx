@@ -8,6 +8,7 @@ import React, {
   ReactNode,
 } from "react";
 import { useUserStore } from "../store/userStore";
+import AuthService from "../services/auth/authService";
 
 interface AuthContextType {
   isAuthModalOpen: boolean;
@@ -28,11 +29,32 @@ interface AuthProviderProps {
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [isHydrated, setIsHydrated] = useState(false);
-  const { token, displayName, setToken, setDisplayName, logout: storeLogout, isAuthenticated } = useUserStore();
+  const { token, displayName, setToken, setDisplayName, logout: storeLogout, isAuthenticated, setUserId, setSteamId, setBalance } = useUserStore();
 
   useEffect(() => {
     setIsHydrated(true);
   }, []);
+
+  // Fetch user profile when site loads and user is authenticated
+  useEffect(() => {
+    if (isHydrated && token && isAuthenticated()) {
+      const fetchProfile = async () => {
+        try {
+          const response = await AuthService.getProfile(token);
+          if (response.data.status === 1) {
+            const { id, steam_id, balance } = response.data.data;
+            setUserId(id);
+            setSteamId(steam_id ?? "");
+            setBalance(balance);
+          }
+        } catch (error) {
+          console.error("Error fetching profile:", error);
+        }
+      };
+
+      fetchProfile();
+    }
+  }, [isHydrated, token, isAuthenticated]);
 
   const openAuthModal = () => {
     console.log("set modal true");

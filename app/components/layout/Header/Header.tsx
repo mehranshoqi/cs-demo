@@ -11,10 +11,11 @@ import HeaderDropDown from "./HeaderDropDown/HeaderDropDown";
 import React from "react";
 import UserAuthControls from "./HeaderDropDown/UserAuthControl";
 import FillButton from "../../commen/FilledButton/FilledButton";
+import { useUserStore } from "@/app/store/userStore";
 
 const Header: React.FC = () => {
   const router = useRouter();
-
+  const { balance } = useUserStore();
   const handleLogoClick = () => {
     router.push("/");
   };
@@ -42,7 +43,7 @@ const Header: React.FC = () => {
         />
       </div>
       <div className={styles.rightNavigation}>
-        <HeaderDropDown imageSrc={ImagePaths.icons.coin} title="0.00" />
+        <HeaderDropDown imageSrc={ImagePaths.icons.coin} title={balance} />
 
         <UserAuthControls />
 
