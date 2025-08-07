@@ -1,7 +1,8 @@
 "use client";
 
-import React, {  useRef, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useAuth } from "@/app/context/AuthContext";
 import styles from "./HeaderDropDown.module.scss";
 import ImagePaths from "@/app/constants/ImagePaths";
@@ -13,8 +14,9 @@ interface UserMenuDropdownProps {
 
 const UserMenuDropdown: React.FC<UserMenuDropdownProps> = ({ onClose, onLogout }) => {
   const { userDisplayName } = useAuth();
+  const router = useRouter();
   const dropdownRef = useRef<HTMLDivElement>(null);
-  
+
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -77,7 +79,14 @@ const UserMenuDropdown: React.FC<UserMenuDropdownProps> = ({ onClose, onLogout }
         />
         <h3>Transactions</h3>
       </div>
-      <div className={styles.menuItem}>
+      <div
+        className={styles.menuItem}
+        onClick={() => {
+          router.push("/profile");
+          onClose();
+        }}
+        style={{ cursor: "pointer" }}
+      >
         <Image src={ImagePaths.icons.user3} alt="icon" width={20} height={20} />
         <h3>Account info</h3>
       </div>
