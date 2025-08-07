@@ -13,6 +13,7 @@ import GameHistoryView from "./components/gameHistory/GameHistoryView";
 import StatisticsView from "./components/statistics/StatisticsView";
 import TradesView from "./components/trades/TradesView";
 import ErrorView from "./components/ErrorView";
+import { AuthRequired } from "../components/AuthRequired";
 
 const TAB_CONFIG = {
   profile: ProfileMenu.profile,
@@ -86,9 +87,11 @@ const ProfilePageContent = () => {
 
 const ProfilePage = () => {
   return (
-    <Suspense fallback={<div className={styles.profilePage}>Loading...</div>}>
-      <ProfilePageContent />
-    </Suspense>
+    <AuthRequired fallback={<div className={styles.profilePage}>Loading...</div>}>
+      <Suspense fallback={<div className={styles.profilePage}>Loading...</div>}>
+        <ProfilePageContent />
+      </Suspense>
+    </AuthRequired>
   );
 };
 
