@@ -5,43 +5,42 @@ import Input from "@/app/components/commen/Input/Input";
 import { useState } from "react";
 import { useUserStore } from "@/app/store/userStore";
 import AuthService from "@/app/services/auth/authService";
+import toast from "react-hot-toast";
 
 const ChangePasswordForm = () => {
-  const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isUpdating, setIsUpdating] = useState(false);
-  const { user_id } = useUserStore();
+  const { user_id, token } = useUserStore();
 
   const handleChangePassword = async () => {
-    if (!user_id || !currentPassword || !newPassword || !confirmPassword) {
-      console.log("Please fill all fields");
+    if (!user_id || !token || !newPassword || !confirmPassword) {
+      toast.error("Please fill all fields");
       return;
     }
 
     if (newPassword !== confirmPassword) {
-      console.log("New passwords do not match");
+      toast.error("New passwords do not match");
       return;
     }
 
     setIsUpdating(true);
     try {
-      const response = await AuthService.setPassword(
+      const response = await AuthService.passReset(
         newPassword,
-        "adminToken", // You might want to get this from environment or store
-        user_id
+        token
       );
 
       if (response.data.status === 1) {
-        console.log("Password changed successfully");
+        toast.success("Password changed successfully");
         // Clear form
-        setCurrentPassword("");
         setNewPassword("");
         setConfirmPassword("");
       } else {
-        console.log("Password change failed:", response.data);
+        toast.error("Password change failed");
       }
     } catch (error) {
+      toast.error("Error changing password");
       console.error("Error changing password:", error);
     } finally {
       setIsUpdating(false);
@@ -50,14 +49,6 @@ const ChangePasswordForm = () => {
 
   return (
     <div className={styles.editContainer}>
-      <Input
-        placeholder="Current Password"
-        label="Current Password"
-        type="password"
-        value={currentPassword}
-        onChange={(e) => setCurrentPassword(e.target.value)}
-      />
-      <div style={{ height: "var(--sds-size-space-600)" }}></div>
       <Input
         placeholder="New Password"
         label="New Password"

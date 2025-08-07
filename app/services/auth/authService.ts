@@ -109,17 +109,16 @@ interface UpdateProfileResponseData {
   data: string;
 }
 
-interface SetPasswordRequestBody {
-  type: "setPassword";
+interface PassResetRequestBody {
+  type: "passReset";
   data: {
     pass: string;
-    adminKey: string;
-    userID: number;
+    token: string;
   };
 }
 
-interface SetPasswordResponseData {
-  type: "setPassword";
+interface PassResetResponseData {
+  type: "passReset";
   status: 0 | 1;
   data: string;
 }
@@ -207,16 +206,15 @@ const AuthService = {
     return api.post<UpdateProfileResponseData>("", requestBody);
   },
 
-  setPassword: (pass: string, adminKey: string, userID: number) => {
-    const requestBody: SetPasswordRequestBody = {
-      type: "setPassword",
+  passReset: (pass: string, token: string) => {
+    const requestBody: PassResetRequestBody = {
+      type: "passReset",
       data: {
         pass,
-        adminKey,
-        userID,
+        token,
       },
     };
-    return api.post<SetPasswordResponseData>("", requestBody);
+    return api.post<PassResetResponseData>("", requestBody);
   },
 };
 
