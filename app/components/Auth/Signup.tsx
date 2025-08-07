@@ -4,6 +4,7 @@ import ImagePaths from "@/app/constants/ImagePaths";
 import AppInput from "../commen/Input/Input";
 import FillButton from "../commen/FilledButton/FilledButton";
 import AuthService from "@/app/services/auth/authService";
+import { useUserStore } from "@/app/store/userStore";
 
 interface SignupProps {
   onSignup: (token: string, display_name: string) => void;
@@ -14,6 +15,7 @@ const Signup: React.FC<SignupProps> = ({ onSignup }) => {
   const [username, setUsername] = useState<string>(""); // Maps to d_name in backend
   const [password, setPassword] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
+  const { setToken, setDisplayName } = useUserStore();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -28,8 +30,8 @@ const Signup: React.FC<SignupProps> = ({ onSignup }) => {
 
         if (loginRes.data.status === 1) {
           const { token, display_name } = loginRes.data.data;
-          localStorage.setItem("authToken", token);
-          localStorage.setItem("userDisplayName", display_name);
+          setToken(token);
+          setDisplayName(display_name);
           onSignup(token, display_name);
         }
       }
