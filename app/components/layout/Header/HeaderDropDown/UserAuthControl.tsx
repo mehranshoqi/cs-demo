@@ -4,6 +4,7 @@ import React, { useState } from "react";
 
 import ImagePaths from "@/app/constants/ImagePaths";
 import { useAuth } from "@/app/context/AuthContext";
+import { useUserStore } from "@/app/store/userStore";
 import HeaderDropDown from "./HeaderDropDown";
 import UserMenuDropdown from "./UserDropDown";
 import FillButton from "../../../commen/FilledButton/FilledButton";
@@ -12,11 +13,11 @@ import AuthService from "@/app/services/auth/authService";
 
 const UserAuthControls: React.FC = () => {
   const { openAuthModal, isLoggedIn, userDisplayName, logout } = useAuth();
+  const { token } = useUserStore();
   const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
 
   const handleLogout = async () => {
     try {
-      const token = localStorage.getItem("authToken");
       const response = await AuthService.logout(token ?? "");
       if (response.data.status === 1) {
         logout();

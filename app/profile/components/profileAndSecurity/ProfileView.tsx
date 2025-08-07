@@ -7,12 +7,14 @@ import { useModal } from "@/app/context/ModalContext";
 import ProfileEditModal from "./ProfileEditModal";
 import EditUserProfileForm from "./EditUserProfileForm";
 import VerifyEmailForm from "./VerifyEmailForm";
+import { useUserStore } from "@/app/store/userStore";
 const ProfileView = () => {
   const { isModalOpen, openModal, closeModal } = useModal();
+  const { displayName, email } = useUserStore();
   return (
     <div className={styles.viewContainer}>
       <ProfileRowDetails
-        title="Pooya" 
+        title={displayName ?? "User"}
         titleFontSize="22px"
         desc="Personalize your profile by updating your name and avatar"
         primaryBtn={false}
@@ -68,9 +70,9 @@ const ProfileView = () => {
               onClose={closeModal}
               content={
                 <VerifyEmailForm
-                  email="me33hran@mg.com"
-                  onCodeVerified={() => {}}
-                  onWrongEmail={() => {}}
+                  email={email ?? ""}
+                  onCodeVerified={() => { }}
+                  onWrongEmail={() => { }}
                 />
               }
             />,

@@ -67,6 +67,62 @@ interface PassRecoveryResponseData {
   };
 }
 
+interface GetProfileRequestBody {
+  type: "getProfile";
+  data: {
+    token: string;
+  };
+}
+
+interface GetProfileResponseData {
+  type: "getProfile";
+  status: 0 | 1;
+  data: {
+    balance: string;
+    created_at: string;
+    display_name: string;
+    email: string;
+    first_name: string;
+    id: number;
+    last_name: string;
+    password: string;
+    referred_by: string | null;
+    steam_id: string | null;
+  };
+  error?: string;
+}
+
+interface UpdateProfileRequestBody {
+  type: "updateProfile";
+  data: {
+    token: string;
+    display_name: string;
+    first_name: string;
+    last_name: string;
+    steam_id: string | null;
+  };
+}
+
+interface UpdateProfileResponseData {
+  type: "updateProfile";
+  status: 0 | 1;
+  data: string;
+}
+
+interface PassResetRequestBody {
+  type: "passReset";
+  data: {
+    pass: string;
+    token: string;
+  };
+}
+
+interface PassResetResponseData {
+  type: "passReset";
+  status: 0 | 1;
+  data: string;
+}
+
 const AuthService = {
   register: (
     email: string,
@@ -118,6 +174,47 @@ const AuthService = {
       },
     };
     return api.post<PassRecoveryResponseData>("", requestBody);
+  },
+
+  getProfile: (token: string) => {
+    const requestBody: GetProfileRequestBody = {
+      type: "getProfile",
+      data: {
+        token,
+      },
+    };
+    return api.post<GetProfileResponseData>("", requestBody);
+  },
+
+  updateProfile: (
+    token: string,
+    display_name: string,
+    first_name: string,
+    last_name: string,
+    steam_id: string | null
+  ) => {
+    const requestBody: UpdateProfileRequestBody = {
+      type: "updateProfile",
+      data: {
+        token,
+        display_name,
+        first_name,
+        last_name,
+        steam_id,
+      },
+    };
+    return api.post<UpdateProfileResponseData>("", requestBody);
+  },
+
+  passReset: (pass: string, token: string) => {
+    const requestBody: PassResetRequestBody = {
+      type: "passReset",
+      data: {
+        pass,
+        token,
+      },
+    };
+    return api.post<PassResetResponseData>("", requestBody);
   },
 };
 

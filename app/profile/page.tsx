@@ -13,6 +13,7 @@ import GameHistoryView from "./components/gameHistory/GameHistoryView";
 import StatisticsView from "./components/statistics/StatisticsView";
 import TradesView from "./components/trades/TradesView";
 import ErrorView from "./components/ErrorView";
+import { useAuth } from "../context/AuthContext";
 
 const TAB_CONFIG = {
   profile: ProfileMenu.profile,
@@ -85,6 +86,29 @@ const ProfilePageContent = () => {
 };
 
 const ProfilePage = () => {
+  const { isLoggedIn } = useAuth();
+  const router = useRouter();
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    if (isClient && !isLoggedIn) {
+      router.push("/");
+    }
+  }, [isLoggedIn, router, isClient]);
+
+  // Don't render anything until client-side hydration is complete
+  if (!isClient) {
+    return <div className={styles.profilePage}>Loading...</div>;
+  }
+
+  if (!isLoggedIn) {
+    return null;
+  }
+
   return (
     <Suspense fallback={<div className={styles.profilePage}>Loading...</div>}>
       <ProfilePageContent />
