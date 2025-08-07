@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import LinkButton from "../../commen/LinkButton/LinkButton";
 import styles from "./Header.module.scss";
 
@@ -12,10 +13,23 @@ import UserAuthControls from "./HeaderDropDown/UserAuthControl";
 import FillButton from "../../commen/FilledButton/FilledButton";
 
 const Header: React.FC = () => {
+  const router = useRouter();
+
+  const handleLogoClick = () => {
+    router.push("/");
+  };
+
   return (
     <header className={styles.header}>
       <div className={styles.leftNavigation}>
-        <Image src={ImagePaths.logos.logo} alt="Logo" width={149} height={44} />
+        <Image
+          src={ImagePaths.logos.logo}
+          alt="Logo"
+          width={149}
+          height={44}
+          onClick={handleLogoClick}
+          style={{ cursor: "pointer" }}
+        />
         <LinkButton
           src={ImagePaths.icons.merchant}
           href="/marketplace"
@@ -35,7 +49,7 @@ const Header: React.FC = () => {
         <FillButton
           title="Deposit"
           iconSrc={ImagePaths.icons.plusCircle}
-          onClick={() => {}}
+          onClick={() => { }}
         />
       </div>
     </header>
