@@ -7,6 +7,7 @@
   --Text-Color-TextBodyGray0000: #fff;
   --Text-Color-TextTitleGray000: #fff;
   --Text-Color-TextBodyGray300: #9dabbd;
+  --Text-Color-TextBodyGray600: #9dabbd;
   --Text-Color-TextSubtitleGray400: #7f8d9f;
   --Text-Color-TextPrimary300: #b282fc;
   --Text-Color-TextPrimary500: #7d2efa;
@@ -20,6 +21,7 @@
   --Gray700: #475566;
   --Gray800: #222d3b;
   --Gray900: #121925;
+  --Gray930: #0C111C;
   --Gray950: #060b15;
 
   --BgPrimary500: rgba(125, 46, 250, 1);

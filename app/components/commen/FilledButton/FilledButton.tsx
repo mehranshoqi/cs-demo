@@ -5,6 +5,7 @@ interface FillButtonProps {
   title?: string;
   onClick?: () => void;
   iconSrc?: string;
+  iconRightSrc?: string;
   iconSize?: number;
   padding?: string;
   iconColor?: string;
@@ -33,6 +34,7 @@ export default function FillButton({
   disabled,
   loading,
   circleBtn,
+  iconRightSrc,
 }: FillButtonProps) {
   return (
     <button
@@ -66,7 +68,7 @@ export default function FillButton({
           }}
         />
       )}
-      {title &&
+      {title && (
         <span
           className={`${styles.title}`}
           style={{
@@ -77,7 +79,19 @@ export default function FillButton({
         >
           {title} {loading ? "..." : ""}
         </span>
-      }
+      )}
+      {iconRightSrc && (
+        <Image
+          src={iconRightSrc}
+          alt=""
+          width={24}
+          height={24}
+          className={styles.icon}
+          style={{
+            margin: "0px 0px 0px 8px",
+          }}
+        />
+      )}
     </button>
   );
 }

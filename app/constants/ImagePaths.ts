@@ -139,6 +139,7 @@ const ImagePaths = {
   },
   caseBattle: {
     background: "/images/bg-case-battle.png",
+    battleLoading: "/images/loading.svg",
     arrowLeft: "/images/arrow-left.svg",
     volumeHigh: "/images/volume-high.svg",
     shieldCheck: "/images/shield-check.svg",
