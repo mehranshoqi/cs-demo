@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ReactNode } from "react";
+import { useUserStore } from "../store/userStore";
 
 interface AuthRequiredProps {
     children: ReactNode;
@@ -16,24 +17,18 @@ export const AuthRequired: React.FC<AuthRequiredProps> = ({
     fallback = <div>Loading...</div>
 }) => {
     const router = useRouter();
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const { isAuthenticated, token } = useUserStore();
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        const checkAuth = () => {
-            const token = localStorage.getItem("authToken");
-
+        if (typeof window !== "undefined") {
             if (!token || token.trim() === "") {
                 router.push(redirectTo);
                 return;
             }
-
-            setIsAuthenticated(true);
             setIsLoading(false);
-        };
-
-        checkAuth();
-    }, [router, redirectTo]);
+        }
+    }, [token, router, redirectTo]);
 
     if (isLoading) {
         return <>{fallback}</>;
@@ -48,12 +43,6 @@ export const AuthRequired: React.FC<AuthRequiredProps> = ({
 
 // Simple hook for checking auth status
 export const useAuthCheck = () => {
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-    useEffect(() => {
-        const token = localStorage.getItem("authToken");
-        setIsAuthenticated(!!(token && token.trim() !== ""));
-    }, []);
-
+    const { isAuthenticated } = useUserStore();
     return isAuthenticated;
 };
