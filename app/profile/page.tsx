@@ -88,12 +88,22 @@ const ProfilePageContent = () => {
 const ProfilePage = () => {
   const { isLoggedIn } = useAuth();
   const router = useRouter();
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    if (!isLoggedIn) {
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    if (isClient && !isLoggedIn) {
       router.push("/");
     }
-  }, [isLoggedIn, router]);
+  }, [isLoggedIn, router, isClient]);
+
+  // Don't render anything until client-side hydration is complete
+  if (!isClient) {
+    return <div className={styles.profilePage}>Loading...</div>;
+  }
 
   if (!isLoggedIn) {
     return null;

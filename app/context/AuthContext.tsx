@@ -27,7 +27,12 @@ interface AuthProviderProps {
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const [isHydrated, setIsHydrated] = useState(false);
   const { token, displayName, setToken, setDisplayName, logout: storeLogout, isAuthenticated } = useUserStore();
+
+  useEffect(() => {
+    setIsHydrated(true);
+  }, []);
 
   const openAuthModal = () => {
     console.log("set modal true");
@@ -50,7 +55,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     isAuthModalOpen,
     openAuthModal,
     closeAuthModal,
-    isLoggedIn: isAuthenticated(),
+    isLoggedIn: isHydrated ? isAuthenticated() : false,
     userDisplayName: displayName,
     login,
     logout,
