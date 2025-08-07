@@ -89,6 +89,7 @@ interface GetProfileResponseData {
     referred_by: string | null;
     steam_id: string | null;
   };
+  error?: string;
 }
 
 interface UpdateProfileRequestBody {
@@ -104,6 +105,21 @@ interface UpdateProfileRequestBody {
 
 interface UpdateProfileResponseData {
   type: "updateProfile";
+  status: 0 | 1;
+  data: string;
+}
+
+interface SetPasswordRequestBody {
+  type: "setPassword";
+  data: {
+    pass: string;
+    adminKey: string;
+    userID: number;
+  };
+}
+
+interface SetPasswordResponseData {
+  type: "setPassword";
   status: 0 | 1;
   data: string;
 }
@@ -189,6 +205,18 @@ const AuthService = {
       },
     };
     return api.post<UpdateProfileResponseData>("", requestBody);
+  },
+
+  setPassword: (pass: string, adminKey: string, userID: number) => {
+    const requestBody: SetPasswordRequestBody = {
+      type: "setPassword",
+      data: {
+        pass,
+        adminKey,
+        userID,
+      },
+    };
+    return api.post<SetPasswordResponseData>("", requestBody);
   },
 };
 

@@ -47,6 +47,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
             setSteamId(steam_id ?? "");
             setBalance(balance);
             setEmail(email ?? "");
+          } else {
+            logout();
           }
         } catch (error) {
           console.error("Error fetching profile:", error);

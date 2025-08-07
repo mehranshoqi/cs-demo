@@ -46,10 +46,7 @@ const EditUserProfileForm = () => {
 
       if (response.data.status === 1) {
         setDisplayName(newDisplayName.trim());
-        onClose();
         console.log("Profile updated successfully");
-      } else {
-        console.log("Profile update failed:", response.data);
       }
     } catch (error) {
       console.error("Error updating profile:", error);
