@@ -13,7 +13,7 @@ import GameHistoryView from "./components/gameHistory/GameHistoryView";
 import StatisticsView from "./components/statistics/StatisticsView";
 import TradesView from "./components/trades/TradesView";
 import ErrorView from "./components/ErrorView";
-import { AuthRequired } from "../components/AuthRequired";
+import { useAuth } from "../context/AuthContext";
 
 const TAB_CONFIG = {
   profile: ProfileMenu.profile,
@@ -86,12 +86,23 @@ const ProfilePageContent = () => {
 };
 
 const ProfilePage = () => {
+  const { isLoggedIn } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      router.push("/");
+    }
+  }, [isLoggedIn, router]);
+
+  if (!isLoggedIn) {
+    return null;
+  }
+
   return (
-    <AuthRequired fallback={<div className={styles.profilePage}>Loading...</div>}>
-      <Suspense fallback={<div className={styles.profilePage}>Loading...</div>}>
-        <ProfilePageContent />
-      </Suspense>
-    </AuthRequired>
+    <Suspense fallback={<div className={styles.profilePage}>Loading...</div>}>
+      <ProfilePageContent />
+    </Suspense>
   );
 };
 

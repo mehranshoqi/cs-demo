@@ -7,6 +7,7 @@ import React, {
   useEffect,
   ReactNode,
 } from "react";
+import { useUserStore } from "../store/userStore";
 
 interface AuthContextType {
   isAuthModalOpen: boolean;
@@ -26,39 +27,7 @@ interface AuthProviderProps {
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userDisplayName, setUserDisplayName] = useState<string | null>(null);
-
-  useEffect(() => {
-    const token = localStorage.getItem("authToken");
-    const displayName = localStorage.getItem("userDisplayName");
-
-    if (token && displayName) {
-      setIsLoggedIn(true);
-      setUserDisplayName(displayName);
-    } else {
-      setIsLoggedIn(false);
-      setUserDisplayName(null);
-    }
-
-    const handleStorageChange = () => {
-      const updatedToken = localStorage.getItem("authToken");
-      const updatedDisplayName = localStorage.getItem("userDisplayName");
-      if (updatedToken && updatedDisplayName) {
-        setIsLoggedIn(true);
-        setUserDisplayName(updatedDisplayName);
-      } else {
-        setIsLoggedIn(false);
-        setUserDisplayName(null);
-      }
-    };
-
-    window.addEventListener("storage", handleStorageChange);
-
-    return () => {
-      window.removeEventListener("storage", handleStorageChange);
-    };
-  }, []);
+  const { token, displayName, setToken, setDisplayName, logout: storeLogout, isAuthenticated } = useUserStore();
 
   const openAuthModal = () => {
     console.log("set modal true");
@@ -68,26 +37,21 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const closeAuthModal = () => setIsAuthModalOpen(false);
 
   const login = (token: string, displayName: string) => {
-    localStorage.setItem("authToken", token);
-    localStorage.setItem("userDisplayName", displayName);
-    setIsLoggedIn(true);
-    setUserDisplayName(displayName);
+    setToken(token);
+    setDisplayName(displayName);
     closeAuthModal();
   };
 
   const logout = () => {
-    localStorage.removeItem("authToken");
-    localStorage.removeItem("userDisplayName");
-    setIsLoggedIn(false);
-    setUserDisplayName(null);
+    storeLogout();
   };
 
   const value = {
     isAuthModalOpen,
     openAuthModal,
     closeAuthModal,
-    isLoggedIn,
-    userDisplayName,
+    isLoggedIn: isAuthenticated(),
+    userDisplayName: displayName,
     login,
     logout,
   };
