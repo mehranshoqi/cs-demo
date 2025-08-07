@@ -91,6 +91,23 @@ interface GetProfileResponseData {
   };
 }
 
+interface UpdateProfileRequestBody {
+  type: "updateProfile";
+  data: {
+    token: string;
+    display_name: string;
+    first_name: string;
+    last_name: string;
+    steam_id: string | null;
+  };
+}
+
+interface UpdateProfileResponseData {
+  type: "updateProfile";
+  status: 0 | 1;
+  data: string;
+}
+
 const AuthService = {
   register: (
     email: string,
@@ -152,6 +169,26 @@ const AuthService = {
       },
     };
     return api.post<GetProfileResponseData>("", requestBody);
+  },
+
+  updateProfile: (
+    token: string,
+    display_name: string,
+    first_name: string,
+    last_name: string,
+    steam_id: string | null
+  ) => {
+    const requestBody: UpdateProfileRequestBody = {
+      type: "updateProfile",
+      data: {
+        token,
+        display_name,
+        first_name,
+        last_name,
+        steam_id,
+      },
+    };
+    return api.post<UpdateProfileResponseData>("", requestBody);
   },
 };
 
