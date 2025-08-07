@@ -29,7 +29,7 @@ interface AuthProviderProps {
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [isHydrated, setIsHydrated] = useState(false);
-  const { token, displayName, setToken, setDisplayName, logout: storeLogout, isAuthenticated, setUserId, setSteamId, setBalance } = useUserStore();
+  const { token, displayName, setToken, setDisplayName, logout: storeLogout, isAuthenticated, setUserId, setSteamId, setBalance, setEmail } = useUserStore();
 
   useEffect(() => {
     setIsHydrated(true);
@@ -42,10 +42,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         try {
           const response = await AuthService.getProfile(token);
           if (response.data.status === 1) {
-            const { id, steam_id, balance } = response.data.data;
+            const { id, steam_id, balance, email } = response.data.data;
             setUserId(id);
             setSteamId(steam_id ?? "");
             setBalance(balance);
+            setEmail(email ?? "");
           }
         } catch (error) {
           console.error("Error fetching profile:", error);

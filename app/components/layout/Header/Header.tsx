@@ -43,7 +43,7 @@ const Header: React.FC = () => {
         />
       </div>
       <div className={styles.rightNavigation}>
-        <HeaderDropDown imageSrc={ImagePaths.icons.coin} title={balance} />
+        <HeaderDropDown imageSrc={ImagePaths.icons.coin} title={balance ?? "0.00"} />
 
         <UserAuthControls />
 
