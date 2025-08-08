@@ -307,6 +307,7 @@ class SocialAuthService {
      */
     private async authenticateWithBackend(provider: string, user: SocialUser): Promise<string> {
         try {
+            console.log('🔄 user :', user);
             console.log('🔄 Sending authorization code to backend...');
             console.log('📤 Request to backend:', {
                 provider,
