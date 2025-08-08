@@ -20,6 +20,7 @@
   font-weight: 500;
   font-size: 14px;
   color: var(--text-color);
+  text-transform: capitalize;
 }
 
 .arrow {
@@ -79,6 +80,8 @@
 }
 
 .customBorder {
+
+.customBorder {
   width: 100%;
   height: 4;
   border-top: 1px solid var(--Gray900);
@@ -92,6 +95,7 @@
   align-items: center;
   gap: 10px;
   height: 48px;
+
   h3 {
     font-size: 14px;
     font-weight: 600;

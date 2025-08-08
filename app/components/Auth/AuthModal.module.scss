@@ -10,7 +10,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 90000;
+  z-index: 100;
 
   //   opacity: 0;
   //   visibility: hidden;
@@ -92,6 +92,7 @@
       color: #999;
     }
   }
+
   img {
     filter: brightness(0) invert(1);
   }
@@ -129,9 +130,11 @@
     height: 2px;
     background-color: var(--Gray800);
   }
+
   &::before {
     left: 0;
   }
+
   &::after {
     right: 0;
   }
@@ -142,6 +145,14 @@
   gap: 10px;
   width: 100%;
   justify-content: center;
+
+  button {
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateY(-4px);
+    }
+  }
 }
 
 .socialButton {
@@ -160,6 +171,7 @@
   &:hover {
     background-color: #3a3a4c;
   }
+
   img {
     filter: brightness(0) invert(1);
   }
@@ -220,17 +232,16 @@
     width: 100%;
     height: 100%;
     border-radius: 12px;
-    background: linear-gradient(
-      180deg,
-      rgba(99, 37, 200, 0) 0%,
-      rgba(99, 37, 200, 0.24) 67.29%,
-      #6325c8 100%
-    );
+    background: linear-gradient(180deg,
+        rgba(99, 37, 200, 0) 0%,
+        rgba(99, 37, 200, 0.24) 67.29%,
+        #6325c8 100%);
   }
 }
 
 .auth-modal-fade-enter {
   opacity: 0;
+
   .modalContent {
     transform: translateY(-50px);
   }
@@ -238,14 +249,18 @@
 
 .auth-modal-fade-enter-active {
   opacity: 1;
+
   .modalContent {
     transform: translateY(0);
   }
-  transition: opacity 300ms ease-in, transform 300ms ease-in;
+
+  transition: opacity 300ms ease-in,
+  transform 300ms ease-in;
 }
 
 .auth-modal-fade-exit {
   opacity: 1;
+
   .modalContent {
     transform: translateY(0);
   }
@@ -253,10 +268,13 @@
 
 .auth-modal-fade-exit-active {
   opacity: 0;
+
   .modalContent {
     transform: translateY(-50px);
   }
-  transition: opacity 300ms ease-out, transform 300ms ease-out;
+
+  transition: opacity 300ms ease-out,
+  transform 300ms ease-out;
 }
 
 .banner {
@@ -306,6 +324,7 @@
   h3 {
     color: var(--Text-Color-TextSubtitleGray400);
   }
+
   span {
     color: var(--Text-Color-TextPrimary500);
     transition: all 0.3s;

@@ -10,12 +10,30 @@ import OutlinedButton from "../commen/OutlinedButton/OutlinedButton";
 import Signup from "./Signup";
 import Signin from "./Signin";
 import ForgotPass from "./ForgotPass";
+import { useSocialLogin } from "@/app/hooks/useSocialLogin";
+import { SocialUser } from "@/app/services/auth/socialAuthService";
+import toast from "react-hot-toast";
 
 const AuthModal: React.FC = () => {
   const { isAuthModalOpen, closeAuthModal, login } = useAuth();
   const [showSignup, setShowSignup] = useState(true);
   const [forgotPass, setForgotPass] = useState(false);
   const nodeRef = useRef(null);
+
+  // Social login hook
+  const {
+    isLoading: isSocialLoading,
+    error: socialError,
+    loginWithSteam,
+    loginWithGoogle,
+    loginWithDiscord,
+    clearError
+  } = useSocialLogin((user: SocialUser, token: string) => {
+    // Handle successful social login
+    login(token, user.name);
+    resetFormState();
+    toast.success(`Successfully logged in with ${user.provider}!`);
+  });
 
   const resetFormState = useCallback(() => {
     closeAuthModal();
@@ -24,6 +42,14 @@ const AuthModal: React.FC = () => {
       setShowSignup(true);
     }, 800);
   }, [closeAuthModal]);
+
+  // Show toast for social login errors
+  useEffect(() => {
+    if (socialError) {
+      toast.error(socialError);
+      clearError();
+    }
+  }, [socialError, clearError]);
 
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
@@ -123,7 +149,8 @@ const AuthModal: React.FC = () => {
                 </div>
 
                 <p className={styles.orDivider}>or</p>
-                <div className={styles.socialLogins}>
+
+                <div id="social-logins" className={styles.socialLogins}>
                   <OutlinedButton
                     fontSize={16}
                     fontWeight={600}
@@ -134,6 +161,8 @@ const AuthModal: React.FC = () => {
                     borderColor="var(--Gray800)"
                     bgColor="var(--Gray900)"
                     titleColor="var(--Text-Color-TextBodyGray300)"
+                    onClick={loginWithSteam}
+                    disabled={isSocialLoading}
                   />
                   <OutlinedButton
                     fontSize={16}
@@ -146,6 +175,8 @@ const AuthModal: React.FC = () => {
                     iconSize={16}
                     bgColor="var(--Gray900)"
                     titleColor="var(--Text-Color-TextBodyGray300)"
+                    onClick={loginWithGoogle}
+                    disabled={isSocialLoading}
                   />
                   <OutlinedButton
                     fontSize={16}
@@ -158,6 +189,8 @@ const AuthModal: React.FC = () => {
                     iconSize={16}
                     bgColor="var(--Gray900)"
                     titleColor="var(--Text-Color-TextBodyGray300)"
+                    onClick={loginWithDiscord}
+                    disabled={isSocialLoading}
                   />
                 </div>
                 <p className={styles.signupPolicy}>

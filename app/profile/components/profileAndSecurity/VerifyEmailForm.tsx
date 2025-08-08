@@ -24,7 +24,7 @@ const VerifyEmailForm: React.FC<VerifyEmailFormProps> = ({
       <div style={{ height: "var(--sds-size-space-600)" }}></div>{" "}
       <p>We’ve sent a 6-digit verification code to:</p>
       <div style={{ height: "var(--sds-size-space-300)" }}></div>{" "}
-      <p className={styles.email}>Mehran@gmail.com</p>
+      <p className={styles.email}>{email}</p>
       <div style={{ height: "var(--sds-size-space-300)" }}></div>{" "}
       <p className={styles.wrongEmail}>Wrong email adress?</p>
       <div style={{ height: "var(--sds-size-space-800)" }}></div>

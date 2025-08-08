@@ -4,11 +4,16 @@ import styles from "../../Profile.module.scss";
 import { useState, useRef, ChangeEvent } from "react";
 import OutlinedButton from "@/app/components/commen/OutlinedButton/OutlinedButton";
 import Input from "@/app/components/commen/Input/Input";
+import { useUserStore } from "@/app/store/userStore";
+import AuthService from "@/app/services/auth/authService";
+import FillButton from "@/app/components/commen/FilledButton/FilledButton";
 
 const EditUserProfileForm = () => {
   const [profileImage, setProfileImage] = useState<string | null>(null);
+  const [newDisplayName, setNewDisplayName] = useState<string>("");
+  const [isUpdating, setIsUpdating] = useState<boolean>(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
-
+  const { displayName, token, user_id, steam_id, setDisplayName } = useUserStore();
   const handleChoosePhotoClick = () => {
     fileInputRef.current?.click();
   };
@@ -23,6 +28,31 @@ const EditUserProfileForm = () => {
 
   const handleRemovePhoto = () => {
     setProfileImage(null);
+  };
+
+  const handleUpdateProfile = async () => {
+    if (!token || !newDisplayName.trim()) return;
+
+    setIsUpdating(true);
+
+    try {
+      const response = await AuthService.updateProfile(
+        token,
+        newDisplayName.trim(),
+        "",
+        "",
+        steam_id
+      );
+
+      if (response.data.status === 1) {
+        setDisplayName(newDisplayName.trim());
+        console.log("Profile updated successfully");
+      }
+    } catch (error) {
+      console.error("Error updating profile:", error);
+    } finally {
+      setIsUpdating(false);
+    }
   };
 
   return (
@@ -87,12 +117,23 @@ const EditUserProfileForm = () => {
       <div style={{ height: "var(--sds-size-space-800)" }}></div>
       <Input
         placeholder="Username"
-        value="Mehran"
+        value={newDisplayName || displayName || ""}
+        onChange={(e) => setNewDisplayName(e.target.value)}
         iconSrc={ImagePaths.icons.user}
         label="Username"
         height={48}
       />
       <div style={{ height: "var(--sds-size-space-600)" }}></div>
+
+      <FillButton
+        title={isUpdating ? "Updating..." : "Save Changes"}
+        width="100%"
+        height={48}
+        fontSize={16}
+        fontWeight={600}
+        filledColor="rgba(255,255,255,.06)"
+        onClick={handleUpdateProfile}
+      />
     </div>
   );
 };

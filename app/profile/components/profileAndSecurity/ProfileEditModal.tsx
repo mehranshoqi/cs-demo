@@ -1,7 +1,6 @@
 import Image from "next/image";
 import styles from "../../Profile.module.scss";
 import ImagePaths from "@/app/constants/ImagePaths";
-import FillButton from "@/app/components/commen/FilledButton/FilledButton";
 import { ReactNode } from "react";
 
 interface ProfileEditModalProps {
@@ -30,16 +29,6 @@ const ProfileEditModal: React.FC<ProfileEditModalProps> = ({
 
       <div className={styles.content}>
         {content}
-        <FillButton
-          title={buttonTitle}
-          width="100%"
-          height={48}
-          fontSize={16}
-          filledColor={
-            primaryBtn ? "var(--Primary500)" : "rgba(255,255,255,.06)"
-          }
-          fontWeight={600}
-        />
       </div>
     </div>
   );

@@ -4,6 +4,7 @@ import ImagePaths from "@/app/constants/ImagePaths";
 import AppInput from "../commen/Input/Input";
 import FillButton from "../commen/FilledButton/FilledButton";
 import AuthService from "@/app/services/auth/authService";
+import { useUserStore } from "@/app/store/userStore";
 
 interface SigninProps {
   onForgotPass: () => void;
@@ -14,19 +15,19 @@ const Signin: React.FC<SigninProps> = ({ onForgotPass, onSignIn }) => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
+  const { setToken, setDisplayName } = useUserStore();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-
 
     try {
       const response = await AuthService.login(email, password);
 
       if (response.data.status === 1) {
         const { token, display_name } = response.data.data;
-        localStorage.setItem("authToken", token);
-        localStorage.setItem("userDisplayName", display_name);
+        setToken(token);
+        setDisplayName(display_name);
         onSignIn(token, display_name);
       } else {
       }

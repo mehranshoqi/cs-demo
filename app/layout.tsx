@@ -35,7 +35,15 @@ export default function RootLayout({
           <body className={chakraPetch.className}>
             <Header />
             <main style={{ paddingTop: 60 }}>{children}</main>
-            <Toaster position="bottom-center" reverseOrder={false} />
+            <Toaster
+              position="bottom-center"
+              reverseOrder={false}
+              toastOptions={{
+                style: {
+                  zIndex: 101,
+                },
+              }}
+            />
             <Footer />
             <AuthModal />
             <AppModal />

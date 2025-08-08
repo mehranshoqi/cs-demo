@@ -40,14 +40,14 @@ const ProfileRowDetails: React.FC<ProfileRowDetailsProps> = ({
           {titleIcon && (
             <SolidSvg path={titleIcon} width={20} height={20} color="white" />
           )}
-          <h3 style={{ fontSize: titleFontSize }}>{title}</h3>
+          <h3 style={{ fontSize: titleFontSize, textTransform: 'capitalize' }}>{title}</h3>
           {titleRightBadge}
         </div>
-        <p style={{fontSize: descFontSize}}>{desc}</p>
+        <p style={{ fontSize: descFontSize }}>{desc}</p>
       </div>
       {buttonLabel && (
         <FillButton
-          onClick={ onButtonClick}
+          onClick={onButtonClick}
           width={buttonWidth ?? 180}
           height={40}
           disabled={disabled}
