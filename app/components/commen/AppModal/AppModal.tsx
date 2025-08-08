@@ -55,7 +55,11 @@ const AppModal: React.FC = () => {
           exit={{ opacity: 0, y: 0 }}
           transition={{ duration: 0.25 }}
         >
-          <div className={`${styles.modalOverlay} ${disappearAnimation ? styles.toFade : undefined}`}>
+          <div
+            className={`${styles.modalOverlay} ${
+              disappearAnimation ? styles.toFade : undefined
+            }`}
+          >
             <div
               ref={nodeRef}
               className={`${styles.modalContent} ${

@@ -29,7 +29,7 @@
   font-size: 14px;
   line-height: 18px;
   text-align: center;
-  color: #9DABBD;
+  color: #9dabbd;
 }
 
 .gameHistoryCaseDetails {
@@ -40,9 +40,14 @@
   text-align: center;
   padding: 16px 24px;
   height: 273px;
-  border: 1px solid #222D3B;
+  border: 1px solid #222d3b;
   border-radius: 12px;
-  background: linear-gradient(180deg, rgba(99, 37, 200, 0) 0%, rgba(99, 37, 200, 0.048) 67.29%, rgba(99, 37, 200, 0.2) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(99, 37, 200, 0) 0%,
+    rgba(99, 37, 200, 0.048) 67.29%,
+    rgba(99, 37, 200, 0.2) 100%
+  );
   border-radius: 0px 0px 12px 12px;
   margin-bottom: 8px;
 
@@ -53,7 +58,7 @@
     font-size: 16px;
     line-height: 21px;
     text-align: center;
-    color: #9DABBD;
+    color: #9dabbd;
   }
 
   .sticker {
@@ -62,7 +67,7 @@
     font-size: 14px;
     line-height: 18px;
     text-align: center;
-    color: #9DABBD;
+    color: #9dabbd;
   }
 
   .supercharger {
@@ -70,7 +75,7 @@
     font-weight: 600;
     font-size: 14px;
     line-height: 18px;
-    color: #F1F5F9;
+    color: #f1f5f9;
   }
 }
 
@@ -93,7 +98,8 @@
     background-color: var(--Gray900);
   }
 
-  img {}
+  img {
+  }
 
   p {
     font-size: 14px;
@@ -288,12 +294,12 @@
 
   padding: 6px 0px;
 
-  >input {
+  > input {
     font-size: 14px;
     font-weight: 400;
   }
 
-  >input::placeholder {
+  > input::placeholder {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -535,10 +541,12 @@
     justify-content: center;
     align-items: center;
     border-radius: 12px;
-    background: linear-gradient(180deg,
-        rgba(99, 37, 200, 0) 0%,
-        rgba(99, 37, 200, 0.1) 67.29%,
-        rgba(99, 37, 200, 0.4) 100%);
+    background: linear-gradient(
+      180deg,
+      rgba(99, 37, 200, 0) 0%,
+      rgba(99, 37, 200, 0.1) 67.29%,
+      rgba(99, 37, 200, 0.4) 100%
+    );
 
     div {
       width: 100%;

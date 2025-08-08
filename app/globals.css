@@ -125,4 +125,6 @@ body {
   border-radius: 16px;
 }
 
-
+body {
+  overflow-x: hidden;
+}

@@ -1,4 +1,3 @@
-
 import FillButton from "@/app/components/commen/FilledButton/FilledButton";
 import styles from "../../Profile.module.scss";
 import Input from "@/app/components/commen/Input/Input";
@@ -8,6 +7,7 @@ import AuthService from "@/app/services/auth/authService";
 import toast from "react-hot-toast";
 
 const ChangePasswordForm = () => {
+  const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isUpdating, setIsUpdating] = useState(false);
@@ -26,10 +26,7 @@ const ChangePasswordForm = () => {
 
     setIsUpdating(true);
     try {
-      const response = await AuthService.passReset(
-        newPassword,
-        token
-      );
+      const response = await AuthService.passReset(newPassword, token);
 
       if (response.data.status === 1) {
         toast.success("Password changed successfully");
@@ -49,6 +46,14 @@ const ChangePasswordForm = () => {
 
   return (
     <div className={styles.editContainer}>
+      <Input
+        placeholder="Current Password"
+        label="Current Password"
+        type="password"
+        value={currentPassword}
+        onChange={(e) => setCurrentPassword(e.target.value)}
+      />
+      <div style={{ height: "var(--sds-size-space-600)" }}></div>
       <Input
         placeholder="New Password"
         label="New Password"

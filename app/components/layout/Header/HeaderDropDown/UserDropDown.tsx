@@ -45,7 +45,17 @@ const UserMenuDropdown: React.FC<UserMenuDropdownProps> = ({
     <div ref={dropdownRef} className={styles.menuContainer}>
       {/* Header Section */}
       <div className={styles.DNameWrapper}>
-        <h2 className={styles.userDName}>Hi, {userDisplayName || ""}!</h2>
+        <h2
+          style={{
+            textOverflow: "ellipsis",
+            width: "100px",
+            flexGrow: '1',
+            overflowX: 'clip',
+          }}
+          className={styles.userDName}
+        >
+          Hi, {userDisplayName || ""}!
+        </h2>
         <div className={styles.steamConnection}>
           <Image
             src={ImagePaths.icons.steam2}

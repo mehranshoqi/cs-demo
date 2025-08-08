@@ -122,6 +122,7 @@ const ImagePaths = {
     authBanner: "/images/authBanner.svg",
     authPattern: "/images/authPattern.svg",
     lightStarBg: "/images/light-star-bg.png",
+    depositBG: "/images/depositBG.svg",
     bgCaseBattle: "/images/bg-case-battle.png",
     arrowLeft: "/images/arrow-left.svg",
     shieldCheck: "/images/shield-check.svg",

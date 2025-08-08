@@ -29,7 +29,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" >
       <AuthProvider>
         <ModalProvider>
           <body className={chakraPetch.className}>
