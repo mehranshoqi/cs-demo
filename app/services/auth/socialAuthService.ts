@@ -87,7 +87,6 @@ class SocialAuthService {
 
             // Wait for popup to complete
             const result = await this.waitForPopupResult(popup);
-            console.log('🔄 result waitForPopupResult :', result);
 
             if (result.success && result.user) {
                 // Simulate API call to your backend
@@ -156,10 +155,6 @@ class SocialAuthService {
 
         const authUrl = `${baseUrls[provider]}?${params.toString()}`;
 
-        console.log('🚀 Building Auth URL for', provider);
-        console.log('🔗 Auth URL:', authUrl);
-        console.log('⚙️ Config:', config);
-
         return authUrl;
     }
 
@@ -183,8 +178,6 @@ class SocialAuthService {
                     if (popup.location.href.includes('/auth/callback/')) {
                         this.clearInterval();
                         popup.close();
-
-                        console.log('🎉 Popup redirected to callback URL:', popup.location.href);
 
                         // Parse the callback URL to extract user data
                         const userData = this.parseCallbackUrl(popup.location.href);
@@ -210,15 +203,7 @@ class SocialAuthService {
             const state = params.get('state');
 
             // Log all information coming from provider
-            console.log('🔍 Provider Callback Information:');
-            console.log('📋 Full URL:', url);
-            console.log('🔑 Authorization Code:', code);
-            console.log('❌ Error (if any):', error);
-            console.log('🎯 State:', state);
-            console.log('📝 All URL Parameters:', Object.fromEntries(params.entries()));
-
             if (error) {
-                console.log('❌ Provider returned error:', error);
                 return {
                     success: false,
                     error: 'Login was cancelled or failed. Please try again.'
@@ -226,7 +211,6 @@ class SocialAuthService {
             }
 
             if (!code) {
-                console.log('❌ No authorization code received');
                 return {
                     success: false,
                     error: 'Login failed. Please try again.'
@@ -235,7 +219,6 @@ class SocialAuthService {
 
             // Extract provider from URL
             const provider = this.extractProviderFromUrl(url);
-            console.log('🏷️ Detected Provider:', provider);
 
             // Create user object with authorization code
             // The backend will exchange this code for user data
@@ -247,15 +230,11 @@ class SocialAuthService {
                 provider: provider as 'steam' | 'google' | 'discord'
             };
 
-            console.log('👤 Created User Object with Authorization Code:', user);
-            console.log('💡 Note: User data (email, name, avatar) will be populated by backend after code exchange');
-
             return {
                 success: true,
                 user: user
             };
         } catch (error) {
-            console.log('❌ Error parsing callback URL:', error);
             return {
                 success: false,
                 error: 'Login failed. Please try again.'
@@ -308,14 +287,6 @@ class SocialAuthService {
      */
     private async authenticateWithBackend(provider: string, user: SocialUser): Promise<string> {
         try {
-            console.log('🔄 user :', user);
-            console.log('🔄 Sending authorization code to backend...');
-            console.log('📤 Request to backend:', {
-                provider,
-                authorizationCode: user.id,
-                note: 'Backend should exchange this code for user data from Google API'
-            });
-
             // user.id contains the authorization code from the provider
             // We only send the authorization code to backend
             // Backend will handle extracting user data from the provider
@@ -327,21 +298,9 @@ class SocialAuthService {
                 60 // expire_in: 60 minutes
             );
 
-            console.log('📥 Backend response:', response.data);
-
             if (response.data.status === 1) {
-                console.log('✅ Backend authentication successful');
-                console.log('🎉 User token received:', response.data.data.token);
-                console.log('👤 User display name:', response.data.data.display_name);
-                console.log('💡 Expected user data from backend:', {
-                    id: '116145682858680615700',
-                    name: 'milad davodabadi',
-                    email: 'persianfars@gmail.com',
-                    avatar: 'https://lh3.googleusercontent.com/a/ACg8ocLhSHsqoUAT2LTOZxK0LayJLrxveubCHalyGymcRVLnrCC6UQ6w=s96-c'
-                });
                 return response.data.data.token; // Return the user token from backend
             } else {
-                console.log('❌ Backend authentication failed:', response.data.error);
                 throw new Error(response.data.error || 'Authentication failed');
             }
         } catch (error) {
