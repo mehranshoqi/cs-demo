@@ -20,6 +20,7 @@ export const useSocialLogin = (onSuccess?: (user: SocialUser, token: string) => 
 
         try {
             const result: SocialLoginResponse = await socialAuthService.loginWithProvider(provider);
+            console.log('result', result);
 
             if (result.success && result.user && result.token) {
                 onSuccess?.(result.user, result.token);
