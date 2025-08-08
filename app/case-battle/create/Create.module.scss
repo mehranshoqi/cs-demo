@@ -1,0 +1,206 @@
+.wrapper {
+  padding: 24px 20px;
+  max-width: 1440px;
+  display: flex;
+  flex-direction: column;
+  // align-items: start;
+  // background-color: green;
+
+}
+
+.pageHeader {
+  display: flex;
+  gap: 8px;
+  padding: 12px 0;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  img {
+    cursor: pointer;
+  }
+  span {
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: normal;
+    color: var(--Text-Color-TextBodyGray300);
+  }
+}
+
+.pageContent {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  .listHeader {
+    display: flex;
+    flex-direction: row;
+    margin-top: 8px;
+    margin-bottom: 40px;
+    width: 100%;
+    justify-content: space-between;
+    .title {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      h1 {
+        font-size: 32px;
+        font-weight: 600;
+        color: white;
+      }
+      h5 {
+        font-size: 16px;
+        font-weight: 400;
+        color: var(--Text-Color-TextBodyGray300);
+      }
+    }
+    .headerActions {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      .actionsInfo {
+        display: flex;
+        align-items: center;
+        align-items: center;
+        gap: 8px;
+        padding: 0 12px;
+        .actionsInfoTitle {
+          font-size: 12px;
+          color: var(--Text-Color-TextBodyGray300);
+          font-weight: 400;
+        }
+        .actionsInfoValue {
+          flex-grow: 1;
+          font-size: 14px;
+          color: white;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}
+
+.filters {
+  background-color: blue;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  .chips {
+    background-color: var(--Gray900);
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+  }
+}
+
+.cases {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(216px, 0fr));
+  gap: 20px;
+}
+
+.caseCard {
+  width: 217px;
+  height: 321px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--Gray930);
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+  border: solid 1px var(--Gray800);
+  &:hover {
+    border-radius: 16px;
+    border: 1px solid var(--Border-Color-BorderGray800, #222d3b);
+    transition: all 0.3s;
+    background: url("/images/case-battle/CasePattern.svg"),
+      radial-gradient(
+        147.93% 100% at 50% 0%,
+        var(--Background-Color-BgPrimary800, #321265) 0%,
+        var(--Background-Color-BgGray900, #121925) 80%
+      );
+    background-size: cover; /* برای پوشش کامل پس‌زمینه */
+    background-position: center; /* برای قرارگیری در مرکز */
+    background-repeat: no-repeat;
+  }
+}
+
+.newCaseCard {
+  width: 217px;
+  height: 321px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--Gray930);
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+  border: solid 1px var(--Gray800);
+  &:hover {
+    border-radius: 16px;
+    border: 1px solid var(--Border-Color-BorderGray800, #222d3b);
+    transition: all 0.3s;
+    background: url("/images/case-battle/CasePattern.svg"),
+      radial-gradient(
+        147.93% 100% at 50% 0%,
+        var(--Background-Color-BgPrimary800, #321265) 0%,
+        var(--Background-Color-BgGray900, #121925) 80%
+      );
+    background-size: cover; /* برای پوشش کامل پس‌زمینه */
+    background-position: center; /* برای قرارگیری در مرکز */
+    background-repeat: no-repeat;
+  }
+}
+
+.baseImage {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s ease-in-out;
+  opacity: 1;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+.caseCardMainImg {
+}
+
+.caseCardTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--Text-Color-TextBodyGray300);
+}
+
+.bottomSection {
+  display: flex;
+  flex-direction: column;
+}
+
+.casePrice {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.countHandler {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.06);
+  height: 44px;
+  width: 100%;
+}

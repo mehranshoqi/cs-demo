@@ -1,0 +1,16 @@
+.searchSort {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+
+.chipStyle {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  width: 40px;
+  border-radius: 30px;
+  justify-content: center;
+  border: 1.5px solid var(--Gray800);
+}

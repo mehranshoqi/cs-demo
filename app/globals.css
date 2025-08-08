@@ -14,14 +14,14 @@
   --green-color: #80bd29;
   --Secondary500: #de4a7e;
   --TextBodyGray300: ‌ rgba(157, 171, 189, 1);
-  --Gray100: #F1F5F9;
+  --Gray100: #f1f5f9;
   --Gray200: #bdc8d6;
   --Gray500: #616f81;
-  --Gray600: #4D5B6D;
+  --Gray600: #4d5b6d;
   --Gray700: #475566;
   --Gray800: #222d3b;
   --Gray900: #121925;
-  --Gray930: #0C111C;
+  --Gray930: #0c111c;
   --Gray950: #060b15;
 
   --BgPrimary500: rgba(125, 46, 250, 1);
@@ -99,4 +99,29 @@ body {
 
 .btn {
   cursor: pointer;
+}
+
+* {
+  font-style: normal;
+  line-height: normal;
+}
+
+.gradientBorder {
+  
+}
+
+.gradientBorder::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0.5px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--Gray200),
+    transparent
+  );
+  border-radius: 16px;
 }
