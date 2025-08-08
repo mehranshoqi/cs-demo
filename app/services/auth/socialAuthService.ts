@@ -24,28 +24,59 @@ class SocialAuthService {
     private popupCheckInterval: NodeJS.Timeout | null = null;
 
     // Configuration for each provider
-    private configs = {
-        steam: {
-            clientId: process.env.NEXT_PUBLIC_STEAM_CLIENT_ID || 'your-steam-client-id',
-            redirectUri: `${window.location.origin}/auth/callback/steam`,
-            scope: 'openid profile email'
-        },
-        google: {
-            clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || 'your-google-client-id',
-            redirectUri: `${window.location.origin}/auth/callback/google`,
-            scope: 'openid profile email'
-        },
-        discord: {
-            clientId: process.env.NEXT_PUBLIC_DISCORD_CLIENT_ID || 'your-discord-client-id',
-            redirectUri: `${window.location.origin}/auth/callback/discord`,
-            scope: 'identify email'
+    private get configs() {
+        // Check if we're on the client side
+        if (typeof window === 'undefined') {
+            return {
+                steam: {
+                    clientId: 'your-steam-client-id',
+                    redirectUri: '/auth/callback/steam',
+                    scope: 'openid profile email'
+                },
+                google: {
+                    clientId: 'your-google-client-id',
+                    redirectUri: '/auth/callback/google',
+                    scope: 'openid profile email'
+                },
+                discord: {
+                    clientId: 'your-discord-client-id',
+                    redirectUri: '/auth/callback/discord',
+                    scope: 'identify email'
+                }
+            };
         }
-    };
+
+        return {
+            steam: {
+                clientId: process.env.NEXT_PUBLIC_STEAM_CLIENT_ID || 'your-steam-client-id',
+                redirectUri: `${window.location.origin}/auth/callback/steam`,
+                scope: 'openid profile email'
+            },
+            google: {
+                clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || 'your-google-client-id',
+                redirectUri: `${window.location.origin}/auth/callback/google`,
+                scope: 'openid profile email'
+            },
+            discord: {
+                clientId: process.env.NEXT_PUBLIC_DISCORD_CLIENT_ID || 'your-discord-client-id',
+                redirectUri: `${window.location.origin}/auth/callback/discord`,
+                scope: 'identify email'
+            }
+        };
+    }
 
     /**
      * Initialize social login for a specific provider
      */
     async loginWithProvider(provider: 'steam' | 'google' | 'discord'): Promise<SocialLoginResponse> {
+        // Check if we're on the client side
+        if (typeof window === 'undefined') {
+            return {
+                success: false,
+                error: 'Social login is only available on the client side'
+            };
+        }
+
         try {
             const config = this.configs[provider];
 
@@ -78,6 +109,10 @@ class SocialAuthService {
      * Create popup window for social login
      */
     private createPopup(provider: 'steam' | 'google' | 'discord', config: SocialLoginConfig): Window {
+        if (typeof window === 'undefined') {
+            throw new Error('Window is not available');
+        }
+
         const width = 500;
         const height = 600;
         const left = window.screenX + (window.outerWidth - width) / 2;
