@@ -238,20 +238,41 @@ class SocialAuthService {
 
             // In a real implementation, you would exchange the code for tokens
             // and fetch user data from the provider's API
-            // For now, we'll simulate the user data
-            const mockUser: SocialUser = {
-                id: `https://${provider}.com/openid/id/${Date.now()}`, // Simulate provider token
-                email: `user@${provider}.com`,
-                name: `User from ${provider}`,
-                avatar: `https://via.placeholder.com/150/000000/FFFFFF/?text=${provider.charAt(0).toUpperCase()}`,
+            // For now, we'll create a user object with the authorization code
+            // The backend will handle the actual user data extraction
+            // 
+            // Backend should:
+            // 1. Exchange authorization code for access token with provider
+            // 2. Use access token to fetch user profile (email, name, avatar)
+            // 3. Create/update user in our database
+            // 4. Return our app's user token
+            //
+            // Example request to backend:
+            // {
+            //   "type": "socialLogin",
+            //   "data": {
+            //     "provider": "google",
+            //     "token": "4/0AfJohXn...", // authorization code from Google
+            //     "expire_in": 60,
+            //     "meta": {
+            //       "display_name": "", // Backend will extract from Google
+            //       "avatar": "" // Backend will extract from Google
+            //     }
+            //   }
+            // }
+            const user: SocialUser = {
+                id: code, // Use the authorization code as the token (will be sent to backend)
+                email: '', // Will be extracted by backend from provider
+                name: '', // Will be extracted by backend from provider
+                avatar: '', // Will be extracted by backend from provider (optional)
                 provider: provider as 'steam' | 'google' | 'discord'
             };
 
-            console.log('👤 Created Mock User:', mockUser);
+            console.log('👤 Created User Object (will be populated by backend):', user);
 
             return {
                 success: true,
-                user: mockUser
+                user: user
             };
         } catch (error) {
             console.log('❌ Error parsing callback URL:', error);
@@ -291,26 +312,50 @@ class SocialAuthService {
     }
 
     /**
-     * Simulate backend authentication
+     * Exchange authorization code for user token via backend
+     * 
+     * Flow:
+     * 1. User clicks social login → Opens popup
+     * 2. Provider (Google/Steam/Discord) authenticates user
+     * 3. Provider redirects back with authorization code
+     * 4. We extract the authorization code and send it to our backend
+     * 5. Backend exchanges the code for user tokens and returns our app token
      */
     private async authenticateWithBackend(provider: string, user: SocialUser): Promise<string> {
         try {
+            console.log('🔄 Sending authorization code to backend...');
+            console.log('📤 Request to backend:', {
+                provider,
+                authorizationCode: user.id,
+                displayName: user.name,
+                avatar: user.avatar
+            });
+
+            // user.id contains the authorization code from the provider
+            // We only send the authorization code to backend
+            // Backend will handle extracting user data from the provider
             const response = await AuthService.socialLogin(
                 provider as 'steam' | 'google' | 'discord',
-                user.id, // Using user.id as the token from the provider
-                user.name,
-                user.avatar,
+                user.id, // This is the authorization code from the provider
+                '', // display_name will be extracted by backend
+                '', // avatar will be extracted by backend
                 60 // expire_in: 60 minutes
             );
 
+            console.log('📥 Backend response:', response.data);
+
             if (response.data.status === 1) {
-                return response.data.data.token;
+                console.log('✅ Backend authentication successful');
+                console.log('🎉 User token received:', response.data.data.token);
+                console.log('👤 User display name:', response.data.data.display_name);
+                return response.data.data.token; // Return the user token from backend
             } else {
+                console.log('❌ Backend authentication failed:', response.data.error);
                 throw new Error(response.data.error || 'Authentication failed');
             }
         } catch (error) {
             // Fallback to mock token if API call fails
-            console.warn('Social login API failed, using mock token:', error);
+            console.warn('❌ Social login API failed, using mock token:', error);
             return `mock_token_${provider}_${Date.now()}`;
         }
     }
