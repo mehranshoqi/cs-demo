@@ -4,6 +4,7 @@ import SolidSvg from "../svgMask/svgMask";
 interface OutlinedButtonProps {
   title: string;
   onClick?: () => void;
+  disabled?: boolean;
   iconSrc?: string;
   iconSize?: number;
   iconColor?: string;
@@ -20,6 +21,7 @@ interface OutlinedButtonProps {
 export default function OutlinedButton({
   title,
   onClick,
+  disabled = false,
   iconSrc,
   iconSize = 20,
   iconColor,
@@ -34,14 +36,17 @@ export default function OutlinedButton({
 }: OutlinedButtonProps) {
   return (
     <button
-      className={styles.outlinedButton}
+      className={`${styles.outlinedButton} ${disabled ? styles.disabled : ''}`}
       onClick={onClick}
+      disabled={disabled}
       style={{
         height: height,
         width: width,
         borderColor: borderColor,
         backgroundColor: bgColor,
         padding: padding,
+        opacity: disabled ? 0.6 : 1,
+        cursor: disabled ? 'not-allowed' : 'pointer',
       }}
     >
       {iconSrc && (

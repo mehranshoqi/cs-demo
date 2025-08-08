@@ -15,9 +15,33 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  
-  box-shadow: 0 12px 18px rgba(0, 0, 0, 0.08);
 
+  box-shadow: 0 12px 18px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 24px rgba(0, 0, 0, 0.15);
+    border-color: var(--Gray700);
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.12);
+  }
+
+  &.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+
+    &:hover {
+      transform: none;
+      box-shadow: 0 12px 18px rgba(0, 0, 0, 0.08);
+      border-color: var(--BgPrimary500);
+      background-color: transparent;
+    }
+  }
 }
 
 .icon {
