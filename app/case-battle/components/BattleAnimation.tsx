@@ -23,6 +23,11 @@ export default function BattleAnimation({ className = "", children }: BattleAnim
     const animationRef = useRef<number | undefined>(undefined);
 
     useEffect(() => {
+        // Check if we're on the client side
+        if (typeof window === 'undefined') {
+            return;
+        }
+
         const canvas = canvasRef.current;
         if (!canvas) return;
 
