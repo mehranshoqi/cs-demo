@@ -9,8 +9,7 @@ import toast from "react-hot-toast";
 import { getErrorMessageByCode } from "../../constants/errorCodes";
 
 const api: AxiosInstance = axios.create({
-  baseURL: "https://um.main.cs2skin.com/web",
-  // process.env.NEXT_PUBLIC_AUTH_API_URL,
+  baseURL: process.env.NEXT_PUBLIC_AUTH_API_URL,
   headers: {
     "Content-Type": "application/json",
   },
@@ -18,8 +17,7 @@ const api: AxiosInstance = axios.create({
 
 api.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
-    // config.headers.Authorization = `Bearer ${process.env.NEXT_PUBLIC_AUTH_TOKEN}`;
-    config.headers.Authorization = `Bearer 4fb1c6d6a5be06d65be004e2558bep2r`;
+    config.headers.Authorization = `Bearer ${process.env.NEXT_PUBLIC_AUTH_TOKEN}`;
     // const token = localStorage.getItem("authToken");
     // if (token) {
     //   if (!config.headers) {
