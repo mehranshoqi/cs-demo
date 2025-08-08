@@ -236,39 +236,18 @@ class SocialAuthService {
             const provider = this.extractProviderFromUrl(url);
             console.log('🏷️ Detected Provider:', provider);
 
-            // In a real implementation, you would exchange the code for tokens
-            // and fetch user data from the provider's API
-            // For now, we'll create a user object with the authorization code
-            // The backend will handle the actual user data extraction
-            // 
-            // Backend should:
-            // 1. Exchange authorization code for access token with provider
-            // 2. Use access token to fetch user profile (email, name, avatar)
-            // 3. Create/update user in our database
-            // 4. Return our app's user token
-            //
-            // Example request to backend:
-            // {
-            //   "type": "socialLogin",
-            //   "data": {
-            //     "provider": "google",
-            //     "token": "4/0AfJohXn...", // authorization code from Google
-            //     "expire_in": 60,
-            //     "meta": {
-            //       "display_name": "", // Backend will extract from Google
-            //       "avatar": "" // Backend will extract from Google
-            //     }
-            //   }
-            // }
+            // Create user object with authorization code
+            // The backend will exchange this code for user data
             const user: SocialUser = {
-                id: code, // Use the authorization code as the token (will be sent to backend)
-                email: '', // Will be extracted by backend from provider
-                name: '', // Will be extracted by backend from provider
-                avatar: '', // Will be extracted by backend from provider (optional)
+                id: code, // Authorization code from Google
+                email: '', // Will be populated by backend after code exchange
+                name: '', // Will be populated by backend after code exchange
+                avatar: '', // Will be populated by backend after code exchange
                 provider: provider as 'steam' | 'google' | 'discord'
             };
 
-            console.log('👤 Created User Object (will be populated by backend):', user);
+            console.log('👤 Created User Object with Authorization Code:', user);
+            console.log('💡 Note: User data (email, name, avatar) will be populated by backend after code exchange');
 
             return {
                 success: true,
@@ -320,6 +299,11 @@ class SocialAuthService {
      * 3. Provider redirects back with authorization code
      * 4. We extract the authorization code and send it to our backend
      * 5. Backend exchanges the code for user tokens and returns our app token
+     * 
+     * Backend should:
+     * - Exchange authorization code for access token with Google
+     * - Use access token to fetch user profile from Google API
+     * - Return user data like: {id: "116145682858680615700", name: "milad davodabadi", email: "persianfars@gmail.com", avatar: "https://..."}
      */
     private async authenticateWithBackend(provider: string, user: SocialUser): Promise<string> {
         try {
@@ -327,8 +311,7 @@ class SocialAuthService {
             console.log('📤 Request to backend:', {
                 provider,
                 authorizationCode: user.id,
-                displayName: user.name,
-                avatar: user.avatar
+                note: 'Backend should exchange this code for user data from Google API'
             });
 
             // user.id contains the authorization code from the provider
@@ -337,8 +320,8 @@ class SocialAuthService {
             const response = await AuthService.socialLogin(
                 provider as 'steam' | 'google' | 'discord',
                 user.id, // This is the authorization code from the provider
-                '', // display_name will be extracted by backend
-                '', // avatar will be extracted by backend
+                '', // display_name will be extracted by backend from Google API
+                '', // avatar will be extracted by backend from Google API
                 60 // expire_in: 60 minutes
             );
 
@@ -348,6 +331,12 @@ class SocialAuthService {
                 console.log('✅ Backend authentication successful');
                 console.log('🎉 User token received:', response.data.data.token);
                 console.log('👤 User display name:', response.data.data.display_name);
+                console.log('💡 Expected user data from backend:', {
+                    id: '116145682858680615700',
+                    name: 'milad davodabadi',
+                    email: 'persianfars@gmail.com',
+                    avatar: 'https://lh3.googleusercontent.com/a/ACg8ocLhSHsqoUAT2LTOZxK0LayJLrxveubCHalyGymcRVLnrCC6UQ6w=s96-c'
+                });
                 return response.data.data.token; // Return the user token from backend
             } else {
                 console.log('❌ Backend authentication failed:', response.data.error);
