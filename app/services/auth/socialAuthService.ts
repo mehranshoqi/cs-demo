@@ -87,6 +87,7 @@ class SocialAuthService {
 
             // Wait for popup to complete
             const result = await this.waitForPopupResult(popup);
+            console.log('🔄 result waitForPopupResult :', result);
 
             if (result.success && result.user) {
                 // Simulate API call to your backend
