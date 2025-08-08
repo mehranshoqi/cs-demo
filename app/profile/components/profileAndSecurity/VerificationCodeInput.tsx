@@ -1,4 +1,4 @@
-import { ChangeEvent, useRef, useState } from "react";
+import { ChangeEvent, useRef, useState, useEffect } from "react";
 import styles from "../../Profile.module.scss";
 
 interface VerificationCodeInputProps {
@@ -33,6 +33,10 @@ const VerificationCodeInput: React.FC<VerificationCodeInputProps> = ({
     }
   };
 
+useEffect(() => {
+  inputRefs.current[0]?.focus();
+}, []);
+
   const handleKeyDown = (
     e: React.KeyboardEvent<HTMLInputElement>,
     index: number
@@ -49,6 +53,7 @@ const VerificationCodeInput: React.FC<VerificationCodeInputProps> = ({
         return (
           <div key={index} className={styles.inputWrapper}>
             <input
+              style={{ color: "white" }}
               ref={(el) => {
                 inputRefs.current[index] = el!;
               }}
@@ -67,6 +72,5 @@ const VerificationCodeInput: React.FC<VerificationCodeInputProps> = ({
     </div>
   );
 };
-
 
 export default VerificationCodeInput;

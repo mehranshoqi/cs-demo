@@ -1,0 +1,154 @@
+.wrapper {
+  padding: 16px 24px;
+  margin: 6px 0;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: row;
+  border: 1px solid var(--Border-Color-BorderGray800, #222d3b);
+  background: var(--Background-Color-BgGray900, #121925);
+  justify-content: space-between;
+  .peoples {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    .labels {
+      display: flex;
+      flex-direction: row;
+      gap: 4px;
+      align-items: center;
+      .labelIcon {
+      }
+      .labelTitle {
+        margin-right: 16px;
+        font-size: 11px;
+        font-weight: 500;
+        font-style: normal;
+        line-height: normal;
+        color: var(--Background-Color-BgGray100);
+      }
+    }
+  }
+}
+.teams {
+  display: flex;
+  flex-direction: row;
+}
+
+.vs {
+  margin: 0 5px;
+}
+
+.members {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
+.stages {
+  position: relative;
+  width: 453px;
+  max-width: 453px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+.stagesBg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 453px;
+  height: 80px;
+  z-index: 100;
+//   background: url("/images/case-battle/battleItemBg1.png") lightgray 50% / cover
+//     no-repeat;
+//   mix-blend-mode: overlay;
+  //   mix-blend-mode: soft-light;
+  background-position: -10% -20%;
+
+  border-radius: 12px;
+}
+.stagesItem {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  overflow-x: scroll;
+  z-index: 200;
+}
+
+.stageImgWrapper {
+  position: relative;
+  margin-left: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.stageImg {
+  position: absolute;
+  opacity: 1;
+  width: 63px;
+  height: 63px;
+  mix-blend-mode: normal;
+  z-index: 13444;
+  height: 50px;
+  z-index: 20;
+  width: 50px;
+}
+
+.StageImgBadge {
+  position: absolute;
+  background-origin: 0%;
+  z-index: 40;
+  width: 16px;
+  height: 16px;
+  background-color: var(--Gray800);
+  text-align: center;
+  border-radius: 4px;
+  color: var(--Text-Color-TextBodyGray300);
+  font-size: 12px;
+  bottom: 0%;
+}
+
+.info {
+  flex-grow: 1;
+  justify-self: center;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: end;
+  gap: 6px;
+  .subInfo {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    flex-direction: row;
+    max-width: 122px;
+    span {
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: normal;
+    }
+  }
+}
+
+$number1: 16px;
+$number2: 4vw;
+
+.actions {
+  margin-left: max($number1, $number2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  span {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    color: var(--Text-Color-TextBodyGray300);
+  }
+}

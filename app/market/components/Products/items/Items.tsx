@@ -10,6 +10,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import EmptyListView from "./components/EmptyView/EmptyView";
 import { useState } from "react";
 import ProductSearchBar from "./components/ProductSearchBar/ProductSearchBar";
+import SortButton from "@/app/components/SortButton/SortButton";
 
 const chipData: Chip[] = [
   { label: "All Skins", iconSrc: "/images/knife.svg" },
@@ -68,15 +69,7 @@ const Items: React.FC<ItemsProps> = ({
                 height={20}
               />
             </span>
-            <span className={styles.chipStyle}>
-              <Image
-                src={ImagePaths.icons.sort}
-                alt="Sort"
-                className={styles.sortIcon}
-                width={20}
-                height={20}
-              />
-            </span>
+            <SortButton />
           </div>
         </div>
         <div className={styles.searchWrapper}>

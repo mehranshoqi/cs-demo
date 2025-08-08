@@ -113,7 +113,7 @@ const AuthModal: React.FC = () => {
             />
 
             {forgotPass ? (
-              <ForgotPass test={() => { }} />
+              <ForgotPass onBackForgotPass={() => setForgotPass(false)} />
             ) : showSignup ? (
               <Signup
                 onSignup={(token, dName) => {
@@ -139,7 +139,7 @@ const AuthModal: React.FC = () => {
                       : "Don't have an account?"}
                   </h3>
                   <span
-                    className="btn"
+                    className={` ${styles.authLink} btn`}
                     onClick={() => {
                       setShowSignup(!showSignup);
                     }}

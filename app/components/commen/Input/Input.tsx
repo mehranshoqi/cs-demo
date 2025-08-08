@@ -71,9 +71,11 @@ const AppInput = forwardRef<HTMLInputElement, InputProps>(
         )}
         <div
           className={styles.inputContainer}
-          style={{
-            padding: iconSrc != null ? "10px 14px" : " 10px 20px",
-          }}
+          style={
+            {
+              // padding: iconSrc != null ? "10px 14px" : " 10px 20px",
+            }
+          }
         >
           {iconSrc && (
             <SolidSvg
@@ -96,6 +98,10 @@ const AppInput = forwardRef<HTMLInputElement, InputProps>(
             value={internalValue}
             type={actualInputType}
             {...rest}
+            style={{
+              padding: iconSrc != null ? "10px 8px" : " 10px 14px",
+              // borderRadius: '14px
+            }}
           />
 
           {type === "password" && (

@@ -12,6 +12,7 @@ import React from "react";
 import UserAuthControls from "./HeaderDropDown/UserAuthControl";
 import FillButton from "../../commen/FilledButton/FilledButton";
 import { useUserStore } from "@/app/store/userStore";
+import { formatPriceFromString } from "@/app/helper/FormatPrice";
 
 const Header: React.FC = () => {
   const router = useRouter();
@@ -43,14 +44,19 @@ const Header: React.FC = () => {
         />
       </div>
       <div className={styles.rightNavigation}>
-        <HeaderDropDown imageSrc={ImagePaths.icons.coin} title={balance ?? "0.00"} />
+        <HeaderDropDown
+          imageSrc={ImagePaths.icons.coin}
+          title={formatPriceFromString(balance ?? "0.00")}
+        />
 
         <UserAuthControls />
 
         <FillButton
           title="Deposit"
           iconSrc={ImagePaths.icons.plusCircle}
-          onClick={() => { }}
+          onClick={() => {
+            router.push("/deposit");
+          }}
         />
       </div>
     </header>

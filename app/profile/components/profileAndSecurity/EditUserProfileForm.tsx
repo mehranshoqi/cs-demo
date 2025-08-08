@@ -7,13 +7,17 @@ import Input from "@/app/components/commen/Input/Input";
 import { useUserStore } from "@/app/store/userStore";
 import AuthService from "@/app/services/auth/authService";
 import FillButton from "@/app/components/commen/FilledButton/FilledButton";
+import { useModal } from "@/app/context/ModalContext";
 
 const EditUserProfileForm = () => {
   const [profileImage, setProfileImage] = useState<string | null>(null);
+  const { closeModal } = useModal();
   const [newDisplayName, setNewDisplayName] = useState<string>("");
   const [isUpdating, setIsUpdating] = useState<boolean>(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const { displayName, token, user_id, steam_id, setDisplayName } = useUserStore();
+  const { displayName, token, user_id, steam_id, setDisplayName } =
+    useUserStore();
+
   const handleChoosePhotoClick = () => {
     fileInputRef.current?.click();
   };
@@ -47,6 +51,7 @@ const EditUserProfileForm = () => {
       if (response.data.status === 1) {
         setDisplayName(newDisplayName.trim());
         console.log("Profile updated successfully");
+        closeModal();
       }
     } catch (error) {
       console.error("Error updating profile:", error);
@@ -117,11 +122,14 @@ const EditUserProfileForm = () => {
       <div style={{ height: "var(--sds-size-space-800)" }}></div>
       <Input
         placeholder="Username"
-        value={newDisplayName || displayName || ""}
+        value={displayName || ""}
         onChange={(e) => setNewDisplayName(e.target.value)}
         iconSrc={ImagePaths.icons.user}
         label="Username"
         height={48}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") handleUpdateProfile();
+        }}
       />
       <div style={{ height: "var(--sds-size-space-600)" }}></div>
 

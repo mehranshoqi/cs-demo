@@ -12,11 +12,13 @@ interface UserMenuDropdownProps {
   onLogout: () => void;
 }
 
-const UserMenuDropdown: React.FC<UserMenuDropdownProps> = ({ onClose, onLogout }) => {
+const UserMenuDropdown: React.FC<UserMenuDropdownProps> = ({
+  onClose,
+  onLogout,
+}) => {
   const { userDisplayName } = useAuth();
   const router = useRouter();
   const dropdownRef = useRef<HTMLDivElement>(null);
-
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -39,14 +41,21 @@ const UserMenuDropdown: React.FC<UserMenuDropdownProps> = ({ onClose, onLogout }
   //   onClose();
   // };
 
-
-
-
   return (
     <div ref={dropdownRef} className={styles.menuContainer}>
       {/* Header Section */}
       <div className={styles.DNameWrapper}>
-        <h2 className={styles.userDName}>Hi, {userDisplayName || ""}!</h2>
+        <h2
+          style={{
+            textOverflow: "ellipsis",
+            width: "100px",
+            flexGrow: '1',
+            overflowX: 'clip',
+          }}
+          className={styles.userDName}
+        >
+          Hi, {userDisplayName || ""}!
+        </h2>
         <div className={styles.steamConnection}>
           <Image
             src={ImagePaths.icons.steam2}
@@ -91,7 +100,7 @@ const UserMenuDropdown: React.FC<UserMenuDropdownProps> = ({ onClose, onLogout }
         <h3>Account info</h3>
       </div>
       <div className={styles.customBorder}></div>
-      <div className={styles.menuItem} onClick={() => onLogout()} >
+      <div className={styles.menuItem} onClick={() => onLogout()}>
         <Image
           src={ImagePaths.icons.logout}
           alt="icon"

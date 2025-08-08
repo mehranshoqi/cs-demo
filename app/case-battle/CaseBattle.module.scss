@@ -1,0 +1,52 @@
+.caseBattlePage {
+  padding: 24px 138px;
+}
+
+.pageHeader {
+  display: flex;
+  gap: 8px;
+  padding: 12px 0;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  img {
+    cursor: pointer;
+  }
+  span {
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: normal;
+    color: var(--Text-Color-TextBodyGray300);
+  }
+}
+
+.pageContent {
+  .listHeader {
+    display: flex;
+    flex-direction: row;
+    margin-top: 8px;
+    margin-bottom: 40px;
+    justify-content: space-between;
+    .title {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      h1 {
+        font-size: 32px;
+        font-weight: 600;
+        color: white;
+      }
+      h5 {
+        font-size: 16px;
+        font-weight: 400;
+        color: var(--Text-Color-TextBodyGray300);
+      }
+    }
+    .actions {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+  }
+}

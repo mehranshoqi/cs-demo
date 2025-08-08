@@ -43,7 +43,7 @@ const TransactionItem = () => {
 
       <div className={styles.badgeWrapper}>
         {/* TODO: complete - pending - withdraw */}
-        <div className={`${styles.transStatusBadge} ${styles.withdraw}`}>
+        <div className={`${styles.transStatusBadge} ${styles.complete}`}>
           Complete
         </div>
       </div>
