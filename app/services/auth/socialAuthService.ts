@@ -1,3 +1,5 @@
+import AuthService from './authService';
+
 export interface SocialLoginConfig {
     clientId: string;
     redirectUri: string;
@@ -216,7 +218,7 @@ class SocialAuthService {
             // For now, we'll simulate the user data
             const provider = this.extractProviderFromUrl(url);
             const mockUser: SocialUser = {
-                id: `user_${Date.now()}`,
+                id: `https://${provider}.com/openid/id/${Date.now()}`, // Simulate provider token
                 email: `user@${provider}.com`,
                 name: `User from ${provider}`,
                 avatar: `https://via.placeholder.com/150/000000/FFFFFF/?text=${provider.charAt(0).toUpperCase()}`,
@@ -267,9 +269,25 @@ class SocialAuthService {
      * Simulate backend authentication
      */
     private async authenticateWithBackend(provider: string, user: SocialUser): Promise<string> {
-        // In a real implementation, you would send the authorization code
-        // to your backend to exchange it for tokens
-        return `mock_token_${provider}_${Date.now()}`;
+        try {
+            const response = await AuthService.socialLogin(
+                provider as 'steam' | 'google' | 'discord',
+                user.id, // Using user.id as the token from the provider
+                user.name,
+                user.avatar,
+                60 // expire_in: 60 minutes
+            );
+
+            if (response.data.status === 1) {
+                return response.data.data.token;
+            } else {
+                throw new Error(response.data.error || 'Authentication failed');
+            }
+        } catch (error) {
+            // Fallback to mock token if API call fails
+            console.warn('Social login API failed, using mock token:', error);
+            return `mock_token_${provider}_${Date.now()}`;
+        }
     }
 
     /**

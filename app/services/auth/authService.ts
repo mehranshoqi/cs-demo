@@ -123,6 +123,29 @@ interface PassResetResponseData {
   data: string;
 }
 
+interface SocialLoginRequestBody {
+  type: "socialLogin";
+  data: {
+    provider: "steam" | "google" | "discord";
+    token: string;
+    expire_in?: number;
+    meta: {
+      display_name: string;
+      avatar?: string;
+    };
+  };
+}
+
+interface SocialLoginResponseData {
+  type: "socialLogin";
+  status: 0 | 1;
+  data: {
+    display_name: string;
+    token: string;
+  };
+  error?: string;
+}
+
 const AuthService = {
   register: (
     email: string,
@@ -215,6 +238,28 @@ const AuthService = {
       },
     };
     return api.post<PassResetResponseData>("", requestBody);
+  },
+
+  socialLogin: (
+    provider: "steam" | "google" | "discord",
+    token: string,
+    display_name: string,
+    avatar?: string,
+    expire_in?: number
+  ) => {
+    const requestBody: SocialLoginRequestBody = {
+      type: "socialLogin",
+      data: {
+        provider,
+        token,
+        expire_in: expire_in || 60,
+        meta: {
+          display_name,
+          avatar,
+        },
+      },
+    };
+    return api.post<SocialLoginResponseData>("", requestBody);
   },
 };
 
