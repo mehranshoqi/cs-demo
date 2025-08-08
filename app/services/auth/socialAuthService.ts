@@ -153,7 +153,13 @@ class SocialAuthService {
             discord: 'https://discord.com/api/oauth2/authorize'
         };
 
-        return `${baseUrls[provider]}?${params.toString()}`;
+        const authUrl = `${baseUrls[provider]}?${params.toString()}`;
+
+        console.log('🚀 Building Auth URL for', provider);
+        console.log('🔗 Auth URL:', authUrl);
+        console.log('⚙️ Config:', config);
+
+        return authUrl;
     }
 
     /**
@@ -177,6 +183,8 @@ class SocialAuthService {
                         this.clearInterval();
                         popup.close();
 
+                        console.log('🎉 Popup redirected to callback URL:', popup.location.href);
+
                         // Parse the callback URL to extract user data
                         const userData = this.parseCallbackUrl(popup.location.href);
                         resolve(userData);
@@ -198,8 +206,18 @@ class SocialAuthService {
 
             const code = params.get('code');
             const error = params.get('error');
+            const state = params.get('state');
+
+            // Log all information coming from provider
+            console.log('🔍 Provider Callback Information:');
+            console.log('📋 Full URL:', url);
+            console.log('🔑 Authorization Code:', code);
+            console.log('❌ Error (if any):', error);
+            console.log('🎯 State:', state);
+            console.log('📝 All URL Parameters:', Object.fromEntries(params.entries()));
 
             if (error) {
+                console.log('❌ Provider returned error:', error);
                 return {
                     success: false,
                     error: 'Login was cancelled or failed. Please try again.'
@@ -207,16 +225,20 @@ class SocialAuthService {
             }
 
             if (!code) {
+                console.log('❌ No authorization code received');
                 return {
                     success: false,
                     error: 'Login failed. Please try again.'
                 };
             }
 
+            // Extract provider from URL
+            const provider = this.extractProviderFromUrl(url);
+            console.log('🏷️ Detected Provider:', provider);
+
             // In a real implementation, you would exchange the code for tokens
             // and fetch user data from the provider's API
             // For now, we'll simulate the user data
-            const provider = this.extractProviderFromUrl(url);
             const mockUser: SocialUser = {
                 id: `https://${provider}.com/openid/id/${Date.now()}`, // Simulate provider token
                 email: `user@${provider}.com`,
@@ -225,11 +247,14 @@ class SocialAuthService {
                 provider: provider as 'steam' | 'google' | 'discord'
             };
 
+            console.log('👤 Created Mock User:', mockUser);
+
             return {
                 success: true,
                 user: mockUser
             };
         } catch (error) {
+            console.log('❌ Error parsing callback URL:', error);
             return {
                 success: false,
                 error: 'Login failed. Please try again.'
