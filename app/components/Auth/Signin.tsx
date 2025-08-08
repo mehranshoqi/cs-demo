@@ -48,7 +48,7 @@ const Signin: React.FC<SigninProps> = ({ onForgotPass, onSignIn }) => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <div>
+        <div style={{display: 'flex', gap: '2px', flexDirection: 'column'}}  >
           <AppInput
             iconSrc={ImagePaths.icons.lockClose}
             placeholder="Enter your password"
@@ -57,7 +57,7 @@ const Signin: React.FC<SigninProps> = ({ onForgotPass, onSignIn }) => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <span onClick={onForgotPass} className={styles.forgotButton}>
+          <span  onClick={onForgotPass} className={`${styles.forgotButton} btn`}>
             Forgot password?
           </span>
         </div>

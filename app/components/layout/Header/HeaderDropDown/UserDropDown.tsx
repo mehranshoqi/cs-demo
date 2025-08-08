@@ -1,6 +1,6 @@
 "use client";
 
-import React, {  useRef, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 import Image from "next/image";
 import { useAuth } from "@/app/context/AuthContext";
 import styles from "./HeaderDropDown.module.scss";
@@ -11,10 +11,12 @@ interface UserMenuDropdownProps {
   onLogout: () => void;
 }
 
-const UserMenuDropdown: React.FC<UserMenuDropdownProps> = ({ onClose, onLogout }) => {
+const UserMenuDropdown: React.FC<UserMenuDropdownProps> = ({
+  onClose,
+  onLogout,
+}) => {
   const { userDisplayName } = useAuth();
   const dropdownRef = useRef<HTMLDivElement>(null);
-  
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -36,9 +38,6 @@ const UserMenuDropdown: React.FC<UserMenuDropdownProps> = ({ onClose, onLogout }
   //   logout();
   //   onClose();
   // };
-
-
-
 
   return (
     <div ref={dropdownRef} className={styles.menuContainer}>
@@ -82,7 +81,7 @@ const UserMenuDropdown: React.FC<UserMenuDropdownProps> = ({ onClose, onLogout }
         <h3>Account info</h3>
       </div>
       <div className={styles.customBorder}></div>
-      <div className={styles.menuItem} onClick={() => onLogout()} >
+      <div className={styles.menuItem} onClick={() => onLogout()}>
         <Image
           src={ImagePaths.icons.logout}
           alt="icon"
